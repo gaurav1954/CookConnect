@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import './LS.css'
-import user_icon from '../Assests/person.png'
-import pass_icon from '../Assests/password.png'
-import email_icon from '../Assests/email.png'
+import user_icon from '../assets/person.png'
+import pass_icon from '../assets/password.png'
+import email_icon from '../assets/email.png'
+
 const LoginSignup = () => {
+  
   const [action,setAction]=useState("Sign Up")
   return (
     <div className='container'>

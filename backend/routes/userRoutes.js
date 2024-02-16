@@ -4,14 +4,15 @@ const session = require('express-session');
 const passport = require('passport');
 const localStrategy = require('passport-local');
 const User = require('../models/users');
+const cors=require('cors')
 
-router.use(express.urlencoded({ extended: true }));
+router.use(express.json());
 router.use(session({
     secret: 'thisIsJustDumb',
     saveUninitialized: false,
     resave: false   // this is like signing the cookie
 }));
-
+router.use(cors())
 router.use(passport.initialize());
 router.use(passport.session());
 
@@ -41,7 +42,7 @@ const loginMiddleware = (req, res, next) => {
     })(req, res, next);
 };
 const isLoggedIn=(req,res,next)=>{
-    if(req.isAuthenticated)
+    if(req.isAuthenticated())
     next();
     else 
     res.status(500).json({message:"server side err"})
@@ -54,7 +55,6 @@ router.post('/signup', async (req, res) => {
             email
         });
         const newUser = await User.register(user, password);
-        console.log(newUser);
         res.status(201).json({ message: 'Signup successful' });
     } catch (err) {
         console.error(err);

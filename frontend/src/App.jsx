@@ -1,8 +1,8 @@
-import LoginSignup from "./components/LoginSignup"
+import SignUp from "./components/SignUP"
 export default function App() {
   return (
     <>
-      <LoginSignup></LoginSignup>
+      <SignUp></SignUp>
     </>
   )
 }

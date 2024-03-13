@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';  
 import './LS.css';
 import user_icon from '../assets/person.png';
 import pass_icon from '../assets/password.png';
 import email_icon from '../assets/email.png';
 
 export default function SignUp() {
+  const navigate=useNavigate()
+
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -20,9 +23,15 @@ export default function SignUp() {
           'Content-Type': 'application/json'
         }
       });
-      console.log(response.data); // handle response from server as needed
+
+      if (response.status === 200) {  // Check if the status code is successful
+      navigate('login');
+      } else {
+        // Handle other cases, e.g., display an error message
+        console.log('Error:', response.data.message);
+      }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error:', error.message);
     }
   };
 

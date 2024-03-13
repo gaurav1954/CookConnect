@@ -39,25 +39,27 @@ const loginMiddleware = (req, res, next) => {
             }
             next(); // Proceed to the next middleware (login route)
         });
-    })(req, res, next);
+    })(req, res, next);//the authenticate function will return a middleware which will be immediately invoked with the following (req,res,next)
 };
 const isLoggedIn=(req,res,next)=>{
     if(req.isAuthenticated())
     next();
     else 
-    res.status(500).json({message:"server side err"})
-}
+    res.status(500).json({message:"you need to login first"})
+}``
 router.post('/signup', async (req, res) => {
     try {
+        console.log(req.body)
         const { username, email, password } = req.body;
         const user = new User({
             username,
             email
         });
         const newUser = await User.register(user, password);
+        console.log(newUser)
         res.status(201).json({ message: 'Signup successful' });
     } catch (err) {
-        console.error(err);
+        console.error(err.message);
         res.status(500).json({ message: err.message });
     }
 });
@@ -65,8 +67,7 @@ router.post('/signup', async (req, res) => {
 router.post('/login', loginMiddleware, (req, res) => {
     res.status(200).json({ message: 'Login successful' });
 });
-router.get('/reciepes',isLoggedIn,(req,res)=>{
-    console.log("inside it")
-    res.send("you made it")
+router.get('/recepies',isLoggedIn,(req,res)=>{
+    res.send(req.user);
 })
 module.exports = router;

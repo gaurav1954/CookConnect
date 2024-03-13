@@ -4,15 +4,15 @@ const session = require('express-session');
 const passport = require('passport');
 const localStrategy = require('passport-local');
 const User = require('../models/users');
-const cors=require('cors')
+const Recipe = require('../models/recipe');
 
+// Middleware
 router.use(express.json());
 router.use(session({
-    secret: 'thisIsJustDumb',
+    secret: 'this is the secret key',
     saveUninitialized: false,
-    resave: false   // this is like signing the cookie
+    resave: false,
 }));
-router.use(cors())
 router.use(passport.initialize());
 router.use(passport.session());
 
@@ -39,24 +39,25 @@ const loginMiddleware = (req, res, next) => {
             }
             next(); // Proceed to the next middleware (login route)
         });
-    })(req, res, next);//the authenticate function will return a middleware which will be immediately invoked with the following (req,res,next)
+    })(req, res, next);
 };
-const isLoggedIn=(req,res,next)=>{
-    if(req.isAuthenticated())
-    next();
-    else 
-    res.status(500).json({message:"you need to login first"})
-}``
+
+// Custom middleware to check if the user is authenticated
+const isLoggedIn = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        next();
+    } else {
+        res.status(401).json({ message: 'You need to login first' });
+    }
+};
+
+// Routes
 router.post('/signup', async (req, res) => {
     try {
-        console.log(req.body)
         const { username, email, password } = req.body;
-        const user = new User({
-            username,
-            email
-        });
+        const user = new User({ username, email });
         const newUser = await User.register(user, password);
-        console.log(newUser)
+        console.log(newUser);
         res.status(201).json({ message: 'Signup successful' });
     } catch (err) {
         console.error(err.message);
@@ -67,7 +68,20 @@ router.post('/signup', async (req, res) => {
 router.post('/login', loginMiddleware, (req, res) => {
     res.status(200).json({ message: 'Login successful' });
 });
-router.get('/recepies',isLoggedIn,(req,res)=>{
-    res.send(req.user);
-})
+
+router.get('/recipes/:page/:limit', isLoggedIn, async (req, res) => {
+    const { page, limit } = req.params;
+
+    try {
+        const recipes = await Recipe.find()
+            .skip((page - 1) * limit)
+            .limit(limit)
+
+        res.status(200).json(recipes);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 module.exports = router;

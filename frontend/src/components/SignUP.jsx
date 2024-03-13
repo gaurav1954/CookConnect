@@ -7,8 +7,6 @@ import pass_icon from '../assets/password.png';
 import email_icon from '../assets/email.png';
 
 export default function SignUp() {
-  const navigate=useNavigate()
-
   const [formData, setFormData] = useState({
     username: '',
     email: '',

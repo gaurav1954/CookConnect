@@ -13,6 +13,8 @@ export default function SignUp() {
     password: ''
   });
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -22,10 +24,9 @@ export default function SignUp() {
         }
       });
 
-      if (response.status === 200) {  // Check if the status code is successful
-      navigate('login');
+      if (response.status === 200) {  
+        navigate('/login'); 
       } else {
-        // Handle other cases, e.g., display an error message
         console.log('Error:', response.data.message);
       }
     } catch (error) {
@@ -35,6 +36,10 @@ export default function SignUp() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const redirectToLoginPage = () => {
+    navigate('/login'); 
   };
 
   return (
@@ -57,11 +62,12 @@ export default function SignUp() {
           <input type="password" name="password" placeholder='Password' value={formData.password} onChange={handleChange} />
         </div>
         <div className="submit-container">
-          <button type="submit" className="submit">Sign-up</button>
+          <button type="submit" className="submit" onClick={handleSubmit}>Sign-up</button>
         </div>
       </form>
+      <div className="login-container">
+        <p>Already have an account? <button onClick={redirectToLoginPage} className="login-button">Login</button></p>
+      </div>
     </div>
   );
 };
-
-

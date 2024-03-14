@@ -4,8 +4,11 @@ const session = require('express-session');
 const passport = require('passport');
 const localStrategy = require('passport-local');
 const User = require('../models/users');
+const multer = require('multer')
 const Recipe = require('../models/recipe');
+const { storage } = require('../cloudinary')
 
+const parser = multer({ storage })
 // Middleware
 router.use(express.json());
 router.use(session({
@@ -83,5 +86,12 @@ router.get('/recipes/:page/:limit', isLoggedIn, async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+router.post('/recipes/create', parser.single('image'), async (req, res) => {
+    const newRecipe = new Recipe(req.body);
+    newRecipe.image = req.file.path;
+    console.log(newRecipe);
+    res.status(200).json(newRecipe);
+})
+
 
 module.exports = router;

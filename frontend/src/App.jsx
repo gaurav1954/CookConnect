@@ -8,23 +8,15 @@ import Cards from "./components/Cards"
 export default function App() {
   return (
     <>
-    <Router>
-      <Routes>
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/new" element={<RecipeForm />} />
-      </Routes>
-    </Router>
-    <Cards />
-    <Cards />
-    <Cards />
-    <Cards />
-    <Cards />
-    <Cards />
-    <Cards />
-    <Cards />
+      <Router>
+        <Routes>
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/new" element={<RecipeForm />} />
+          <Route path="/cards" element={<Cards />} />
+        </Routes>
+      </Router>
     </>
   );
 }
 
-  

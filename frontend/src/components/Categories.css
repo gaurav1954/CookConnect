@@ -27,8 +27,13 @@ body{
 }
 .zoom-effect {
     transition: transform 0.1s ease-in-out;
+    height: 100px;
+    width: 300px;
 }
   
 .zoom-effect:hover {
     transform: scale(1.20); 
+}
+.types{
+    position: relative;
 }

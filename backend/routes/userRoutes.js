@@ -72,14 +72,13 @@ router.post('/login', loginMiddleware, (req, res) => {
     res.status(200).json({ message: 'Login successful' });
 });
 
-router.get('/recipes/:page/:limit', isLoggedIn, async (req, res) => {
+router.get('/recipes/:page/:limit', async (req, res) => {
     const { page, limit } = req.params;
 
     try {
         const recipes = await Recipe.find()
             .skip((page - 1) * limit)
             .limit(limit)
-
         res.status(200).json(recipes);
     } catch (err) {
         console.error(err.message);

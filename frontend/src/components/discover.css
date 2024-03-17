@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.discover {
+    margin-top: 3rem;
+    width: 63vw;
+}
+
+.discover-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.heading {
+    padding: 0 .8rem;
+}

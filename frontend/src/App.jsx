@@ -11,12 +11,6 @@ export default function App() {
     <>
       <div>
         <Router>
-          {/* <Routes>
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/new" element={<RecipeForm />} />
-          <Route path="/recipes" element={<DiscoverRecipes />} />
-        </Routes> */}
           <Routes>
             <Route path="/" >
               <Route index element={<Login />} />

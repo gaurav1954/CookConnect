@@ -31,6 +31,7 @@ const loginMiddleware = (req, res, next) => {
             return res.status(500).json({ message: 'Internal server error' });
         }
         if (!user) {
+            console.log(info.message)
             return res.status(401).json({ message: 'Invalid credentials', error: info.message });
         }
 

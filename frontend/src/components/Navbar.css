@@ -8,12 +8,10 @@
     display: flex;
     justify-content: space-between;
     width: 100vw;
-    background-color: antiquewhite;
     height: 50px;
     padding: 0 1rem;
     padding-bottom: .3rem;
-
-
+    border-bottom: 1px solid black;
 }
 
 .Logo {
@@ -29,7 +27,7 @@ li,
     font-size: 1.15rem;
     padding-bottom: 0;
     margin-bottom: 0;
-    margin-top: 9px;
+    margin-top: 15px;
     font-weight: 200;
 }
 

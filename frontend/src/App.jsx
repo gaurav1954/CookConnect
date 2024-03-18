@@ -10,20 +10,20 @@ import './app.css'
 export default function App() {
   return (
     <>
-      <div>
-        <Router>
-          <Routes>
-            <Route path="/" >
-              <Route path="login" element={<Login />} />
-              <Route path="signup" element={<SignUp />} />
-            </Route>
-            <Route path="/" element={<Layout />}>
-              <Route path="new" element={<RecipeForm />} />
-              <Route path="recipes" element={<DiscoverRecipes />} />
-            </Route>
-          </Routes>
-        </Router>
-      </div>
+
+      <Router>
+        <Routes>
+          <Route path="/" >
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<SignUp />} />
+          </Route>
+          <Route path="/" element={<Layout />}>
+            <Route path="new" element={<RecipeForm />} />
+            <Route path="recipes" element={<DiscoverRecipes />} />
+          </Route>
+        </Routes>
+      </Router>
+
     </>
   );
 }

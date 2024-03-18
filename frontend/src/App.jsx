@@ -1,10 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SignUp from "./components/SignUP";
-import Login from "./components/LogIn";
 import RecipeForm from './components/RecipeForm';
 import DiscoverRecipes from './components/DiscoverRecipes';
 import Layout from './components/Layout';
+import Navbar from './components/Navbar';
+import SignUp from "./components/SignUP";
+import Login from "./components/LogIn";
+import './app.css'
 
 export default function App() {
   return (
@@ -13,12 +15,13 @@ export default function App() {
         <Router>
           <Routes>
             <Route path="/" >
-              <Route index element={<Login />} />
+              <Route path="login" element={<Login />} />
               <Route path="signup" element={<SignUp />} />
             </Route>
             <Route path="/" element={<Layout />}>
               <Route path="new" element={<RecipeForm />} />
               <Route path="recipes" element={<DiscoverRecipes />} />
+              <Route path="navbar" element={<Navbar />} />
             </Route>
           </Routes>
         </Router>

@@ -45,7 +45,7 @@ export default function SignUp() {
         });
 
         if (response.status === 200) {
-          navigate('/login');
+          navigate('/auth/login');
         } else {
           console.log('Error:', response.data.message);
         }

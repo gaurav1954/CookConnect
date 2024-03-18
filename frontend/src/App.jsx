@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import RecipeForm from './components/RecipeForm';
 import DiscoverRecipes from './components/DiscoverRecipes';
 import Layout from './components/Layout';
-import Navbar from './components/Navbar';
 import SignUp from "./components/SignUP";
 import Login from "./components/LogIn";
 import './app.css'
@@ -21,7 +20,6 @@ export default function App() {
             <Route path="/" element={<Layout />}>
               <Route path="new" element={<RecipeForm />} />
               <Route path="recipes" element={<DiscoverRecipes />} />
-              <Route path="navbar" element={<Navbar />} />
             </Route>
           </Routes>
         </Router>

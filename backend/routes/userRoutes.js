@@ -55,7 +55,11 @@ const isLoggedIn = (req, res, next) => {
     }
 };
 
-// Routes
+// Check if user is authenticated
+router.get('/check-auth', (req, res) => {
+    res.json({ isAuthenticated: req.isAuthenticated() });
+});
+
 router.post('/signup', async (req, res) => {
     try {
         const { username, email, password } = req.body;
@@ -72,6 +76,19 @@ router.post('/signup', async (req, res) => {
 router.post('/login', loginMiddleware, (req, res) => {
     res.status(200).json({ message: 'Login successful' });
 });
+
+// Logout route
+router.post('/logout', (req, res) => {
+    req.logout((err) => {
+        if (err) {
+            console.error('Error logging out:', err);
+            return res.status(500).json({ message: 'Logout failed' });
+        }
+        res.status(200).json({ message: 'Logout successful' });
+    });
+});
+
+
 router.get('/registeredData', async (req, res) => {
     try {
         const users = await User.find({}, 'username email');

@@ -5,10 +5,25 @@
 
 .LandingPage {
     width: 100%;
-    background-color: rgb(6, 166, 166);
     overflow-y: auto;
     height: 100vh;
     scroll-snap-type: y mandatory;
+}
+
+.row1 {
+    background-color: rgb(17, 15, 15);
+}
+
+.row1>* {
+    color: white;
+}
+
+.row2 {
+    background-color: rgb(2, 63, 63);
+}
+
+.row2>* {
+    color: black;
 }
 
 .innerRow {
@@ -26,6 +41,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .foodImageBox {
@@ -45,17 +61,16 @@
 }
 
 .foodImage1 {
-    filter: drop-shadow(10px 10px 5px teal);
+    filter: drop-shadow(10px 10px 5px rgb(47, 46, 46));
     height: 800px;
     display: block;
 }
 
 .foodImage2 {
-    filter: drop-shadow(10px 10px 5px teal);
+    filter: drop-shadow(10px 10px 5px rgb(59, 58, 58));
     height: 800px;
     display: block;
 }
-
 
 .circle2 {
     position: absolute;
@@ -65,18 +80,48 @@
     height: 600px;
     border: 60px solid orange;
     border-radius: 50%;
-    clip-path: inset(25% 0% 0% 0%);
+    /* clip-path: inset(25% 0% 0% 0%); */
 }
 
-
-
+.black {
+    color: black;
+}
 
 .orange {
     color: orange;
+}
+
+.white {
+    color: white;
 }
 
 .cap {
     font-size: 3.4rem;
     font-weight: 600;
     margin-bottom: 0;
+    line-height: 4rem;
+}
+
+.join-button {
+    padding: .3rem .5rem;
+    background-color: rgb(255, 149, 0, 0);
+    border: 1px solid white;
+    color: white;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    font-weight: 600;
+    margin-bottom: 0;
+    transition: all ease-in-out .3s;
+}
+
+.join-button:hover {
+    transform: scale(1.05);
+    color: rgb(255, 149, 0);
+    box-shadow: 0 0 1rem 0.1rem rgb(255, 149, 0);
+}
+
+.maincap {
+    font-weight: 600;
+    font-size: 4.7rem;
 }

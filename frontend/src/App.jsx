@@ -6,11 +6,11 @@ import Layout from './components/Layout';
 import SignUp from "./components/SignUP";
 import Login from "./components/LogIn";
 import './app.css'
+import LandingPage from './components/LandingPage';
 
 export default function App() {
   return (
     <>
-
       <Router>
         <Routes>
           <Route path="/" >
@@ -19,6 +19,7 @@ export default function App() {
           </Route>
           <Route path="/" element={<Layout />}>
             <Route path="new" element={<RecipeForm />} />
+            <Route path="home" element={<LandingPage />} />
             <Route path="recipes" element={<DiscoverRecipes />} />
           </Route>
         </Routes>

@@ -26,14 +26,14 @@ export default function Navbar() {
             </div>
             <div className='links'>
                 <ul>
-                    <li className={location.pathname === "/new" ? "active" : ""}>
-                        <Link to="/new">Create</Link>
+                    <li >
+                        <Link to="/new" className={location.pathname === "/new" ? "active" : ""}>Create</Link>
                     </li>
-                    <li className={location.pathname === "/recipes" ? "active" : ""}>
-                        <Link to="/recipes">Explore</Link>
+                    <li >
+                        <Link to="/recipes" className={location.pathname === "/recipes" ? "active" : ""}>Explore</Link>
                     </li>
-                    <li className={location.pathname === "/saved" ? "active" : ""}>
-                        <Link to="/saved">Saved</Link>
+                    <li >
+                        <Link to="/saved" className={location.pathname === "/saved" ? "active" : ""}>Saved</Link>
                     </li>
                 </ul>
                 <div>

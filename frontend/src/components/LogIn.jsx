@@ -45,26 +45,28 @@ export default function Login() {
   };
 
   return (
-    <div className='container'>
-      <div className='header'>
-        <div className="text">Login</div>
-        <div className="underline"></div>
-      </div>
-      <form className="inputs" onSubmit={handleSubmit}>
-        <div className="input">
-          <img src={user_icon} alt="" />
-          <input type="text" name="username" placeholder='username' value={formData.username} onChange={handleChange} />
+    <div className="outer-container">
+      <div className='container'>
+        <div className='header'>
+          <div className="text">Login</div>
+          <div className="underline"></div>
         </div>
-        <div className="input">
-          <img src={pass_icon} alt="" />
-          <input type="password" name="password" placeholder='Password' value={formData.password} onChange={handleChange} />
-        </div>
-        {err && <div className="error validation-error">{err}</div>}
-        <div className="submit-container">
-          <button type="submit" className="submit">Login</button>
-        </div>
+        <form className="inputs" onSubmit={handleSubmit}>
+          <div className="input">
+            <img src={user_icon} alt="" />
+            <input type="text" name="username" placeholder='username' value={formData.username} onChange={handleChange} />
+          </div>
+          <div className="input">
+            <img src={pass_icon} alt="" />
+            <input type="password" name="password" placeholder='Password' value={formData.password} onChange={handleChange} />
+          </div>
+          {err && <div className="error validation-error">{err}</div>}
+          <div className="submit-container">
+            <button type="submit" className="submit">Login</button>
+          </div>
 
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

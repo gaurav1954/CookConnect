@@ -28,8 +28,7 @@ export default function LandingPage() {
             </div>
             <div className="rows row2">
                 <div className="circle2">aaaa</div>
-
-                <div className="innerRow">
+                <div className="innerRow innerRow2">
                     <div className='foodImageBox'>
                         <img className='foodImage2' src={pizza} alt="none" />
                     </div>

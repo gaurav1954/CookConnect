@@ -19,8 +19,10 @@
 }
 
 .row2 {
-    background-color: rgb(2, 63, 63);
+    background-color: rgb(1, 37, 37);
 }
+
+
 
 .row2>* {
     color: black;
@@ -33,6 +35,11 @@
     width: 100%;
     height: 100vh;
     padding: 1rem 3rem;
+}
+
+.innerRow2 {
+    padding-left: 1rem;
+    gap: 30px;
 }
 
 .rows {
@@ -67,7 +74,7 @@
 }
 
 .foodImage2 {
-    filter: drop-shadow(10px 10px 5px rgb(59, 58, 58));
+    filter: drop-shadow(10px 10px 5px rgb(1, 48, 48));
     height: 800px;
     display: block;
 }

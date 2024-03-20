@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from "react";
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
+import './form.css';
 
 const RecipeForm = () => {
     const [formData, setFormData] = useState({
@@ -69,8 +70,8 @@ const RecipeForm = () => {
     };
 
     return (
-        <div className="container">
-            <h1>Add Recipe</h1>
+        <div className="containeer">
+            <h1 className='adding'>Add Recipe</h1>
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="title">
                     <Form.Label>Title</Form.Label>

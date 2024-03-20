@@ -19,7 +19,7 @@ export default function Navbar() {
     };
 
     return (
-        <div className='Navbar'>
+        <div className={`Navbar `}>
             <div className='Logo'>
                 <img src={logo} alt="" className="logo" />
                 <p>CookConnect</p>

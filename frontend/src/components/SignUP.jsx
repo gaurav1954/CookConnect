@@ -5,7 +5,6 @@ import './singup.css';
 import user_icon from '../assets/person.png';
 import pass_icon from '../assets/password.png';
 import email_icon from '../assets/email.png';
-import pancakes from '../assets/pancakes.jpg';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({

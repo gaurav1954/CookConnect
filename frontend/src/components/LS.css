@@ -5,7 +5,9 @@
     width: 600px;
     height: 600px;
     margin-bottom: 220px;
+    margin-right: 190px;
     background: rgba(255, 255, 255, 0.8);
+    border-radius: 30px;
     
 }
 .sing-up-link{
@@ -13,13 +15,13 @@
     text-align: center;
 }
 .outer-container {
-    background-image: url('../assets/lo.jpg');
+    background-image: url('../assets/loginImage.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
 }
 .header {

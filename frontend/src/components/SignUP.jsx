@@ -74,9 +74,9 @@ export default function SignUp() {
 
   return (
     <div className="container-wrapperr">
-      <div className='containerr'>
+      <div className='containerr-sign '>
         <div className='header'>
-          <div className="text orange">Sign Up</div>
+          <div className="headText orange">Sign Up</div>
         </div>
         <form className="inputss" onSubmit={handleSubmit}>
           <div className={`inputt ${!isUsernameUnique ? 'not-unique' : ''}`}>

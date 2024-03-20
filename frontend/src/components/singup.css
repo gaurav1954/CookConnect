@@ -8,15 +8,17 @@
     background-size: cover;
     background-position: center;
     padding-left: 7rem;
+
 }
 
-.containerr {
+.containerr-sign {
     height: fit-content;
-    padding: 0rem 3rem;
+    padding: 1rem 3rem;
     background: rgba(255, 255, 255, 0.1);
     /* Adjust background color and opacity */
     backdrop-filter: blur(8px);
     border-radius: 20px;
+    border: 1px solid orange;
 }
 
 .login-container {
@@ -46,6 +48,9 @@
     border-radius: 5px;
 }
 
+.border-2 {
+    border: 2px solid orange;
+}
 
 .submit-btn {
     background-color: black;
@@ -82,12 +87,13 @@
     font-size: 14px;
 }
 
-.log-con {
+.sign-con {
     margin: 1rem auto;
 }
 
-.log-con p {
+.sign-con p {
     margin-bottom: 0;
+
 }
 
 .inputt img {

@@ -34,8 +34,14 @@ export default function Login() {
     } catch (error) {
       if (error.response && error.response.status === 401) {
         setError("Invalid username or password. Please try again."); // Set the error message
+        setTimeout(() => {
+          setError(""); // Clear the error message after 3 seconds
+        }, 2000);
       } else {
         setError("An error occurred. Please try again."); // Set a generic error message
+        setTimeout(() => {
+          setError(""); // Clear the error message after 3 seconds
+        }, 2000);
       }
     }
   };
@@ -43,31 +49,38 @@ export default function Login() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const handleRedirect = () => {
+    navigate('/signup')
+  }
 
   return (
     <div className="outer-container">
-      <div className='container'>
+      <div className='containerr-log border-2'>
         <div className='header'>
-          <div className="text">Login</div>
-          <div className="underline"></div>
+          <div className="headText ">Log in</div>
         </div>
-        <form className="inputs" onSubmit={handleSubmit}>
-          <div className="input">
+        <form className="inputss" onSubmit={handleSubmit}>
+          <div className={`inputt`}>
             <img src={user_icon} alt="" />
-            <input type="text" name="username" placeholder='username' value={formData.username} onChange={handleChange} />
+            <input type="text" name="username" placeholder='Name' value={formData.username} onChange={handleChange} />
           </div>
-          <div className="input">
+          <div className="inputt">
             <img src={pass_icon} alt="" />
             <input type="password" name="password" placeholder='Password' value={formData.password} onChange={handleChange} />
           </div>
-          {err && <div className="error validation-error">{err}</div>}
-          <div className="submit-container">
-            <button type="submit" className="submit">Login</button>
+          {err && <div className="val-error">{err}</div>}
+          <div className="sub-con">
+            <button type="submit" className="submit-btn btnn" onClick={handleSubmit}>Login</button>
           </div>
-
         </form>
-        <p className='sing-up-link'>Don't have an account? <a href="/signup">Sign up</a></p> 
+
+        <div className="sign-con">
+          <p>Don't have an account?</p>
+          <button onClick={handleRedirect} className="login-btn btnn">Signup</button>
+        </div>
+
       </div>
     </div>
+
   );
 }

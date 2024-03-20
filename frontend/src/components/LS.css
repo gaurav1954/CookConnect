@@ -1,19 +1,3 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    width: 600px;
-    height: 600px;
-    margin-bottom: 220px;
-    margin-right: 190px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 30px;
-    
-}
-.sing-up-link{
-    font-size: 20px;
-    text-align: center;
-}
 .outer-container {
     background-image: url('../assets/loginImage.jpg');
     background-repeat: no-repeat;
@@ -23,102 +7,104 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    padding: 0rem 4rem;
+
 }
-.header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 9px;
+
+.containerr-log {
+    height: fit-content;
+    padding: 2rem 3rem;
+    background: rgba(255, 255, 255, 0.3);
+    /* Adjust background color and opacity */
+    backdrop-filter: blur(8px);
+    border: 2px solid black;
+    border-radius: 20px;
+
+}
+
+.login-container {
+    font-size: 22px;
+    font-style: italic;
+}
+
+.login-button {
+    border-radius: 20px;
+    padding: 12px;
+    margin: 10px;
+}
+
+.sub-con {
+    margin-top: 2rem;
     width: 100%;
-    margin-top: 30px;
-}
-
-.text {
-    color: #3c009d;
-    font-size: 48px;
-    font-weight: 700;
-}
-
-.underline {
-    width: 61px;
-    height: 6px;
-    background: #3c009d;
-    border-radius: 9px;
-
-}
-
-.inputs {
-    margin-top: 55px;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    justify-content: center;
+
 }
 
-.input {
+.btnn {
+    border: none;
+    font-size: 1.2rem;
+    padding: .5rem 1.5rem;
+    width: 100%;
+    border-radius: 5px;
+}
+
+
+.submit-btn {
+    background-color: black;
+    color: white;
+}
+
+.login-btn {
+    background-color: white;
+    color: black;
+}
+
+.inputss {
+    margin-top: 30px;
+    max-width: 100%;
+}
+
+.inputt {
     display: flex;
     align-items: center;
-    margin: auto;
-    width: 480px;
-    height: 80px;
+    width: 400px;
+    height: 60px;
     background: #eaeaea;
     border-radius: 6px;
+    margin-top: 18px;
 }
 
-.input img {
-    margin: 0px 30px;
-}
-
-.input input {
-    height: 50px;
-    width: 400px;
+.inputt input {
+    height: 100%;
+    width: 350px;
     background: transparent;
     border: none;
     outline: none;
     color: #797979;
-    font-size: 19px;
+    font-size: 14px;
 }
 
-.forget-password {
-    padding-left: 70px;
-    margin-top: 27px;
-    color: #797979;
-    font-size: 18px;
+.log-con {
+    margin: 1rem auto;
 }
 
-.forget-password span {
-    color: #3c009d;
-    cursor: pointer;
+.log-con p {
+    margin-bottom: 0;
+    color: white;
 }
 
-.submit-container {
-    display: flex;
-    gap: 30px;
-    margin: 60px auto;
+.inputt img {
+    margin: 0px 30px;
 }
 
-.submit {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 220px;
-    height: 59px;
-    color: #fff;
-    background: #4c00b4;
-    border-radius: 50px;
-    font-size: 19px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.gray {
-    background: #eaeaea;
-    color: #676767;
-
-}
-
-.validation-error {
-    margin: auto;
-    width: 480px;
-    height: 20px;
+.val-error {
+    width: 100%;
     color: red;
+}
+
+.headText {
+    font-size: 3rem;
+    text-align: center;
+    font-weight: 700;
 }

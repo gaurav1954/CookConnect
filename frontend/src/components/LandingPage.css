@@ -22,8 +22,6 @@
     background-color: rgb(1, 37, 37);
 }
 
-
-
 .row2>* {
     color: black;
 }
@@ -49,6 +47,8 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    height: 100%;
+    width: 100%;
 }
 
 .foodImageBox {
@@ -131,4 +131,11 @@
 .maincap {
     font-weight: 600;
     font-size: 4.7rem;
+}
+
+.row0 {
+    background: url('../assets/cover.jpg');
+    background-size: cover;
+    background-position: center;
+
 }

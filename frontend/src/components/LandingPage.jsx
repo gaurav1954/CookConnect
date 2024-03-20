@@ -10,6 +10,8 @@ export default function LandingPage() {
     }
     return (
         <div className="LandingPage">
+            <div className="rows row0">
+            </div>
             <div className="rows row1">
                 <div className="circle1"></div>
                 <div className="innerRow">

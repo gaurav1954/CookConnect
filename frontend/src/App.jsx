@@ -14,12 +14,13 @@ export default function App() {
       <Router>
         <Routes>
           <Route path="/" >
+            <Route path="" element={<LandingPage />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
           </Route>
           <Route path="/" element={<Layout />}>
+
             <Route path="new" element={<RecipeForm />} />
-            <Route path="home" element={<LandingPage />} />
             <Route path="recipes" element={<DiscoverRecipes />} />
           </Route>
         </Routes>

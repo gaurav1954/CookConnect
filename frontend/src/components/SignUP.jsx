@@ -73,41 +73,41 @@ export default function SignUp() {
   };
 
   return (
-    <div className="container-wrapper">
-        <div className='container'>
-           <div className='header'>
-          <div className="text">Sign Up</div>
-          <div className="underline"></div>
+    <div className="container-wrapperr">
+      <div className='containerr'>
+        <div className='header'>
+          <div className="text orange">Sign Up</div>
         </div>
-        <form className="inputs" onSubmit={handleSubmit}>
-          <div className={`input ${!isUsernameUnique ? 'not-unique' : ''}`}>
+        <form className="inputss" onSubmit={handleSubmit}>
+          <div className={`inputt ${!isUsernameUnique ? 'not-unique' : ''}`}>
             <img src={user_icon} alt="" />
             <input type="text" name="username" placeholder='Name' value={formData.username} onChange={handleChange} />
           </div>
-          {!isUsernameUnique && <div className="validation-error">Username is not available</div>}
-          <div className={`input ${!isEmailUnique ? 'not-unique' : ''}`}>
+          {!isUsernameUnique && <div className="val-error">Username is not available</div>}
+          <div className={`inputt ${!isEmailUnique ? 'not-unique' : ''}`}>
             <img src={email_icon} alt="" />
             <input type="email" name="email" placeholder='Email' value={formData.email} onChange={handleChange} />
           </div>
-          {!isEmailUnique && <div className="validation-error">Email is already registered</div>}
-          <div className="input">
+          {!isEmailUnique && <div className="val-error">Email is already registered</div>}
+          <div className="inputt">
             <img src={pass_icon} alt="" />
             <input type="password" name="password" placeholder='Password' value={formData.password} onChange={handleChange} />
           </div>
-          <div className="submit-container">
-            <button type="submit" className="submit" onClick={handleSubmit} disabled={!isUsernameUnique || !isEmailUnique}>Sign-up</button>
+          <div className="sub-con">
+            <button type="submit" className="submit-btn btnn" onClick={handleSubmit} disabled={!isUsernameUnique || !isEmailUnique}>Sign-up</button>
           </div>
         </form>
-        <div className="login-container">
-          <p>Already have an account? <button onClick={redirectToLoginPage} className="login-button">Login</button></p>
+        <div className="log-con">
+          <p>Already have an account?</p>
+          <button onClick={redirectToLoginPage} className="login-btn btnn">Login</button>
         </div>
-        
 
-          </div>
-        </div>
+
+      </div>
+    </div>
 
   );
-      
-      
-       
+
+
+
 };

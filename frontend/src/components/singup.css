@@ -1,19 +1,22 @@
-
-.container-wrapper {
+.container-wrapperr {
     height: 100vh;
-    width: 100vw; 
-    display: flex;  
-    justify-content: flex-end;
+    width: 100vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     background-image: url('../assets/india.jpg');
     background-size: cover;
     background-position: center;
-
+    padding-left: 7rem;
 }
 
-.container {
-    width: fit-content;
-    height: 100vh;
-    margin-top: 40px;
+.containerr {
+    height: fit-content;
+    padding: 0rem 3rem;
+    background: rgba(255, 255, 255, 0.1);
+    /* Adjust background color and opacity */
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
 }
 
 .login-container {
@@ -25,4 +28,73 @@
     border-radius: 20px;
     padding: 12px;
     margin: 10px;
+}
+
+.sub-con {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.btnn {
+    border: none;
+    font-size: 1.2rem;
+    padding: .5rem 1.5rem;
+    width: 100%;
+    border-radius: 5px;
+}
+
+
+.submit-btn {
+    background-color: black;
+    color: white;
+}
+
+.login-btn {
+    background-color: white;
+    color: black;
+}
+
+.inputss {
+    margin-top: 30px;
+    max-width: 100%;
+}
+
+.inputt {
+    display: flex;
+    align-items: center;
+    width: 400px;
+    height: 60px;
+    background: #eaeaea;
+    border-radius: 6px;
+    margin-top: 18px;
+}
+
+.inputt input {
+    height: 100%;
+    width: 350px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #797979;
+    font-size: 14px;
+}
+
+.log-con {
+    margin: 1rem auto;
+}
+
+.log-con p {
+    margin-bottom: 0;
+}
+
+.inputt img {
+    margin: 0px 30px;
+}
+
+.val-error {
+    width: 100%;
+    color: red;
 }

@@ -34,8 +34,14 @@ export default function Login() {
     } catch (error) {
       if (error.response && error.response.status === 401) {
         setError("Invalid username or password. Please try again."); // Set the error message
+        setTimeout(() => {
+          setError(""); // Clear the error message after 3 seconds
+        }, 2000);
       } else {
         setError("An error occurred. Please try again."); // Set a generic error message
+        setTimeout(() => {
+          setError(""); // Clear the error message after 3 seconds
+        }, 2000);
       }
     }
   };
@@ -62,15 +68,16 @@ export default function Login() {
             <img src={pass_icon} alt="" />
             <input type="password" name="password" placeholder='Password' value={formData.password} onChange={handleChange} />
           </div>
+          {err && <div className="val-error">{err}</div>}
           <div className="sub-con">
             <button type="submit" className="submit-btn btnn" onClick={handleSubmit}>Login</button>
           </div>
         </form>
+
         <div className="sign-con">
           <p>Don't have an account?</p>
           <button onClick={handleRedirect} className="login-btn btnn">Signup</button>
         </div>
-
 
       </div>
     </div>

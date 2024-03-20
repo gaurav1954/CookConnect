@@ -8,6 +8,7 @@
     background-size: cover;
     background-position: center;
     padding-left: 7rem;
+
 }
 
 .containerr-sign {
@@ -17,6 +18,7 @@
     /* Adjust background color and opacity */
     backdrop-filter: blur(8px);
     border-radius: 20px;
+    border: 1px solid orange;
 }
 
 .login-container {

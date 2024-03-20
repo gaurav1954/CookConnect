@@ -1,6 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from "react";
-import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 import './form.css';
 
@@ -9,8 +7,8 @@ const RecipeForm = () => {
         title: '',
         cuisine: 'italian', // Defaulting to Italian cuisine
         description: '',
-        steps: [],
-        ingredients: [],
+        steps: '',
+        ingredients: '',
         instructions: '',
         cookingTime: '',
         difficultyLevel: '',
@@ -47,8 +45,8 @@ const RecipeForm = () => {
                     title: '',
                     cuisine: 'italian',
                     description: '',
-                    steps: [],
-                    ingredients: [],
+                    steps: '',
+                    ingredients: '',
                     instructions: '',
                     cookingTime: '',
                     difficultyLevel: '',
@@ -70,16 +68,17 @@ const RecipeForm = () => {
     };
 
     return (
-        <div className="containeer">
+        <div className="outerer-container">
+        <div className="container">
             <h1 className='adding'>Add Recipe</h1>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="title">
-                    <Form.Label>Title</Form.Label>
-                    <Form.Control type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Give your recipe a name" />
-                </Form.Group>
-                <Form.Group controlId="cuisine">
-                    <Form.Label>Cuisine</Form.Label>
-                    <Form.Select name="cuisine" value={formData.cuisine} onChange={handleChange}>
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label>Title</label>
+                    <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Give your recipe a name" />
+                </div>
+                <div className="form-group">
+                    <label>Cuisine</label>
+                    <select name="cuisine" value={formData.cuisine} onChange={handleChange}>
                         <option value="italian">Italian</option>
                         <option value="chinese">Chinese</option>
                         <option value="mexican">Mexican</option>
@@ -87,43 +86,44 @@ const RecipeForm = () => {
                         <option value="japanese">Japanese</option>
                         <option value="north-indian">North Indian</option>
                         <option value="south-indian">South Indian</option>
-                    </Form.Select>
-                </Form.Group>
-                <Form.Group controlId="description">
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control as="textarea" rows={3} name="description" value={formData.description} onChange={handleChange} placeholder="Introduce your recipe, add notes, cooking tips, serving suggestions, etc..." />
-                </Form.Group>
-                <Form.Group controlId="steps">
-                    <Form.Label>Steps</Form.Label>
-                    <Form.Control type="text" name="steps" value={formData.steps} onChange={handleChange} placeholder="Enter the steps (comma-separated)" />
-                </Form.Group>
-                <Form.Group controlId="ingredients">
-                    <Form.Label>Ingredients</Form.Label>
-                    <Form.Control type="text" name="ingredients" value={formData.ingredients} onChange={handleChange} placeholder="Enter the ingredients (comma-separated)" />
-                </Form.Group>
-                <Form.Group controlId="instructions">
-                    <Form.Label>Instructions</Form.Label>
-                    <Form.Control as="textarea" rows={3} name="instructions" value={formData.instructions} onChange={handleChange} placeholder="Enter the instructions" />
-                </Form.Group>
-                <Form.Group controlId="cookingTime">
-                    <Form.Label>Cooking Time</Form.Label>
-                    <Form.Control type="number" name="cookingTime" value={formData.cookingTime} onChange={handleChange} placeholder="Enter the cooking time (in minutes)" />
-                </Form.Group>
-                <Form.Group controlId="difficultyLevel">
-                    <Form.Label>Difficulty Level</Form.Label>
-                    <Form.Control as="select" name="difficultyLevel" value={formData.difficultyLevel} onChange={handleChange}>
+                    </select>
+                </div>
+                <div className="form-group">
+                    <label>Description</label>
+                    <textarea rows={3} name="description" value={formData.description} onChange={handleChange} placeholder="Introduce your recipe, add notes, cooking tips, serving suggestions, etc..." />
+                </div>
+                <div className="form-group">
+                    <label>Steps</label>
+                    <input type="text" name="steps" value={formData.steps} onChange={handleChange} placeholder="Enter the steps (comma-separated)" />
+                </div>
+                <div className="form-group">
+                    <label>Ingredients</label>
+                    <input type="text" name="ingredients" value={formData.ingredients} onChange={handleChange} placeholder="Enter the ingredients (comma-separated)" />
+                </div>
+                <div className="form-group">
+                    <label>Instructions</label>
+                    <textarea rows={3} name="instructions" value={formData.instructions} onChange={handleChange} placeholder="Enter the instructions" />
+                </div>
+                <div className="form-group">
+                    <label>Cooking Time</label>
+                    <input type="number" name="cookingTime" value={formData.cookingTime} onChange={handleChange} placeholder="Enter the cooking time (in minutes)" />
+                </div>
+                <div className="form-group">
+                    <label>Difficulty Level</label>
+                    <select name="difficultyLevel" value={formData.difficultyLevel} onChange={handleChange}>
                         <option value="">Select</option>
                         <option value="Easy">Easy</option>
                         <option value="Moderate">Moderate</option>
                         <option value="Difficult">Difficult</option>
-                    </Form.Control>
-                </Form.Group>
-                <Form.Group controlId="image">
-                    <Form.Label>Image</Form.Label>
+                    </select>
+                </div>
+                <div className="form-group">
+                    <label>Image</label>
                     <input type="file" name="image" onChange={handleImageChange} />
-                </Form.Group>
-                <Button variant="success" type="submit" onClick={handleSave}>Save</Button>
-            </Form>
+                </div>
+                <button type="submit" onClick={handleSave}>Save</button>
+            </form>
+            </div>
         </div>
     );
 };

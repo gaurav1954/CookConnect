@@ -59,16 +59,17 @@
 
 .inputss {
     margin-top: 30px;
+    max-width: 100%;
 }
 
 .inputt {
     display: flex;
     align-items: center;
-    margin: 1rem auto;
     width: 400px;
     height: 60px;
     background: #eaeaea;
     border-radius: 6px;
+    margin-top: 18px;
 }
 
 .inputt input {
@@ -91,4 +92,9 @@
 
 .inputt img {
     margin: 0px 30px;
+}
+
+.val-error {
+    width: 100%;
+    color: red;
 }

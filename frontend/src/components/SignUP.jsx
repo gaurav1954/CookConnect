@@ -83,12 +83,12 @@ export default function SignUp() {
             <img src={user_icon} alt="" />
             <input type="text" name="username" placeholder='Name' value={formData.username} onChange={handleChange} />
           </div>
-          {!isUsernameUnique && <div className="validation-error">Username is not available</div>}
+          {!isUsernameUnique && <div className="val-error">Username is not available</div>}
           <div className={`inputt ${!isEmailUnique ? 'not-unique' : ''}`}>
             <img src={email_icon} alt="" />
             <input type="email" name="email" placeholder='Email' value={formData.email} onChange={handleChange} />
           </div>
-          {!isEmailUnique && <div className="validation-error">Email is already registered</div>}
+          {!isEmailUnique && <div className="val-error">Email is already registered</div>}
           <div className="inputt">
             <img src={pass_icon} alt="" />
             <input type="password" name="password" placeholder='Password' value={formData.password} onChange={handleChange} />

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './LS.css';
+import './singup.css';
 import user_icon from '../assets/person.png';
 import pass_icon from '../assets/password.png';
 import email_icon from '../assets/email.png';
+import pancakes from '../assets/pancakes.jpg';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -73,33 +74,41 @@ export default function SignUp() {
   };
 
   return (
-    <div className='container'>
-      <div className='header'>
-        <div className="text">Sign Up</div>
-        <div className="underline"></div>
-      </div>
-      <form className="inputs" onSubmit={handleSubmit}>
-        <div className={`input ${!isUsernameUnique ? 'not-unique' : ''}`}>
-          <img src={user_icon} alt="" />
-          <input type="text" name="username" placeholder='Name' value={formData.username} onChange={handleChange} />
+    <div className="container-wrapper">
+        <div className='container'>
+           <div className='header'>
+          <div className="text">Sign Up</div>
+          <div className="underline"></div>
         </div>
-        {!isUsernameUnique && <div className="validation-error">Username is not available</div>}
-        <div className={`input ${!isEmailUnique ? 'not-unique' : ''}`}>
-          <img src={email_icon} alt="" />
-          <input type="email" name="email" placeholder='Email' value={formData.email} onChange={handleChange} />
+        <form className="inputs" onSubmit={handleSubmit}>
+          <div className={`input ${!isUsernameUnique ? 'not-unique' : ''}`}>
+            <img src={user_icon} alt="" />
+            <input type="text" name="username" placeholder='Name' value={formData.username} onChange={handleChange} />
+          </div>
+          {!isUsernameUnique && <div className="validation-error">Username is not available</div>}
+          <div className={`input ${!isEmailUnique ? 'not-unique' : ''}`}>
+            <img src={email_icon} alt="" />
+            <input type="email" name="email" placeholder='Email' value={formData.email} onChange={handleChange} />
+          </div>
+          {!isEmailUnique && <div className="validation-error">Email is already registered</div>}
+          <div className="input">
+            <img src={pass_icon} alt="" />
+            <input type="password" name="password" placeholder='Password' value={formData.password} onChange={handleChange} />
+          </div>
+          <div className="submit-container">
+            <button type="submit" className="submit" onClick={handleSubmit} disabled={!isUsernameUnique || !isEmailUnique}>Sign-up</button>
+          </div>
+        </form>
+        <div className="login-container">
+          <p>Already have an account? <button onClick={redirectToLoginPage} className="login-button">Login</button></p>
         </div>
-        {!isEmailUnique && <div className="validation-error">Email is already registered</div>}
-        <div className="input">
-          <img src={pass_icon} alt="" />
-          <input type="password" name="password" placeholder='Password' value={formData.password} onChange={handleChange} />
+        
+
+          </div>
         </div>
-        <div className="submit-container">
-          <button type="submit" className="submit" onClick={handleSubmit} disabled={!isUsernameUnique || !isEmailUnique}>Sign-up</button>
-        </div>
-      </form>
-      <div className="login-container">
-        <p>Already have an account? <button onClick={redirectToLoginPage} className="login-button">Login</button></p>
-      </div>
-    </div>
+
   );
+      
+      
+       
 };

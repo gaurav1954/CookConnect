@@ -2,15 +2,26 @@
     display: flex;
     flex-direction: column;
     background: #fff;
-    padding-bottom: 30px;
     width: 600px;
+    height: 600px;
+    margin-bottom: 220px;
+    background: rgba(255, 255, 255, 0.8);
+    
 }
-
+.sing-up-link{
+    font-size: 20px;
+    text-align: center;
+}
 .outer-container {
-    height: 100%;
-    width: 100%;
+    background-image: url('../assets/lo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
 .header {
     display: flex;
     flex-direction: column;

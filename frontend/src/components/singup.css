@@ -46,6 +46,9 @@
     border-radius: 5px;
 }
 
+.border-2 {
+    border: 2px solid orange;
+}
 
 .submit-btn {
     background-color: black;

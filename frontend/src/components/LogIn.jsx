@@ -43,31 +43,37 @@ export default function Login() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const handleRedirect = () => {
+    navigate('/signup')
+  }
 
   return (
     <div className="outer-container">
-      <div className='container'>
+      <div className='containerr border-2'>
         <div className='header'>
-          <div className="text">Login</div>
-          <div className="underline"></div>
+          <div className="headText orange">Log in</div>
         </div>
-        <form className="inputs" onSubmit={handleSubmit}>
-          <div className="input">
+        <form className="inputss" onSubmit={handleSubmit}>
+          <div className={`inputt`}>
             <img src={user_icon} alt="" />
-            <input type="text" name="username" placeholder='username' value={formData.username} onChange={handleChange} />
+            <input type="text" name="username" placeholder='Name' value={formData.username} onChange={handleChange} />
           </div>
-          <div className="input">
+          <div className="inputt">
             <img src={pass_icon} alt="" />
             <input type="password" name="password" placeholder='Password' value={formData.password} onChange={handleChange} />
           </div>
-          {err && <div className="error validation-error">{err}</div>}
-          <div className="submit-container">
-            <button type="submit" className="submit">Login</button>
+          <div className="sub-con">
+            <button type="submit" className="submit-btn btnn" onClick={handleSubmit}>Login</button>
           </div>
-
         </form>
-        <p className='sing-up-link'>Don't have an account? <a href="/signup">Sign up</a></p> 
+        <div className="log-con">
+          <p>Don't have an account?</p>
+          <button onClick={handleRedirect} className="login-btn btnn">Signup</button>
+        </div>
+
+
       </div>
     </div>
+
   );
 }

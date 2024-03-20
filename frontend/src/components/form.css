@@ -28,24 +28,24 @@
     padding: 10px;
 
 }
-.time{
+
+.time {
     padding: 10px;
     margin-left: 13px;
-    width: 12vw;
+    width: 14vw;
 }
 
 label {
     font-weight: bold;
 }
 
-input[type="text"],
-textarea,
-select {
+.input-create-form {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+
 }
 
 select {
@@ -57,7 +57,7 @@ select {
     background-position: right 10px center;
 }
 
-input[type="file"] {
+.input-file {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -65,7 +65,7 @@ input[type="file"] {
     font-size: 16px;
 }
 
-button[type="submit"] {
+.submit-button {
     padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
@@ -75,7 +75,7 @@ button[type="submit"] {
     font-size: 16px;
 }
 
-button[type="submit"]:hover {
+.submit-button:hover {
     background-color: #45a049;
 }
 
@@ -86,4 +86,8 @@ button[type="submit"]:hover {
 
 .validation-error {
     color: red;
+}
+
+.input-steps {
+    margin-bottom: 1rem;
 }

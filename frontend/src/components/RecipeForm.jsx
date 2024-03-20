@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from 'axios';
 import './form.css';
-
 const RecipeForm = () => {
     const [formData, setFormData] = useState({
         title: '',
@@ -24,6 +23,11 @@ const RecipeForm = () => {
         } else {
             setFormData({ ...formData, [name]: value });
         }
+
+        // Add a new step input box if the current step input box is being edited
+        if (name === 'steps' && index === formData.steps.length - 1) {
+            setFormData({ ...formData, steps: [...formData.steps, ''] });
+        }
     };
 
     const handleKeyPress = (e, index) => {
@@ -41,6 +45,10 @@ const RecipeForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!formData.image) {
+            alert('Please select an image.');
+            return;
+        }
         const formDataToSend = new FormData();
 
         // Append form data fields
@@ -61,7 +69,6 @@ const RecipeForm = () => {
                 }
             });
             if (response.status === 200) {
-                alert("Recipe created successfully!");
                 setFormData({
                     title: '',
                     cuisine: 'italian',
@@ -71,8 +78,11 @@ const RecipeForm = () => {
                     instructions: '',
                     cookingTime: '',
                     difficultyLevel: '',
-                    image: null
+                    image: null // Reset the image state to null
                 });
+
+                // Reset the file input visually
+                document.getElementById('imageInput').value = '';
             } else {
                 alert("Failed to create recipe.");
             }
@@ -82,11 +92,7 @@ const RecipeForm = () => {
         }
     };
 
-    const handleSave = () => {
-        if (window.confirm("Are you sure you want to create a recipe?")) {
-            handleSubmit();
-        }
-    };
+
 
     return (
         <div className="outerer-container">
@@ -95,11 +101,11 @@ const RecipeForm = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Title</label>
-                        <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Give your recipe a name" />
+                        <input type="text" className="input-create-form" name="title" value={formData.title} onChange={handleChange} placeholder="Give your recipe a name" />
                     </div>
                     <div className="form-group">
                         <label>Cuisine</label>
-                        <select name="cuisine" value={formData.cuisine} onChange={handleChange}>
+                        <select name="cuisine" className="input-create-form" value={formData.cuisine} onChange={handleChange}>
                             <option value="italian">Italian</option>
                             <option value="chinese">Chinese</option>
                             <option value="mexican">Mexican</option>
@@ -111,37 +117,38 @@ const RecipeForm = () => {
                     </div>
                     <div className="form-group">
                         <label>Description</label>
-                        <textarea rows={3} name="description" value={formData.description} onChange={handleChange} placeholder="Introduce your recipe, add notes, cooking tips, serving suggestions, etc..." />
+                        <textarea rows={3} className="input-create-form" name="description" value={formData.description} onChange={handleChange} placeholder="Introduce your recipe, add notes, cooking tips, serving suggestions, etc..." />
                     </div>
                     <div className="form-group">
                         <label>Steps</label>
                         {formData.steps.map((step, index) => (
                             <input
+                                className="input-create-form input-steps"
                                 key={index}
                                 type="text"
                                 name="steps"
                                 value={step}
                                 onChange={(e) => handleChange(e, index)}
                                 onKeyPress={(e) => handleKeyPress(e, index)}
-                                placeholder="Enter the steps (comma-separated)"
+                                placeholder={`Step ${index + 1}`}
                             />
                         ))}
                     </div>
                     <div className="form-group">
                         <label>Ingredients</label>
-                        <input type="text" name="ingredients" value={formData.ingredients} onChange={handleChange} placeholder="Enter the ingredients (comma-separated)" />
+                        <input type="text" className="input-create-form" name="ingredients" value={formData.ingredients} onChange={handleChange} placeholder="Enter the ingredients" />
                     </div>
                     <div className="form-group">
                         <label>Instructions</label>
-                        <textarea rows={3} name="instructions" value={formData.instructions} onChange={handleChange} placeholder="Enter the instructions" />
+                        <textarea rows={3} className="input-create-form" name="instructions" value={formData.instructions} onChange={handleChange} placeholder="Enter the instructions" />
                     </div>
                     <div className="form-group">
-                        <label>Cooking Time</label>
-                        <input type="number" name="cookingTime" className="time" value={formData.cookingTime} onChange={handleChange} placeholder="Enter the cooking time (in minutes)" />
+                        <label>Cooking Time(mins)</label>
+                        <input type="number" name="cookingTime" className="time" value={formData.cookingTime} onChange={handleChange} placeholder="Enter the cooking time" />
                     </div>
                     <div className="form-group">
                         <label>Difficulty Level</label>
-                        <select name="difficultyLevel" value={formData.difficultyLevel} onChange={handleChange}>
+                        <select name="difficultyLevel" className="input-create-form" value={formData.difficultyLevel} onChange={handleChange}>
                             <option value="">Select</option>
                             <option value="Easy">Easy</option>
                             <option value="Moderate">Moderate</option>
@@ -150,9 +157,9 @@ const RecipeForm = () => {
                     </div>
                     <div className="form-group">
                         <label>Image</label>
-                        <input type="file" name="image" onChange={handleImageChange} />
+                        <input type="file" id="imageInput" className="input-file" name="image" onChange={handleImageChange} required />
                     </div>
-                    <button type="submit" onClick={handleSave}>Save</button>
+                    <button type="submit" className="submit-button">Save</button>
                 </form>
             </div>
         </div>

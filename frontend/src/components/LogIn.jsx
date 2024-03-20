@@ -70,13 +70,13 @@ export default function Login() {
           </div>
           {err && <div className="val-error">{err}</div>}
           <div className="sub-con">
-            <button type="submit" className="submit-btn btnn" onClick={handleSubmit}>Login</button>
+            <button type="submit" className="submit-bttn btnn" onClick={handleSubmit}>Login</button>
           </div>
         </form>
 
         <div className="sign-con">
           <p>Don't have an account?</p>
-          <button onClick={handleRedirect} className="login-btn btnn">Signup</button>
+          <button onClick={handleRedirect} className="login-bttn btnn">Signup</button>
         </div>
 
       </div>

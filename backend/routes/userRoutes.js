@@ -88,7 +88,6 @@ router.post('/logout', (req, res) => {
     });
 });
 
-
 router.get('/registeredData', async (req, res) => {
     try {
         const users = await User.find({}, 'username email');
@@ -117,9 +116,6 @@ router.get('/recipes/:page/:limit', async (req, res) => {
 router.post('/recipes/create', parser.single('image'), async (req, res) => {
     const newRecipe = new Recipe(req.body);
     newRecipe.image = req.file.path;
-    console.log(newRecipe);
-    res.status(200).json(newRecipe);
+    res.status(200).json({ msg: "done" });
 })
-
-
 module.exports = router;

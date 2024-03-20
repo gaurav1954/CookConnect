@@ -49,9 +49,9 @@ export default function Login() {
 
   return (
     <div className="outer-container">
-      <div className='containerr border-2'>
+      <div className='containerr-log border-2'>
         <div className='header'>
-          <div className="headText orange">Log in</div>
+          <div className="headText ">Log in</div>
         </div>
         <form className="inputss" onSubmit={handleSubmit}>
           <div className={`inputt`}>
@@ -66,7 +66,7 @@ export default function Login() {
             <button type="submit" className="submit-btn btnn" onClick={handleSubmit}>Login</button>
           </div>
         </form>
-        <div className="log-con">
+        <div className="sign-con">
           <p>Don't have an account?</p>
           <button onClick={handleRedirect} className="login-btn btnn">Signup</button>
         </div>

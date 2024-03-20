@@ -11,13 +11,15 @@
 
 }
 
-.containerr {
+.containerr-log {
     height: fit-content;
-    padding: 0rem 3rem;
-    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem 3rem;
+    background: rgba(255, 255, 255, 0.3);
     /* Adjust background color and opacity */
     backdrop-filter: blur(8px);
+    border: 2px solid black;
     border-radius: 20px;
+
 }
 
 .login-container {
@@ -89,6 +91,7 @@
 
 .log-con p {
     margin-bottom: 0;
+    color: white;
 }
 
 .inputt img {

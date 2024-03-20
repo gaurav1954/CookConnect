@@ -74,7 +74,7 @@ export default function SignUp() {
 
   return (
     <div className="container-wrapperr">
-      <div className='containerr border-2'>
+      <div className='containerr-sign '>
         <div className='header'>
           <div className="headText orange">Sign Up</div>
         </div>

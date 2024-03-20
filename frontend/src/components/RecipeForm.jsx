@@ -5,19 +5,33 @@ import './form.css';
 const RecipeForm = () => {
     const [formData, setFormData] = useState({
         title: '',
-        cuisine: 'italian', // Defaulting to Italian cuisine
+        cuisine: 'italian',
         description: '',
-        steps: '',
+        steps: [''], // Initialize with one empty step
         ingredients: '',
         instructions: '',
         cookingTime: '',
         difficultyLevel: '',
-        image: null // Initialize image as null
+        image: null
     });
 
-    const handleChange = (e) => {
+    const handleChange = (e, index) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        if (name === 'steps') {
+            const newSteps = [...formData.steps];
+            newSteps[index] = value;
+            setFormData({ ...formData, steps: newSteps });
+        } else {
+            setFormData({ ...formData, [name]: value });
+        }
+    };
+
+    const handleKeyPress = (e, index) => {
+        if (e.key === 'Enter') {
+            const newSteps = [...formData.steps];
+            newSteps.splice(index + 1, 0, '');
+            setFormData({ ...formData, steps: newSteps });
+        }
     };
 
     const handleImageChange = (e) => {
@@ -31,8 +45,15 @@ const RecipeForm = () => {
 
         // Append form data fields
         for (const key in formData) {
-            formDataToSend.append(key, formData[key]);
+            if (key === 'steps') {
+                formData.steps.forEach((step, index) => {
+                    formDataToSend.append(`${key}[${index}]`, step);
+                });
+            } else {
+                formDataToSend.append(key, formData[key]);
+            }
         }
+
         try {
             const response = await axios.post('http://localhost:8000/recipes/create', formDataToSend, {
                 headers: {
@@ -45,7 +66,7 @@ const RecipeForm = () => {
                     title: '',
                     cuisine: 'italian',
                     description: '',
-                    steps: '',
+                    steps: [''],
                     ingredients: '',
                     instructions: '',
                     cookingTime: '',
@@ -69,60 +90,70 @@ const RecipeForm = () => {
 
     return (
         <div className="outerer-container">
-        <div className="container">
-            <h1 className='adding'>Add Recipe</h1>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label>Title</label>
-                    <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Give your recipe a name" />
-                </div>
-                <div className="form-group">
-                    <label>Cuisine</label>
-                    <select name="cuisine" value={formData.cuisine} onChange={handleChange}>
-                        <option value="italian">Italian</option>
-                        <option value="chinese">Chinese</option>
-                        <option value="mexican">Mexican</option>
-                        <option value="thai">Thai</option>
-                        <option value="japanese">Japanese</option>
-                        <option value="north-indian">North Indian</option>
-                        <option value="south-indian">South Indian</option>
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label>Description</label>
-                    <textarea rows={3} name="description" value={formData.description} onChange={handleChange} placeholder="Introduce your recipe, add notes, cooking tips, serving suggestions, etc..." />
-                </div>
-                <div className="form-group">
-                    <label>Steps</label>
-                    <input type="text" name="steps" value={formData.steps} onChange={handleChange} placeholder="Enter the steps (comma-separated)" />
-                </div>
-                <div className="form-group">
-                    <label>Ingredients</label>
-                    <input type="text" name="ingredients" value={formData.ingredients} onChange={handleChange} placeholder="Enter the ingredients (comma-separated)" />
-                </div>
-                <div className="form-group">
-                    <label>Instructions</label>
-                    <textarea rows={3} name="instructions" value={formData.instructions} onChange={handleChange} placeholder="Enter the instructions" />
-                </div>
-                <div className="form-group">
-                    <label>Cooking Time</label>
-                    <input type="number" name="cookingTime" value={formData.cookingTime} onChange={handleChange} placeholder="Enter the cooking time (in minutes)" />
-                </div>
-                <div className="form-group">
-                    <label>Difficulty Level</label>
-                    <select name="difficultyLevel" value={formData.difficultyLevel} onChange={handleChange}>
-                        <option value="">Select</option>
-                        <option value="Easy">Easy</option>
-                        <option value="Moderate">Moderate</option>
-                        <option value="Difficult">Difficult</option>
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label>Image</label>
-                    <input type="file" name="image" onChange={handleImageChange} />
-                </div>
-                <button type="submit" onClick={handleSave}>Save</button>
-            </form>
+            <div className="container">
+                <h1 className='adding'>Add Recipe</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label>Title</label>
+                        <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Give your recipe a name" />
+                    </div>
+                    <div className="form-group">
+                        <label>Cuisine</label>
+                        <select name="cuisine" value={formData.cuisine} onChange={handleChange}>
+                            <option value="italian">Italian</option>
+                            <option value="chinese">Chinese</option>
+                            <option value="mexican">Mexican</option>
+                            <option value="thai">Thai</option>
+                            <option value="japanese">Japanese</option>
+                            <option value="north-indian">North Indian</option>
+                            <option value="south-indian">South Indian</option>
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <label>Description</label>
+                        <textarea rows={3} name="description" value={formData.description} onChange={handleChange} placeholder="Introduce your recipe, add notes, cooking tips, serving suggestions, etc..." />
+                    </div>
+                    <div className="form-group">
+                        <label>Steps</label>
+                        {formData.steps.map((step, index) => (
+                            <input
+                                key={index}
+                                type="text"
+                                name="steps"
+                                value={step}
+                                onChange={(e) => handleChange(e, index)}
+                                onKeyPress={(e) => handleKeyPress(e, index)}
+                                placeholder="Enter the steps (comma-separated)"
+                            />
+                        ))}
+                    </div>
+                    <div className="form-group">
+                        <label>Ingredients</label>
+                        <input type="text" name="ingredients" value={formData.ingredients} onChange={handleChange} placeholder="Enter the ingredients (comma-separated)" />
+                    </div>
+                    <div className="form-group">
+                        <label>Instructions</label>
+                        <textarea rows={3} name="instructions" value={formData.instructions} onChange={handleChange} placeholder="Enter the instructions" />
+                    </div>
+                    <div className="form-group">
+                        <label>Cooking Time</label>
+                        <input type="number" name="cookingTime" className="time" value={formData.cookingTime} onChange={handleChange} placeholder="Enter the cooking time (in minutes)" />
+                    </div>
+                    <div className="form-group">
+                        <label>Difficulty Level</label>
+                        <select name="difficultyLevel" value={formData.difficultyLevel} onChange={handleChange}>
+                            <option value="">Select</option>
+                            <option value="Easy">Easy</option>
+                            <option value="Moderate">Moderate</option>
+                            <option value="Difficult">Difficult</option>
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <label>Image</label>
+                        <input type="file" name="image" onChange={handleImageChange} />
+                    </div>
+                    <button type="submit" onClick={handleSave}>Save</button>
+                </form>
             </div>
         </div>
     );

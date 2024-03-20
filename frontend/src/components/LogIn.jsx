@@ -66,6 +66,7 @@ export default function Login() {
           </div>
 
         </form>
+        <p className='sing-up-link'>Don't have an account? <a href="/signup">Sign up</a></p> 
       </div>
     </div>
   );

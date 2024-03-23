@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Cards from './Cards';
+import Cards from '../components/Cards';
 import './discover.css'
 export default function DiscoverRecipes() {
     const [recipes, setRecipes] = useState([]);
@@ -40,11 +40,13 @@ export default function DiscoverRecipes() {
             {isLoading && !initialRender ? ( // Check if it's not the initial render
                 <p>Loading...</p>
             ) : (
-                <div className='discover-container'>
-                    {recipes.map(recipe => (
-                        <Cards key={recipe.id} {...recipe}></Cards>
-                    ))}
-                    <button onClick={handleLoadMore}>Load More</button>
+                <div className="discover-recipes">
+                    <div className='discover-container'>
+                        {recipes.map(recipe => (
+                            <Cards key={recipe.id} {...recipe}></Cards>
+                        ))}
+                    </div>
+                    <button className='load-recipe' onClick={handleLoadMore}>Load More</button>
                 </div>
             )}
         </div>

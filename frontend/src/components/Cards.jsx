@@ -28,10 +28,10 @@ export default function Cards({ title = 'burger', image = 'https://images.unspla
       </div>
       <Card.Body >
         <Card.Title className="title">{title}</Card.Title>
-        <Card.Text className="card-text">
+        <div className="card-text">
           <div className="ingredients">{ingredients.length} ingredients</div>
-          <div className="time">{cookingTime} mins</div>
-        </Card.Text>
+          <div className="re-time">{cookingTime} mins</div>
+        </div>
       </Card.Body>
     </Card>
   );

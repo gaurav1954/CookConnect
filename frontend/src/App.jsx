@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import RecipeForm from './components/RecipeForm';
-import DiscoverRecipes from './components/DiscoverRecipes';
-import Layout from './components/Layout';
-import SignUp from "./components/SignUp";
-import Login from "./components/Login";
-import ProfilePage from "./components/profilePage"; 
+import RecipeForm from './pages/RecipeForm';
+import DiscoverRecipes from './pages/DiscoverRecipes';
+import Layout from './pages/Layout';
+import SignUp from "./pages/SignUp";
+import Login from "./pages/LogIn";
+import ProfilePage from "./pages/profilePage";
 import './app.css';
-import LandingPage from './components/LandingPage';
+import LandingPage from './pages/LandingPage';
 
 export default function App() {
   return (

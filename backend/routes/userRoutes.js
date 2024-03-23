@@ -116,6 +116,7 @@ router.get('/recipes/:page/:limit', async (req, res) => {
 router.post('/recipes/create', parser.single('image'), async (req, res) => {
     const newRecipe = new Recipe(req.body);
     newRecipe.image = req.file.path;
+    await newRecipe.save();
     res.status(200).json({ msg: "done" });
 })
 module.exports = router;

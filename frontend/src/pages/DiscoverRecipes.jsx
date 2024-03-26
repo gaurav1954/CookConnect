@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cards from '../components/Cards';
-import './discover.css'
+import './DiscoverRecipes.css'
 export default function DiscoverRecipes() {
     const [recipes, setRecipes] = useState([]);
     const [isLoading, setIsLoading] = useState(true);

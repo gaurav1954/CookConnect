@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logo from '../assets/logo.png';
+import Logo from './Logo';
 import logout from '../assets/logout.png';
 import './Navbar.css';
 import axios from 'axios';
@@ -42,10 +42,7 @@ export default function Navbar() {
 
     return (
         <div className="Navbar">
-            <div className='Logo'>
-                <img src={logo} alt="" className="logo" />
-                <p>CookConnect</p>
-            </div>
+            <Logo></Logo>
             <div className={`links ${isCollapsed ? 'collapsed' : ''}`}>
                 <div className="linkk">
                     <Link to="/new" className={`link ${location.pathname === "/new" ? "active" : ""}`}>Create</Link>

@@ -5,7 +5,7 @@ import DiscoverRecipes from './pages/DiscoverRecipes';
 import Layout from './pages/Layout';
 import SignUp from "./pages/SignUp";
 import Login from "./pages/LogIn";
-import ProfilePage from "./pages/profilePage";
+import ProfilePage from './pages/ProfilePage';
 import './app.css';
 import LandingPage from './pages/LandingPage';
 
@@ -18,7 +18,7 @@ export default function App() {
             <Route path="" element={<LandingPage />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
-            <Route path="profile" element={<ProfilePage />} /> {/* Add this line for the profile page */}
+            <Route path="profile" element={<ProfilePage />} />
           </Route>
           <Route path="/" element={<Layout />}>
             <Route path="new" element={<RecipeForm />} />

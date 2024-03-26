@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './LS.css';
+import './LogIn.css';
 import user_icon from '../assets/person.png';
 import pass_icon from '../assets/password.png';
 

@@ -1,39 +1,7 @@
-.see-all{
-    background-color: rgb(248, 132, 69);
-    color: white;
-    border-radius: 59px;
-}
-body{
-    font-family:Arial, Helvetica, sans-serif;
-    padding-top: 300px;
-}
-.text-overlay {
-    position: absolute;
-    bottom: "10px";
-    left: 50%;
-    transform: translate(-50%);
-    text-align: center;
-    color: white;
-
-}
-.forward-icon {
-    float: right;
-    color: white;
-    height: 30px;
-    weight: 30px;
-    border: 5px solid white;
-    border-radius: 70%;
-    padding: 10% 10%;
-}
-.zoom-effect {
-    transition: transform 0.1s ease-in-out;
-    height: 100px;
-    width: 300px;
-}
-  
-.zoom-effect:hover {
-    transform: scale(1.20); 
-}
-.types{
-    position: relative;
+.categories-container {
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    gap: 20px;
+    scroll-snap-type: x mandatory;
 }

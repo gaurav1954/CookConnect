@@ -106,14 +106,23 @@ const RecipeForm = () => {
                     <div className="form-group">
                         <label>Cuisine</label>
                         <select name="cuisine" className="input-create-form" value={formData.cuisine} onChange={handleChange}>
-                            <option value="italian">Italian</option>
-                            <option value="chinese">Chinese</option>
-                            <option value="mexican">Mexican</option>
-                            <option value="thai">Thai</option>
-                            <option value="japanese">Japanese</option>
-                            <option value="north-indian">North Indian</option>
-                            <option value="south-indian">South Indian</option>
+                            <option value="">Select Cuisine</option>
+                            <option value="Italian">Italian</option>
+                            <option value="Chinese">Chinese</option>
+                            <option value="Indian">Indian</option>
+                            <option value="French">French</option>
+                            <option value="Mexican">Mexican</option>
+                            <option value="Japanese">Japanese</option>
+                            <option value="Thai">Thai</option>
+                            <option value="American">American</option>
+                            <option value="Mediterranean">Mediterranean</option>
+                            <option value="Spanish">Spanish</option>
+                            <option value="Greek">Greek</option>
+                            <option value="Vietnamese">Vietnamese</option>
+                            <option value="Korean">Korean</option>
+                            <option value="Other">Other</option>
                         </select>
+
                     </div>
                     <div className="form-group">
                         <label>Description</label>

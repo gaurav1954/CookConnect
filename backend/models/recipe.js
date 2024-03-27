@@ -6,8 +6,11 @@ const recipeSchema = new mongoose.Schema({
         required: true,
     },
     cuisine: {
-        type: String,
-        default: 'Unknown', // You can modify the default value based on your application's needs
+        type: [{
+            type: String,
+            enum: ['Italian', 'Chinese', 'Indian', 'French', 'Mexican', 'Japanese', 'Thai', 'American', 'Mediterranean', 'Spanish', 'Greek', 'Vietnamese', 'Korean', 'Other']
+        }],
+        default: ['Unknown'],
     },
     description: {
         type: String,
@@ -16,24 +19,24 @@ const recipeSchema = new mongoose.Schema({
         type: [String]
     },
     ingredients: {
-        type: [String], // Assuming an array of ingredient strings
+        type: [String],
     },
     instructions: {
         type: String,
     },
     cookingTime: {
-        type: Number, // Assuming time is represented in minutes
+        type: Number,
     },
     difficultyLevel: {
         type: String,
-        enum: ['Easy', 'Moderate', 'Difficult'], // Assuming difficulty levels
+        enum: ['Easy', 'Moderate', 'Difficult'],
     },
     image: {
         type: String,
     },
     author: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User', // Assuming there's a User model
+        ref: 'User',
     },
     rating: {
         type: Number,

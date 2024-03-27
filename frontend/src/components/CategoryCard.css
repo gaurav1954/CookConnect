@@ -1,0 +1,14 @@
+.category-heading {
+    margin-top: auto;
+    color: white;
+    text-align: center;
+}
+
+.category-card {
+    height: 200px;
+    min-width: 200px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    scroll-snap-align: start
+}

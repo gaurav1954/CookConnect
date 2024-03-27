@@ -3,6 +3,7 @@ import salad from '../assets/salad.png'
 import pizza from '../assets/pizza.png'
 import './LandingPage.css'
 import { useNavigate } from 'react-router-dom'
+import Logo from '../components/Logo'
 export default function LandingPage() {
     const navigate = useNavigate();
     const handleJoin = () => {
@@ -10,7 +11,12 @@ export default function LandingPage() {
     }
     return (
         <div className="LandingPage">
+            <div className="top-con">
+                <Logo fColor="white">
+                </Logo>
+            </div>
             <div className="rows row0">
+
             </div>
             <div className="rows row1">
                 <div className="circle1"></div>

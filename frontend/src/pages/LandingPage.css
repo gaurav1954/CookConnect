@@ -137,5 +137,13 @@
     background: url('../assets/cover.jpg');
     background-size: cover;
     background-position: center;
+    display: block;
+    padding: 1rem;
+}
 
+.top-con {
+    z-index: 1;
+    position: absolute;
+    top: 1.5rem;
+    left: 3rem;
 }

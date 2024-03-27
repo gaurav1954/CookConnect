@@ -1,0 +1,20 @@
+.Logo {
+    display: flex;
+    background-color: transparent;
+    gap: 5px;
+    height: 100%;
+}
+
+.Logo>p {
+    font-size: 1.15rem;
+    padding-top: 19px;
+    font-weight: 200;
+    text-decoration: none;
+    color: black;
+    height: 100%;
+}
+
+img.logo {
+    height: 40px;
+    margin-top: 5px;
+}

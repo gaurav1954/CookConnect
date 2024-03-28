@@ -23,21 +23,22 @@ export default function Cards({ recipeId, title = 'burger', image = 'https://ima
           credentials: 'include', // Include credentials in the request
         });
 
-        setLikeCount(likeCount - 1);
+        setLikeCount(prevCount => prevCount - 1); // Decrease like count
       } else {
         // Like the recipe
         await fetch(`${apiUrl}/like/${recipeId}`, {
           method: 'POST',
           credentials: 'include', // Include credentials in the request
         });
-        setLikeCount(likeCount + 1);
+        setLikeCount(prevCount => prevCount + 1); // Increase like count
       }
-      setLiked(!liked);
+      setLiked(!liked); // Toggle liked state
     } catch (error) {
       console.error('Error:', error);
       // Handle error if needed
     }
   };
+
 
   return (
     <Card className="custom-card">

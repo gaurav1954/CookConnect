@@ -150,8 +150,7 @@ router.post('/recipes/create', parser.single('image'), async (req, res) => {
 })
 // Like a recipe
 router.post('/recipes/like/:recipeId', isLoggedIn, async (req, res) => {
-    console.log(req.user)
-    console.log(req.session)
+
     const { recipeId } = req.params;
     try {
         const recipe = await Recipe.findById(recipeId);
@@ -168,7 +167,6 @@ router.post('/recipes/like/:recipeId', isLoggedIn, async (req, res) => {
 
         recipe.likes.push(req.user._id); // Add user ID to the likes array
         await recipe.save();
-        console.log(recipe);
 
         res.status(200).json({ message: 'Recipe liked successfully' });
     } catch (err) {

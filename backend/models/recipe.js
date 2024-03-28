@@ -40,11 +40,10 @@ const recipeSchema = new mongoose.Schema({
     },
     rating: {
         type: Number,
-        min: 1,
-        max: 5
     },
     likes: {
-        type: Number
+        type: [mongoose.Schema.Types.ObjectId], // Array of user IDs who liked the recipe
+        default: [], // Default value is an empty array
     }
 
 });

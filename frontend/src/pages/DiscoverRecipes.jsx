@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cards from '../components/Cards';
 import './DiscoverRecipes.css'
+import Categories from '../components/Categories';
 export default function DiscoverRecipes() {
     const [recipes, setRecipes] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -32,23 +33,28 @@ export default function DiscoverRecipes() {
     };
 
     return (
-        <div className='discover'>
-            <div className="heading">
-                <h2>Discover Recipes</h2>
-                <p>Find and share everyday cooking inspiration with ratings and reviews you can trust. Recipes for easy dinners, healthy eating, fast and cheap, kid-friendly, and more</p>
+        <div className="pcontainer">
+            <div className="categoryFilter">
+                <Categories></Categories>
             </div>
-            {isLoading && !initialRender ? ( // Check if it's not the initial render
-                <p>Loading...</p>
-            ) : (
-                <div className="discover-recipes">
-                    <div className='discover-container'>
-                        {recipes.map(recipe => (
-                            <Cards key={recipe.id} {...recipe}></Cards>
-                        ))}
-                    </div>
-                    <button className='load-recipe' onClick={handleLoadMore}>Load More</button>
+            <div className='discover'>
+                <div className="heading">
+                    <h2>Discover Recipes</h2>
+                    <p>Find and share everyday cooking inspiration with ratings and reviews you can trust. Recipes for easy dinners, healthy eating, fast and cheap, kid-friendly, and more</p>
                 </div>
-            )}
+                {isLoading && !initialRender ? (
+                    <p>Loading...</p>
+                ) : (
+                    <div className="discover-recipes">
+                        <div className='discover-container'>
+                            {recipes.map(recipe => (
+                                <Cards key={recipe._id} recipeId={recipe._id} {...recipe}></Cards>
+                            ))}
+                        </div>
+                        <button className='load-recipe' onClick={handleLoadMore}>Load More</button>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

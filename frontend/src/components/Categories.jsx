@@ -8,6 +8,10 @@ function Categories() {
 
   return (
     <div className="Categories">
+      <div className="categories-heading">
+        <h2 className="orange">Recipe Categories</h2>
+        Find new and old favorites with CookConnect users' top recipe categories.
+      </div>
       <div className="categories-container">
         {categories.map((category) => (
           <CategoryCard key={category} heading={category} />

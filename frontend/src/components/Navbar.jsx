@@ -10,22 +10,7 @@ export default function Navbar() {
     const navigate = useNavigate();
     const location = useLocation();
     const [isCollapsed, setIsCollapsed] = useState(false);
-    const [user, setUser] = useState(null);
 
-    useEffect(() => {
-        // Fetch user information when component mounts
-        fetchUserInfo();
-    }, []);
-
-    const fetchUserInfo = async () => {
-        try {
-            // Fetch user information from backend
-            const response = await axios.get('http://localhost:8000/userinfo');
-            setUser(response.data);
-        } catch (error) {
-            console.error('Error fetching user info:', error);
-        }
-    };
 
     const handleLogout = async () => {
         try {
@@ -52,9 +37,6 @@ export default function Navbar() {
                 </div>
                 <div className="sandp">
                     <input className="search" type="text" name="search" id="search" placeholder='search...' />
-                    {user && user.profilePicture && (
-                        <img src={user.profilePicture} className="profile-picture" alt="Profile" />
-                    )}
                     <button className='logout' onClick={handleLogout}><img src={logout} className='logout-icon' alt="" /></button>
                 </div>
             </div>

@@ -5,10 +5,11 @@
 }
 
 .category-card {
-    height: 200px;
-    min-width: 200px;
+    height: 175px;
+    min-width: 175px;
     background-size: cover;
     display: flex;
     flex-direction: column;
-    scroll-snap-align: start
+    scroll-snap-align: start;
+    border-radius: 20px;
 }

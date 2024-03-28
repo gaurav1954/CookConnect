@@ -7,19 +7,29 @@ const User = require('../models/users');
 const multer = require('multer')
 const Recipe = require('../models/recipe');
 const { storage } = require('../cloudinary')
+const MongoStore = require('connect-mongo')
 
 const parser = multer({ storage })
 // Middleware
 router.use(express.json());
 router.use(session({
     secret: 'this is the secret key',
-    saveUninitialized: false,
+    saveUninitialized: true,
     resave: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.URI,
+        collectionName: process.env.SessionStore
+    }),
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24
+    }
+
 }));
 router.use(passport.initialize());
 router.use(passport.session());
 
 passport.use(new localStrategy(User.authenticate()));
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -72,9 +82,12 @@ router.post('/signup', async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
-
-router.post('/login', loginMiddleware, (req, res) => {
-    res.status(200).json({ message: 'Login successful' });
+router.get('/fail', (req, res) => {
+    res.json("fuck");
+})
+router.post('/login', passport.authenticate('local', { failureRedirect: '/fail' }), (req, res) => {
+    console.log(req.session)
+    res.status(200).json(req.session);
 });
 
 // Logout route
@@ -119,4 +132,56 @@ router.post('/recipes/create', parser.single('image'), async (req, res) => {
     await newRecipe.save();
     res.status(200).json({ msg: "done" });
 })
+// Like a recipe
+router.post('/recipes/like/:recipeId', isLoggedIn, async (req, res) => {
+    console.log(req.user)
+    const { recipeId } = req.params;
+    try {
+        const recipe = await Recipe.findById(recipeId);
+        if (!recipe) {
+            return res.status(404).json({ message: 'Recipe not found' });
+        }
+        console.log(recipe)
+
+        // Check if the user has already liked the recipe
+        if (recipe.likes && recipe.likes.includes(req.user._id)) {
+            return res.status(400).json({ message: 'Recipe already liked by this user' });
+        }
+
+        recipe.likes.push(req.user._id); // Add user ID to the likes array
+        await recipe.save();
+
+        res.status(200).json({ message: 'Recipe liked successfully' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+// Unlike a recipe
+router.post('/recipes/unlike/:recipeId', async (req, res) => {
+    const { recipeId } = req.params;
+    const { userId } = req.session; // Assuming userId is sent in the request body
+
+    try {
+        const recipe = await Recipe.findById(recipeId);
+        if (!recipe) {
+            return res.status(404).json({ message: 'Recipe not found' });
+        }
+
+        // Check if the user has liked the recipe
+        const indexOfUser = recipe.likes.indexOf(userId);
+        if (indexOfUser === -1) {
+            return res.status(400).json({ message: 'Recipe not liked by this user' });
+        }
+
+        recipe.likes.splice(indexOfUser, 1); // Remove user ID from the likes array
+        await recipe.save();
+
+        res.status(200).json({ message: 'Recipe unliked successfully' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 module.exports = router;

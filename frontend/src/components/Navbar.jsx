@@ -14,15 +14,17 @@ export default function Navbar() {
 
     const handleLogout = async () => {
         try {
-            await axios.post('http://localhost:8000/logout');
+            await fetch('http://localhost:8000/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include'
+            });
             navigate('/login');
         } catch (error) {
             console.error('Error during logout:', error);
         }
-    };
-
-    const toggleCollapse = () => {
-        setIsCollapsed(!isCollapsed);
     };
 
     return (

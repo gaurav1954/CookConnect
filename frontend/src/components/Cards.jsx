@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import './Cards.css';
-import axios from 'axios';
 
 export default function Cards({ recipeId, title = 'burger', image = 'https://images.unsplash.com/photo-1501959915551-4e8d30928317?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/100px180', likes = 20, cookingTime = 30, ingredients = [1, 2, 3] }) {
   const [liked, setLiked] = useState(false);
@@ -15,14 +14,22 @@ export default function Cards({ recipeId, title = 'burger', image = 'https://ima
   const handleLikeClick = async () => {
     try {
       const apiUrl = 'http://localhost:8000/recipes'; // API base URL
-      console.log(recipeId)
+      console.log(recipeId);
+
       if (liked) {
         // Unlike the recipe
-        await axios.post(`${apiUrl}/unlike/${recipeId}`);
+        await fetch(`${apiUrl}/unlike/${recipeId}`, {
+          method: 'POST',
+          credentials: 'include', // Include credentials in the request
+        });
+
         setLikeCount(likeCount - 1);
       } else {
         // Like the recipe
-        await axios.post(`${apiUrl}/like/${recipeId}`);
+        await fetch(`${apiUrl}/like/${recipeId}`, {
+          method: 'POST',
+          credentials: 'include', // Include credentials in the request
+        });
         setLikeCount(likeCount + 1);
       }
       setLiked(!liked);

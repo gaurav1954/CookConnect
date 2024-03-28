@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './LogIn.css';
 import user_icon from '../assets/person.png';
@@ -22,33 +21,42 @@ export default function Login() {
     });
 
     try {
-      const response = await axios.post('http://localhost:8000/login', formData, {
+      const response = await fetch('http://localhost:8000/login', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify(formData),
+        credentials: 'include' // Include credentials in the request
       });
-      if (response.status === 200) {
+
+      if (response.ok) {
         // Assuming successful login redirects to home page
         navigate('/recipes');
-      }
-    } catch (error) {
-      if (error.response && error.response.status === 401) {
-        setError("Invalid username or password. Please try again."); // Set the error message
+      } else if (response.status === 401) {
+        setError("Invalid username or password. Please try again.");
         setTimeout(() => {
-          setError(""); // Clear the error message after 3 seconds
+          setError("");
         }, 2000);
       } else {
-        setError("An error occurred. Please try again."); // Set a generic error message
+        setError("An error occurred. Please try again.");
         setTimeout(() => {
-          setError(""); // Clear the error message after 3 seconds
+          setError("");
         }, 2000);
       }
+    } catch (error) {
+      console.error('Error:', error);
+      setError("An error occurred. Please try again.");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
     }
   };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   const handleRedirect = () => {
     navigate('/signup')
   }
@@ -70,7 +78,7 @@ export default function Login() {
           </div>
           {err && <div className="val-error">{err}</div>}
           <div className="sub-con">
-            <button type="submit" className="submit-bttn btnn" onClick={handleSubmit}>Login</button>
+            <button type="submit" className="submit-bttn btnn">Login</button>
           </div>
         </form>
 
@@ -78,9 +86,7 @@ export default function Login() {
           <p>Don't have an account?</p>
           <button onClick={handleRedirect} className="login-bttn btnn">Signup</button>
         </div>
-
       </div>
     </div>
-
   );
 }

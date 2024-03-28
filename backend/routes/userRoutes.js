@@ -59,6 +59,7 @@ const loginMiddleware = (req, res, next) => {
 // Custom middleware to check if the user is authenticated
 const isLoggedIn = (req, res, next) => {
     if (req.isAuthenticated()) {
+        console.log("you're in")
         next();
     } else {
         res.status(401).json({ message: 'You need to login first' });
@@ -75,7 +76,6 @@ router.post('/signup', async (req, res) => {
         const { username, email, password } = req.body;
         const user = new User({ username, email });
         const newUser = await User.register(user, password);
-        console.log(newUser);
         res.status(200).json({ message: 'Signup successful' });
     } catch (err) {
         console.error(err.message);
@@ -97,9 +97,20 @@ router.post('/logout', (req, res) => {
             console.error('Error logging out:', err);
             return res.status(500).json({ message: 'Logout failed' });
         }
-        res.status(200).json({ message: 'Logout successful' });
+        console.log("agadg")
+        req.session.destroy((err) => {
+            if (err) {
+                console.error('Error destroying session:', err);
+                return res.status(500).json({ message: 'Logout failed' });
+            }
+            console.log("logout")
+            console.log(req.user)
+            console.log(req.session)
+            res.status(200).json({ message: 'Logout successful' });
+        });
     });
 });
+
 
 router.get('/registeredData', async (req, res) => {
     try {
@@ -117,9 +128,14 @@ router.get('/recipes/:page/:limit', async (req, res) => {
     const { page, limit } = req.params;
 
     try {
-        const recipes = await Recipe.find()
+        let recipes = await Recipe.find()
             .skip((page - 1) * limit)
             .limit(limit)
+        recipes = recipes.map(recipe => ({
+            ...recipe.toObject(),
+            likes: recipe.likes.length // Replace likes array with its length
+        }));
+
         res.status(200).json(recipes);
     } catch (err) {
         console.error(err.message);
@@ -135,32 +151,39 @@ router.post('/recipes/create', parser.single('image'), async (req, res) => {
 // Like a recipe
 router.post('/recipes/like/:recipeId', isLoggedIn, async (req, res) => {
     console.log(req.user)
+    console.log(req.session)
     const { recipeId } = req.params;
     try {
         const recipe = await Recipe.findById(recipeId);
         if (!recipe) {
+            console.log("1")
             return res.status(404).json({ message: 'Recipe not found' });
         }
-        console.log(recipe)
 
         // Check if the user has already liked the recipe
         if (recipe.likes && recipe.likes.includes(req.user._id)) {
+            console.log("2")
             return res.status(400).json({ message: 'Recipe already liked by this user' });
         }
 
         recipe.likes.push(req.user._id); // Add user ID to the likes array
         await recipe.save();
+        console.log(recipe);
 
         res.status(200).json({ message: 'Recipe liked successfully' });
     } catch (err) {
         console.error(err.message);
         res.status(500).json({ message: 'Internal server error' });
     }
+
 });
 // Unlike a recipe
 router.post('/recipes/unlike/:recipeId', async (req, res) => {
+    console.log("unlikes")
     const { recipeId } = req.params;
-    const { userId } = req.session; // Assuming userId is sent in the request body
+    const userId = req.user._id;
+    console.log(req.session) // Assuming userId is sent in the request body
+    console.log(req.user) // Assuming userId is sent in the request body
 
     try {
         const recipe = await Recipe.findById(recipeId);

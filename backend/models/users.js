@@ -6,6 +6,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    saved: {
+        type: [mongoose.Schema.Types.ObjectId], // Array of user IDs who liked the recipe
+        red: 'Recipe',
+        default: [],
+    }
 })
 userSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model('User', userSchema);  

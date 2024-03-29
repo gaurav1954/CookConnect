@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
@@ -7,14 +7,32 @@ import { faThumbsUp, faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import './Cards.css';
 
-export default function Cards({ recipeId, title = 'burger', image = 'https://images.unsplash.com/photo-1501959915551-4e8d30928317?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/100px180', likes = 20, cookingTime = 30, ingredients = [1, 2, 3] }) {
+export default function Cards({ recipeId, title = 'burger', image = 'https://images.unsplash.com/photo-1501959915551-4e8d30928317?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/100px180', likes, cookingTime = 30, ingredients = [1, 2, 3] }) {
   const [liked, setLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(likes);
+  const [likeCount, setLikeCount] = useState(likes); // Initialize like count to 0 initially
+
+  useEffect(() => {
+    const fetchLikeStatus = async () => {
+      try {
+        const apiUrl = `http://localhost:8000/recipes/${recipeId}/like-status`; // API endpoint to get like status
+        const response = await fetch(apiUrl, {
+          method: 'GET',
+          credentials: 'include' // Include credentials in the request
+        });
+        const data = await response.json();
+
+        setLiked(data.liked); // Update liked state based on the response from the API
+      } catch (error) {
+        console.error('Error fetching like status:', error);
+      }
+    };
+
+    fetchLikeStatus();
+  }, [recipeId]); // Execute effect when recipeId changes
 
   const handleLikeClick = async () => {
     try {
       const apiUrl = 'http://localhost:8000/recipes'; // API base URL
-      console.log(recipeId);
 
       if (liked) {
         // Unlike the recipe
@@ -38,7 +56,6 @@ export default function Cards({ recipeId, title = 'burger', image = 'https://ima
       // Handle error if needed
     }
   };
-
 
   return (
     <Card className="custom-card">

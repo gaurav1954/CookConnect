@@ -59,7 +59,6 @@ const loginMiddleware = (req, res, next) => {
 // Custom middleware to check if the user is authenticated
 const isLoggedIn = (req, res, next) => {
     if (req.isAuthenticated()) {
-        console.log("you're in")
         next();
     } else {
         res.status(401).json({ message: 'You need to login first' });
@@ -86,6 +85,7 @@ router.get('/fail', (req, res) => {
     res.json("fuck");
 })
 router.post('/login', passport.authenticate('local', { failureRedirect: '/fail' }), (req, res) => {
+    console.log("login")
     console.log(req.session)
     res.status(200).json(req.session);
 });
@@ -122,6 +122,16 @@ router.get('/registeredData', async (req, res) => {
         console.error('Error fetching registered data:', error.message);
         res.status(500).json({ message: 'Internal server error' });
     }
+});
+router.get('/recipes/:recipeId/like-status', async (req, res) => {
+    const { recipeId } = req.params;
+    const userId = req.user._id;
+    const recipe = await Recipe.findById(recipeId);
+    if (recipe.likes.includes(userId))
+        res.json({ "liked": "true" });
+    else
+        res.json({ "liked": "false" });
+
 });
 
 router.get('/recipes/:page/:limit', async (req, res) => {
@@ -180,9 +190,6 @@ router.post('/recipes/unlike/:recipeId', async (req, res) => {
     console.log("unlikes")
     const { recipeId } = req.params;
     const userId = req.user._id;
-    console.log(req.session) // Assuming userId is sent in the request body
-    console.log(req.user) // Assuming userId is sent in the request body
-
     try {
         const recipe = await Recipe.findById(recipeId);
         if (!recipe) {
@@ -204,5 +211,6 @@ router.post('/recipes/unlike/:recipeId', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+
 
 module.exports = router;

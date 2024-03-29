@@ -43,7 +43,11 @@ const recipeSchema = new mongoose.Schema({
     },
     likes: {
         type: [mongoose.Schema.Types.ObjectId], // Array of user IDs who liked the recipe
+        red: 'User',
         default: [], // Default value is an empty array
+    },
+    savedby: {
+        type: Number,
     }
 
 });

@@ -8,7 +8,7 @@ import Login from "./pages/LogIn";
 import ProfilePage from './pages/ProfilePage';
 import './app.css';
 import LandingPage from './pages/LandingPage';
-import Categories from './components/Categories';
+import Random from './components/Random';
 
 export default function App() {
   return (
@@ -20,7 +20,7 @@ export default function App() {
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="profile" element={<ProfilePage />} />
-            <Route path="cat" element={<Categories />} />
+            <Route path="random" element={<Random />} />
           </Route>
           <Route path="/" element={<Layout />}>
             <Route path="new" element={<RecipeForm />} />

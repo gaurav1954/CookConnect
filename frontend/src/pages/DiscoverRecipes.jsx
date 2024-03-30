@@ -3,7 +3,9 @@ import axios from 'axios';
 import Cards from '../components/Cards';
 import './DiscoverRecipes.css'
 import Categories from '../components/Categories';
+import { useNavigate } from 'react-router-dom';
 export default function DiscoverRecipes() {
+
     const [recipes, setRecipes] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [page, setPage] = useState(1);
@@ -32,6 +34,7 @@ export default function DiscoverRecipes() {
         setPage(prevPage => prevPage + 1);
     };
 
+
     return (
         <div className="pcontainer">
             <div className="categoryFilter">
@@ -48,7 +51,7 @@ export default function DiscoverRecipes() {
                     <div className="discover-recipes">
                         <div className='discover-container'>
                             {recipes.map(recipe => (
-                                <Cards key={recipe._id} recipeId={recipe._id} {...recipe}></Cards>
+                                <Cards key={recipe._id} recipeId={recipe._id} {...recipe} ></Cards>
                             ))}
                         </div>
                         <button className='load-recipe' onClick={handleLoadMore}>Load More</button>

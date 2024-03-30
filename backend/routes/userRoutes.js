@@ -123,14 +123,17 @@ router.get('/registeredData', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+router.get('/recipes/like-status', async (req, res) => {
+    res.json({ "one": "true" });
+});
 router.get('/recipes/:recipeId/like-status', async (req, res) => {
     const { recipeId } = req.params;
     const userId = req.user._id;
     const recipe = await Recipe.findById(recipeId);
     if (recipe.likes.includes(userId))
-        res.json({ "liked": "true" });
+        res.json({ "liked": 1 });
     else
-        res.json({ "liked": "false" });
+        res.json({ "liked": 0 });
 
 });
 
@@ -160,7 +163,7 @@ router.post('/recipes/create', parser.single('image'), async (req, res) => {
 })
 // Like a recipe
 router.post('/recipes/like/:recipeId', isLoggedIn, async (req, res) => {
-
+    console.log("likes")
     const { recipeId } = req.params;
     try {
         const recipe = await Recipe.findById(recipeId);

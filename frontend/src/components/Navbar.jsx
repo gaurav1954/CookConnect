@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 export default function Navbar() {
     const navigate = useNavigate();
     const location = useLocation();
-    const [isCollapsed, setIsCollapsed] = useState(false);
 
 
     const handleLogout = async () => {
@@ -30,7 +29,7 @@ export default function Navbar() {
     return (
         <div className="Navbar">
             <Logo></Logo>
-            <div className={`links ${isCollapsed ? 'collapsed' : ''}`}>
+            <div className={`links`}>
                 <div className="linkk">
                     <Link to="/new" className={`link ${location.pathname === "/new" ? "active" : ""}`}>Create</Link>
                     <Link to="/recipes" className={`link ${location.pathname === "/recipes" ? "active" : ""}`}>Explore</Link>

@@ -1,8 +1,7 @@
 import React from 'react'
-import photo from '../assets/photo3.jpg'
 import './CategoryCard.css'
 import { useNavigate } from 'react-router-dom';
-export default function CategoryCard({ heading }) {
+export default function CategoryCard({ heading, image }) {
 
     const navigate = useNavigate();
     const fun = function (x) {
@@ -12,7 +11,7 @@ export default function CategoryCard({ heading }) {
     return (
         <div
             className="category-card"
-            style={{ backgroundImage: `url(${photo})` }}
+            style={{ backgroundImage: `url(${image})` }}
             onClick={() => fun(heading)}>
             <h3
                 className='category-heading'>

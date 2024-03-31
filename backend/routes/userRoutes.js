@@ -86,6 +86,7 @@ router.get('/fail', (req, res) => {
 })
 router.post('/login', passport.authenticate('local', { failureRedirect: '/fail' }), (req, res) => {
     console.log("login")
+    console.log(req.headers)
     console.log(req.session)
     res.status(200).json(req.session);
 });
@@ -97,17 +98,7 @@ router.post('/logout', (req, res) => {
             console.error('Error logging out:', err);
             return res.status(500).json({ message: 'Logout failed' });
         }
-        console.log("agadg")
-        req.session.destroy((err) => {
-            if (err) {
-                console.error('Error destroying session:', err);
-                return res.status(500).json({ message: 'Logout failed' });
-            }
-            console.log("logout")
-            console.log(req.user)
-            console.log(req.session)
-            res.status(200).json({ message: 'Logout successful' });
-        });
+        res.status(200).json({ message: 'Logout successful' });
     });
 });
 

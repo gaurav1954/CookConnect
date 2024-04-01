@@ -3,22 +3,17 @@
     border-radius: 3rem;
 }
 
-.like-button {
+.likeandshare {
     position: absolute;
-    top: 10px;
-    left: 10px;
     z-index: 1;
-    filter: invert(100%);
-    /* color: white; */
-}
-
-.bookmark-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 1;
-    filter: invert(100%);
-    /* color: white; */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0);
+    /* Background color with transparency */
+    backdrop-filter: blur(3px);
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .menu-icon {
@@ -67,10 +62,4 @@
 
 .ingredients {
     text-wrap: nowrap;
-}
-
-.orange-btn {
-    filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(100%) hue-rotate(0deg) brightness(100%) contrast(100%);
-    color: red;
-    /* Set the color to red */
 }

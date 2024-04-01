@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './Like.css';
 import './Cards.css';
-export default function Like({ likes, recipeId }) {
+export default function Like({ likes = 10, recipeId }) {
     const [liked, setLiked] = useState(0);
     const [likeCount, setLikeCount] = useState(likes); // Initialize like count to 0 initially
 
@@ -55,9 +56,9 @@ export default function Like({ likes, recipeId }) {
         }
     };
     return (
-        <Button variant="light-danger" className="like-button" onClick={handleLikeClick}>
-            <FontAwesomeIcon icon={faThumbsUp} className={`${liked ? 'orange-btn' : ''}`} />
-            <b>{likeCount}</b>
+        <Button variant="light-danger" className='Like-btn' onClick={handleLikeClick}>
+            <FontAwesomeIcon className={`like-button ${liked ? 'red' : ""}`} icon={faThumbsUp} />
+            <b className={`${liked ? 'red' : ""}`}>{likeCount}</b>
         </Button>
     )
 }

@@ -114,9 +114,7 @@ router.get('/registeredData', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
-router.get('/recipes/like-status', async (req, res) => {
-    res.json({ "one": "true" });
-});
+
 router.get('/recipes/:recipeId/like-status', async (req, res) => {
     const { recipeId } = req.params;
     const userId = req.user._id;
@@ -125,6 +123,17 @@ router.get('/recipes/:recipeId/like-status', async (req, res) => {
         res.json({ "liked": 1 });
     else
         res.json({ "liked": 0 });
+
+});
+router.get('/recipes/:recipeId/saved-status', async (req, res) => {
+    const { recipeId } = req.params;
+    const userId = req.user._id;
+    const recipe = await Recipe.findById(recipeId);
+    const user = await User.findById(userId)
+    if (user.saved.includes(recipeId))
+        res.json({ "saved": 1 });
+    else
+        res.json({ "saved": 0 });
 
 });
 
@@ -196,7 +205,7 @@ router.post('/recipes/unlike/:recipeId', async (req, res) => {
             return res.status(400).json({ message: 'Recipe not liked by this user' });
         }
 
-        recipe.likes.splice(indexOfUser, 1); // Remove user ID from the likes array
+        recipe.likes = recipe.likes.filter(id => id.toString() !== userId.toString());
         await recipe.save();
 
         res.status(200).json({ message: 'Recipe unliked successfully' });
@@ -205,6 +214,50 @@ router.post('/recipes/unlike/:recipeId', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+router.post('/recipes/save/:recipeId', async (req, res) => {
+    const { recipeId } = req.params;
+    const userId = req.user._id;
+    try {
+        const recipe = await Recipe.findById(recipeId);
+        const user = await User.findById(userId)
+        if (!recipe) {
+            return res.status(404).json({ message: 'Recipe not found' });
+        }
+        recipe.savedBy += 1; // Update this line with your specific logic
+        user.saved.push(recipeId);
 
+        await user.save();
+        await recipe.save();
+
+        res.status(200).json({ message: 'Recipe shared successfully' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+// Unshare a recipe
+router.post('/recipes/unsave/:recipeId', async (req, res) => {
+    const { recipeId } = req.params;
+    const userId = req.user._id;
+    console.log("1");
+    try {
+        const recipe = await Recipe.findById(recipeId);
+        const user = await User.findById(userId)
+        console.log("1");
+        if (!recipe) {
+            return res.status(404).json({ message: 'Recipe not found' });
+        }
+        recipe.savedBy -= 1; // Update this line with your specific logic
+        user.saved = user.saved.filter(id => id.toString() !== recipeId.toString());
+        await user.save();
+        await recipe.save();
+
+        res.status(200).json({ message: 'Recipe shared successfully' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
 
 module.exports = router;

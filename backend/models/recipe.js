@@ -46,10 +46,10 @@ const recipeSchema = new mongoose.Schema({
         red: 'User',
         default: [], // Default value is an empty array
     },
-    savedby: {
+    savedBy: {
         type: Number,
+        default: 0 // Set a default value to prevent NaN errors
     }
-
 });
 
 module.exports = mongoose.model('Recipe', recipeSchema);

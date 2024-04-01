@@ -7,15 +7,15 @@ import { faThumbsUp, faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import './Cards.css';
 import Like from "./Like";
-export default function Cards({ recipeId, title = 'burger', image = 'https://images.unsplash.com/photo-1501959915551-4e8d30928317?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/100px180', likes, cookingTime = 30, ingredients = [1, 2, 3] }) {
-
+import SaveButton from "./SaveButton";
+export default function Cards({ recipeId, title = 'burger', image = 'https://res.cloudinary.com/dzoozuhid/image/upload/v1711165563/rjizkrxiuzlkegkp16s7.jpg', likes, savedBy = 0, cookingTime = 30, ingredients = [1, 2, 3] }) {
   return (
     <Card className="custom-card">
       <div className="image-container">
-        <Like recipeId={recipeId} likes={likes} />
-        <Button variant="light-solid" className="bookmark-button">
-          <FontAwesomeIcon icon={faBookmark} /> <b>33</b>
-        </Button>
+        <div className="likeandshare">
+          <Like recipeId={recipeId} likes={likes} />
+          <SaveButton recipeId={recipeId} savedBy={savedBy} />
+        </div>
         <Card.Img
           src={image}
           alt="Card image"

@@ -3,6 +3,7 @@ import './Post.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as farHeart, faBookmark as farBookmark } from '@fortawesome/free-regular-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
+import Like from './Like';
 function Post({ author = "gaurav", likes, description = "xys" }) {
     return (
         <div className='centered-container'>
@@ -17,7 +18,7 @@ function Post({ author = "gaurav", likes, description = "xys" }) {
                 <img src="https://plus.unsplash.com/premium_photo-1711477326347-721652a2a763?q=80&w=2788&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className='post-image' />
                 <div className="likeAndSave">
                     <div className="leftContent">
-
+                        <Like likes={10}></Like>
                     </div>
                     <div className="right-content">
                         <FontAwesomeIcon icon={farBookmark} size="1x" className="bookmark-icon" />

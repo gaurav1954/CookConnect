@@ -2,51 +2,67 @@
     display: flex;
     align-items: center;
 }
-  
+
 .profile-icon {
     width: 32px;
     height: 32px;
     border-radius: 50%;
     margin-right: 10px;
 }
-  
+
 .username {
     font-weight: bold;
 }
-.post-body{
+
+
+.post-body {
     /* border: 1px solid grey; */
     width: 500px;
     position: relative;
-    height: 500px;
-}  
-.post-header{
-    padding: 10px;
+    height: fit-content;
 }
+
+.post-header {
+    padding: 10px;
+    padding-left: 0;
+}
+
+.post-image {
+    height: 500px;
+    width: 100%;
+}
+
 .icons {
     margin-left: auto;
     padding: 5px;
 }
-  
+
 .icon {
     margin-left: 10px;
     cursor: pointer;
 }
+
 .disabled-text {
     color: gray;
 }
-.username-caption{
+
+.username-caption {
     padding: 5px;
-    
+
 }
+
 .bookmark-icon {
     cursor: pointer;
 }
+
 .right-content {
     margin-left: auto;
 }
- .centered-container {
+
+.centered-container {
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     padding-top: 50px;
+    height: fit-content;
 }

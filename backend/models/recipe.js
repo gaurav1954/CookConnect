@@ -52,4 +52,12 @@ const recipeSchema = new mongoose.Schema({
     }
 });
 
+recipeSchema.pre('save', function (next) {
+    // Check if the document is newly created (not updated)
+    if (!this.createdAt) {
+        this.createdAt = new Date();
+    }
+    next();
+});
+
 module.exports = mongoose.model('Recipe', recipeSchema);

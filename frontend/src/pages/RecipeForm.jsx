@@ -1,10 +1,9 @@
 import { useState } from "react";
-import axios from 'axios';
 import './RecipeForm.css';
 const RecipeForm = () => {
     const [formData, setFormData] = useState({
         title: '',
-        cuisine: 'italian',
+        cuisine: 'Italian',
         description: '',
         steps: [''], // Initialize with one empty step
         ingredients: '',
@@ -63,12 +62,12 @@ const RecipeForm = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:8000/recipes/create', formDataToSend, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
+            const response = await fetch('http://localhost:8000/recipes/create', {
+                method: 'POST',
+                body: formDataToSend,
+                credentials: 'include'
             });
-            if (response.status === 200) {
+            if (response.ok) {
                 setFormData({
                     title: '',
                     cuisine: 'italian',
@@ -92,8 +91,6 @@ const RecipeForm = () => {
         }
     };
 
-
-
     return (
         <div className="outerer-container">
             <div className="container">
@@ -101,11 +98,11 @@ const RecipeForm = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Title</label>
-                        <input type="text" className="input-create-form" name="title" value={formData.title} onChange={handleChange} placeholder="Give your recipe a name" />
+                        <input type="text" className="input-create-form" name="title" value={formData.title} onChange={handleChange} placeholder="Give your recipe a name" required />
                     </div>
                     <div className="form-group">
                         <label>Cuisine</label>
-                        <select name="cuisine" className="input-create-form" value={formData.cuisine} onChange={handleChange}>
+                        <select name="cuisine" className="input-create-form" value={formData.cuisine} onChange={handleChange} required>
                             <option value="">Select Cuisine</option>
                             <option value="Italian">Italian</option>
                             <option value="Chinese">Chinese</option>
@@ -122,11 +119,10 @@ const RecipeForm = () => {
                             <option value="Korean">Korean</option>
                             <option value="Other">Other</option>
                         </select>
-
                     </div>
                     <div className="form-group">
                         <label>Description</label>
-                        <textarea rows={3} className="input-create-form" name="description" value={formData.description} onChange={handleChange} placeholder="Introduce your recipe, add notes, cooking tips, serving suggestions, etc..." />
+                        <textarea rows={3} className="input-create-form" name="description" value={formData.description} onChange={handleChange} placeholder="Introduce your recipe, add notes, cooking tips, serving suggestions, etc..." required />
                     </div>
                     <div className="form-group">
                         <label>Steps</label>
@@ -145,19 +141,19 @@ const RecipeForm = () => {
                     </div>
                     <div className="form-group">
                         <label>Ingredients</label>
-                        <input type="text" className="input-create-form" name="ingredients" value={formData.ingredients} onChange={handleChange} placeholder="Enter the ingredients" />
+                        <input type="text" className="input-create-form" name="ingredients" value={formData.ingredients} onChange={handleChange} placeholder="Enter the ingredients" required />
                     </div>
                     <div className="form-group">
                         <label>Instructions</label>
-                        <textarea rows={3} className="input-create-form" name="instructions" value={formData.instructions} onChange={handleChange} placeholder="Enter the instructions" />
+                        <textarea rows={3} className="input-create-form" name="instructions" value={formData.instructions} onChange={handleChange} placeholder="Enter the instructions" required />
                     </div>
                     <div className="form-group">
                         <label>Cooking Time(mins)</label>
-                        <input type="number" name="cookingTime" className="time" value={formData.cookingTime} onChange={handleChange} placeholder="Enter the cooking time" />
+                        <input type="number" name="cookingTime" className="time" value={formData.cookingTime} onChange={handleChange} placeholder="Enter the cooking time" required />
                     </div>
                     <div className="form-group">
                         <label>Difficulty Level</label>
-                        <select name="difficultyLevel" className="input-create-form" value={formData.difficultyLevel} onChange={handleChange}>
+                        <select name="difficultyLevel" className="input-create-form" value={formData.difficultyLevel} onChange={handleChange} required>
                             <option value="">Select</option>
                             <option value="Easy">Easy</option>
                             <option value="Moderate">Moderate</option>

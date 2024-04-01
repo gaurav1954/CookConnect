@@ -1,6 +1,4 @@
 import React from 'react';
-
-
 const UserProfile = ({ match }) => {
     // Assume user details are fetched from somewhere
     const user = {

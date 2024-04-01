@@ -33,28 +33,6 @@ passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// Custom middleware to handle login authentication
-const loginMiddleware = (req, res, next) => {
-    passport.authenticate('local', (err, user, info) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).json({ message: 'Internal server error' });
-        }
-        if (!user) {
-            console.log(info.message)
-            return res.status(401).json({ message: 'Invalid credentials', error: info.message });
-        }
-
-        // Manually log in the user
-        req.logIn(user, (err) => {
-            if (err) {
-                console.error(err);
-                return res.status(500).json({ message: 'Internal server error' });
-            }
-            next(); // Proceed to the next middleware (login route)
-        });
-    })(req, res, next);
-};
 
 // Custom middleware to check if the user is authenticated
 const isLoggedIn = (req, res, next) => {
@@ -144,10 +122,14 @@ router.get('/recipes/:page/:limit', async (req, res) => {
         let recipes = await Recipe.find()
             .skip((page - 1) * limit)
             .limit(limit)
+            .sort({ createdAt: -1 }) // Sort in descending order based on createdAt field
+            .populate("author");
+
         recipes = recipes.map(recipe => ({
             ...recipe.toObject(),
             likes: recipe.likes.length // Replace likes array with its length
         }));
+        console.log(recipes[0]);
 
         res.status(200).json(recipes);
     } catch (err) {
@@ -156,6 +138,7 @@ router.get('/recipes/:page/:limit', async (req, res) => {
     }
 });
 router.post('/recipes/create', parser.single('image'), async (req, res) => {
+    console.log(req.user);
     const newRecipe = new Recipe(req.body);
     newRecipe.image = req.file.path;
     await newRecipe.save();

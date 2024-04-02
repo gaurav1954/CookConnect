@@ -2,16 +2,13 @@ import React from 'react'
 import './Post.css'
 import Like from './Like';
 import SaveButton from './SaveButton';
-export default function Post({ author = "anonymous", recipeId = '65f5deae39d4d5ebd8dd729c', savedBy, likes, description = "xys", image }) {
+export default function Post({ author = "anonymous", recipeId = '65f5deae39d4d5ebd8dd729c', savedBy, likes, description = "xys", image, title }) {
     return (
         <div className='centered-container'>
             <div className='post-body'>
                 <div className='post-header'>
-                    <div className="profile-pic">
-                        <img src={image} alt="Profile Icon" className="profile-icon" />
-                        <span className="username">{author.username}</span>
-
-                    </div>
+                    <div className="title">{title}</div>
+                    <div className="username">-{author.username}</div>
                 </div>
                 <img src={image} className='post-image' />
                 <div className="likeAndSave">

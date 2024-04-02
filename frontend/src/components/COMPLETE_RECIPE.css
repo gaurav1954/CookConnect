@@ -1,4 +1,4 @@
-.container{
+.container {
     /* justify-content: center; */
     text-align: start;
     padding-left: 350px;
@@ -6,65 +6,76 @@
     padding-top: 10px;
     display: flex;
 }
-.recipe-img{
+
+.recipe-img {
     position: relative;
     height: 500px;
     width: 500;
     border-radius: 12px;
 }
-.details{
+
+.details {
     padding-left: 30px;
     padding-top: 10px;
 }
-.icon{
+
+.icon {
     height: 25px;
     width: 25px;
     padding-left: 25px;
 }
-.save{
+
+.save {
     border: rgb(255, 123, 46) 1px solid;
     border-radius: 30px;
-    background-color:rgb(255, 123, 46)  ;
+    background-color: rgb(255, 123, 46);
     color: white;
     height: 50px;
     width: 130px;
 }
-.save-text{
+
+.save-text {
     padding-left: 15px;
 }
+
 .profile-pic {
     display: flex;
     align-items: center;
     padding-left: 15px;
 }
-  
+
 .profile-icon {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
 }
-  
+
 .username {
     font-weight: bold;
     font-size: 20px;
 }
-.dish-name{
+
+.dish-name {
     padding-left: 14px;
     font-size: 40px;
 }
-.nutritarian-list{
+
+.nutritarian-list {
     color: rgb(255, 123, 46);
     padding-left: 14px;
 }
-.note{
+
+.note {
     padding-left: 10px;
     font-size: 20px;
 }
-.customization{
+
+.customization {
     color: grey;
 }
-.feedback{
+
+.feedback {
     border-radius: 40px;
     width: 500px;
     height: 20px;
@@ -75,18 +86,21 @@
     padding: 20px 20px;
     font-size: large;
 }
-.plus-minus{
+
+.plus-minus {
     color: rgb(255, 123, 46);
     height: 30px;
     width: 30px;
     cursor: pointer;
 }
-.servings{
+
+.servings {
     font-size: larger;
     padding-left: 20px;
     padding-right: 20px;
 }
-.unit-conversion{
+
+.unit-conversion {
     padding: 10px;
     background-color: white;
     border-radius: 30px;
@@ -95,14 +109,16 @@
     margin-right: 50px;
     border: 2px #eee solid;
 }
-.follow{
+
+.follow {
     color: rgb(255, 123, 46);
     cursor: pointer;
     margin-left: 10px;
     font-size: 20px;
 }
-.start-cooking{
-    background-color:rgb(255, 123, 46) ;
+
+.start-cooking {
+    background-color: rgb(255, 123, 46);
     border-radius: 30px;
     width: 150px;
     height: 50px;
@@ -110,10 +126,12 @@
     color: white;
     font-size: large;
 }
-.recipe-steps{
+
+.recipe-steps {
     font-size: 25px;
 }
-.made-it-button{
+
+.made-it-button {
     font-size: 25px;
     background-color: white;
     border-radius: 30px;
@@ -121,8 +139,9 @@
     height: 50px;
     border: 2px #eee solid;
 }
-.cooking-time-button{
-    background-color:rgb(255, 123, 46) ;
+
+.cooking-time-button {
+    background-color: rgb(255, 123, 46);
     border-radius: 30px;
     width: 150px;
     height: 50px;
@@ -130,8 +149,9 @@
     color: white;
     font-size: large;
 }
-.difficulty-level-button{
-    background-color:rgb(255, 123, 46) ;
+
+.difficulty-level-button {
+    background-color: rgb(255, 123, 46);
     border-radius: 30px;
     width: 150px;
     height: 50px;
@@ -140,7 +160,8 @@
     font-size: large;
     margin-left: 400px;
 }
-.rating-icon{
+
+.rating-icon {
     color: green;
     height: 30px;
     width: 30px;

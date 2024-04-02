@@ -10,8 +10,15 @@
     margin-right: 10px;
 }
 
+.title {
+    text-wrap: wrap;
+    color: orange;
+}
+
 .username {
-    font-weight: bold;
+    font-weight: 500;
+    color: grey;
+
 }
 
 .post-body {
@@ -23,7 +30,9 @@
 }
 
 .post-header {
-    padding: 10px;
+
+    display: flex;
+    justify-content: space-between;
     padding-left: 0;
 }
 
@@ -45,11 +54,6 @@
 
 .disabled-text {
     color: gray;
-}
-
-.username-caption {
-    padding: 5px;
-
 }
 
 .bookmark-icon {

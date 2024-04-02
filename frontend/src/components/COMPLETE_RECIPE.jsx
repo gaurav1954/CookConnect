@@ -6,13 +6,13 @@ import { faPencil, faShareNodes, faPrint, faEllipsis, faBookmark, faCamera, faCi
 function COMPLETE_RECIPE(){
     return(
       <div>
-      <div className='container'>
-        <div className='row' style={{ display: "flex" }}>
-          <div className='col-sm-6'>
+      <div className='complete-recipe-container'>
+        <div className='complete-recipe-row'>
+          <div className='complete-recipe-col'>
             <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className='recipe-img'/>
           </div>
           
-          <div className='col-sm-6 details'>
+          <div className='complete-recipe-col details'>
             <span style={{ display: 'flex' }}>
             <FontAwesomeIcon icon={faPencil} className='icon'/>
             <FontAwesomeIcon icon={faShareNodes} className='icon'/>
@@ -50,12 +50,12 @@ function COMPLETE_RECIPE(){
         </div>
       </div>
 
-      <div className='container'>
+      <div className='complete-recipe-container'>
         <h1>Ingredients</h1>
         <p style={{marginLeft: '600px',fontSize: '20px' }}>Added by</p>
       </div>
 
-      <div className='container'>
+      <div className='complete-recipe-container'>
         <div>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '10px' }}>
             <FontAwesomeIcon icon={faCircleMinus} className='plus-minus'/>
@@ -77,24 +77,24 @@ function COMPLETE_RECIPE(){
         </div>
       </div>
 
-      <div className='container'>
-        <div className='row' style={{ display: "flex" }}>
-          <div className='col-sm-4'>
+      <div className='complete-recipe-container'>
+        <div className='complete-recipe-row'>
+          <div className='complete-recipe-col'>
             <h3>Step 1</h3>
             <p className='recipe-steps'>Place quinoa and 2 cups of the vegetable broth in a saucepan, bring to a boil, reduce heat, and simmer for 20 minutes or until quinoa is tender and liquid is absorbed. Remove from heat and fluff with a fork. Stir in 2 tablespoons of the chopped cilantro and 2 tablespoons of the lime juice.</p>
           </div>
-          <div className='col-sm-4'>
+          <div className='complete-recipe-col'>
             <h3>Step 2</h3>
             <p className='recipe-steps'>Place quinoa and 2 cups of the vegetable broth in a saucepan, bring to a boil, reduce heat, and simmer for 20 minutes or until quinoa is tender and liquid is absorbed. Remove from heat and fluff with a fork. Stir in 2 tablespoons of the chopped cilantro and 2 tablespoons of the lime juice.</p>
           </div>
-          <div className='col-sm-4'>
+          <div className='complete-recipe-col'>
           <h3>Step 3</h3>
             <p className='recipe-steps'>Place quinoa and 2 cups of the vegetable broth in a saucepan, bring to a boil, reduce heat, and simmer for 20 minutes or until quinoa is tender and liquid is absorbed. Remove from heat and fluff with a fork. Stir in 2 tablespoons of the chopped cilantro and 2 tablespoons of the lime juice.</p>
           </div>
         </div>
       </div>
 
-      <div className='container'>
+      <div className='complete-recipe-container'>
       <button className='made-it-button'>Made it</button>
       <button className='made-it-button' style={{marginLeft: '10px'}}><FontAwesomeIcon icon={faPrint} className='icon'/> Print</button>
       </div>
@@ -102,7 +102,7 @@ function COMPLETE_RECIPE(){
       <hr style={{ border: 'none', borderBottom: '1px solid #eee', width: '30%', margin: '0 auto' }} className='container'/>
       <br/>
 
-      <div className='container'>
+      <div className='complete-recipe-container'>
       <button className='cooking-time-button'><b>Cooking Time</b></button>
       <p>
       <b style={{marginBottom: '5px', paddingLeft: '15px'}}>.</b>
@@ -118,10 +118,10 @@ function COMPLETE_RECIPE(){
       <hr style={{ border: 'none', borderBottom: '1px solid #eee', width: '30%', margin: '0 auto' }} className='container'/>
       <br/>
 
-      <div className='container'>
+      <div className='complete-recipe-container'>
         <h1>Rating Details</h1>
       </div>
-      <div className='container'>
+      <div className='complete-recipe-container'>
       <FontAwesomeIcon icon={faThumbsUp} className='rating-icon icon'/>
       <p style={{marginBottom: '5px',marginTop: '5px', paddingLeft: '15px', color: 'grey', fontSize: '25px'}}>7 liked</p>
       </div>

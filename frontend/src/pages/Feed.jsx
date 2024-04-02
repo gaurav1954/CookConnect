@@ -9,11 +9,18 @@ export default function Feed() {
     const [initialRender, setInitialRender] = useState(true); // New state variable to track initial render
 
     useEffect(() => {
-        if (!initialRender) { // Check if it's not the initial render
+        if (!initialRender) {
             const fetchData = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:8000/recipes/${page}/6`);
-                    setRecipes(prevRecipes => [...prevRecipes, ...response.data]);
+                    const response = await fetch(`http://localhost:8000/recipes/${page}/6`, {
+                        method: 'GET',
+                        credentials: 'include' // Include credentials for cross-origin requests
+                    });
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch');
+                    }
+                    const data = await response.json();
+                    setRecipes(prevRecipes => [...prevRecipes, ...data]);
                     setIsLoading(false);
                 } catch (error) {
                     console.error('Error fetching recipes:', error);
@@ -23,9 +30,9 @@ export default function Feed() {
 
             fetchData();
         } else {
-            setInitialRender(false); // Update initial render state after the initial render
+            setInitialRender(false);
         }
-    }, [page, initialRender]); // Fetch data whenever page number changes or after initial render
+    }, [page, initialRender]);
 
     const handleLoadMore = () => {
         setPage(prevPage => prevPage + 1);

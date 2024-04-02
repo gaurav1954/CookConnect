@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
     },
     saved: {
         type: [mongoose.Schema.Types.ObjectId], // Array of user IDs who liked the recipe
-        red: 'Recipe',
+        ref: 'Recipe',
         default: [],
     }
 })

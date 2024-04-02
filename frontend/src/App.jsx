@@ -11,6 +11,7 @@ import LandingPage from './pages/LandingPage';
 import Random from './components/Random';
 import COMPLETE_RECIPE from './components/COMPLETE_RECIPE';
 import Feed from './pages/Feed';
+import Saved from './pages/Saved';
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
             <Route path="new" element={<RecipeForm />} />
             <Route path="recipes" element={<DiscoverRecipes />} />
             <Route path="feed" element={<Feed />} />
+            <Route path="saved" element={<Saved />} />
           </Route>
         </Routes>
       </Router>

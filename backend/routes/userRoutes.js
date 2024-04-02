@@ -120,6 +120,30 @@ router.get('/recipes/:recipeId/saved-status', async (req, res) => {
         res.json({ "saved": 0 });
 
 });
+router.get('/recipes/saved', async (req, res) => {
+    try {
+        console.log("reached");
+        const userId = req.user._id;
+        // Populate both 'saved' and 'author' fields
+        const user = await User.findById(userId).populate({
+            path: 'saved',
+            populate: {
+                path: 'author',
+                model: 'User'
+            }
+        });
+        let recipes = user.saved;
+        recipes = recipes.map(recipe => ({
+            ...recipe.toObject(),
+            likes: recipe.likes.length // Replace likes array with its length
+        }));
+        console.log(recipes);
+        res.status(200).json(recipes);
+    } catch (error) {
+        console.error('Error fetching saved recipes:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
 router.get('/recipes/:page/:limit', async (req, res) => {
     const { page, limit } = req.params;

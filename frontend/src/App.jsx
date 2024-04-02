@@ -23,12 +23,13 @@ export default function App() {
             <Route path="signup" element={<SignUp />} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="random" element={<Random />} />
+            <Route path='post' element={<COMPLETE_RECIPE />}>
+            </Route>
           </Route>
           <Route path="/" element={<Layout />}>
             <Route path="new" element={<RecipeForm />} />
             <Route path="recipes" element={<DiscoverRecipes />} />
             <Route path="feed" element={<Feed />} />
-            <Route path='post' element={<COMPLETE_RECIPE />}></Route>
           </Route>
         </Routes>
       </Router>

@@ -5,46 +5,53 @@ import { faPencil, faShareNodes, faPrint, faEllipsis, faBookmark, faCamera, faCi
 
 function COMPLETE_RECIPE() {
   return (
-    <div>
+    <>
       <div className='complete-recipe-container'>
         <div className='complete-recipe-row'>
           <div className='complete-recipe-col'>
-            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className='recipe-img' />
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className='recipe-imgg' />
           </div>
 
-          <div className='complete-recipe-col details'>
-            <span style={{ display: 'flex' }}>
-              <FontAwesomeIcon icon={faPencil} className='icon' />
-              <FontAwesomeIcon icon={faShareNodes} className='icon' />
-              <FontAwesomeIcon icon={faPrint} className='icon' />
-              <FontAwesomeIcon icon={faEllipsis} className='icon' />
-              <div style={{ display: 'flex', alignItems: 'center', marginLeft: '400px' }} className='save'>
-                <FontAwesomeIcon icon={faBookmark} className='icon' />
-                <span className='save-text'><h3><b>Save</b></h3></span>
+          <div className='complete-recipe-col'>
+            <div className="saveRibbon">
+              <div className="likee btnnn">
+                <div>
+                  <FontAwesomeIcon icon={faThumbsUp} className='likee-icon' />
+                  Like
+                </div>
               </div>
-            </span>
-            <div className="profile-pic">
-              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="Profile Icon" className="profile-icon" />
-              <span className="username"><h3>xyz_username</h3></span>
+              <div className='savee btnnn'>
+                <div>
+                  <FontAwesomeIcon icon={faBookmark} className='savee-icon ' />
+                  Save
+                </div>
+              </div>
             </div>
 
-            <h1 className="dish-name">Dish's Name</h1>
-            <p className='nutritarian-list'><b>in Nutritarian</b></p>
-            <div style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', marginBottom: '10px' }}>
-              <FontAwesomeIcon icon={faBookmark} className='icon' />
-              <span style={{ marginLeft: '5px' }}>
-                <b>59</b>
-                <b className='note'>|</b>
-                <b className='note'>Leave a note</b>
-              </span>
+            <div className="dish-name">
+              <h1>Dish's Name adkfljaldfj as;ldfjk as;lfj a;kj fasf </h1>
+              <div className='re-author'>-gaurav</div>
             </div>
             <p className='customization note'>These flavorful burrito bowls will become a family favorite! Customize them with your choice of topping ingredients.</p>
-            <hr style={{ border: 'none', borderBottom: '1px solid #eee', width: '90%', margin: '0 auto' }} />
-            <br />
-            <div className="profile-pic" style={{ display: 'flex' }}>
+
+            <div className="cuisine-type">
+              Italian
+            </div>
+
+            <div className='input-review'>
               <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="Profile Icon" className="profile-icon" />
-              <p className="feedback">Add your notes! How was it?"</p>
-              <FontAwesomeIcon icon={faCamera} className='icon' />
+              <input type="text" className='revieww' placeholder='What do you think about this recipe?' />
+            </div>
+
+            <div className="likeAndSave">
+              <div className='Save-count'>
+                <FontAwesomeIcon icon={faBookmark} className='save-count-icon icon' />
+                <div className="save-count">55</div>
+              </div>
+              <div className='Like-count'>
+                <FontAwesomeIcon icon={faThumbsUp} className='rating-icon icon' />
+                <div className="like-count">7</div>
+              </div>
             </div>
           </div>
         </div>
@@ -121,12 +128,8 @@ function COMPLETE_RECIPE() {
       <div className='complete-recipe-container'>
         <h1>Rating Details</h1>
       </div>
-      <div className='complete-recipe-container'>
-        <FontAwesomeIcon icon={faThumbsUp} className='rating-icon icon' />
-        <p style={{ marginBottom: '5px', marginTop: '5px', paddingLeft: '15px', color: 'grey', fontSize: '25px' }}>7 liked</p>
-      </div>
       <hr style={{ border: 'none', borderBottom: '1px solid #eee', width: '30%', margin: '0 auto' }} className='container' />
-    </div>
+    </>
   )
 }
 

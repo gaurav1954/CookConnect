@@ -1,8 +1,8 @@
 .complete-recipe-container {
     text-align: start;
-    padding-left: 350px;
-    padding-right: 350px;
-    padding-top: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 2.5rem;
     display: flex;
     justify-content: center;
     /* Adjust if needed */
@@ -10,54 +10,70 @@
 
 .complete-recipe-row {
     display: flex;
+    gap: 3rem;
 }
 
 .complete-recipe-col {
-    flex: 4;
+    display: flex;
+    flex-direction: column;
+
 }
 
-.recipe-img {
+.cuisine-type {
+    color: rgb(255, 123, 46);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.dish-name>* {
+    margin: 0;
+}
+
+
+.recipe-imgg {
     position: relative;
     height: 500px;
     width: 500;
     border-radius: 12px;
 }
 
-.details {
-    padding-left: 30px;
-    padding-top: 10px;
-}
-
-.icon {
+.savee-icon {
     height: 25px;
     width: 25px;
-    padding-left: 25px;
+
 }
 
-.save {
-    border: rgb(255, 123, 46) 1px solid;
-    border-radius: 30px;
+.savee {
     background-color: rgb(255, 123, 46);
-    color: white;
+}
+
+.likee {
+    background-color: rgb(5, 163, 5);
+}
+
+.btnnn {
+    border-radius: 30px;
     height: 50px;
     width: 130px;
-}
-
-.save-text {
-    padding-left: 15px;
-}
-
-.profile-pic {
-    display: flex;
-    align-items: center;
-    padding-left: 15px;
+    display: grid;
+    place-items: center;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: white;
 }
 
 .profile-icon {
-    width: 40px;
-    height: 40px;
+    height: 100%;
     border-radius: 50%;
     margin-right: 10px;
+}
+
+.saveRibbon {
+    width: 100%;
+    display: flex;
+    margin-bottom: 1.4rem;
+    gap: 20px;
+    justify-content: flex-end;
 }
 
 .username {
@@ -65,9 +81,15 @@
     font-size: 20px;
 }
 
+.re-author {
+    margin-left: auto;
+    font-size: 1.7rem;
+    color: grey;
+}
+
 .dish-name {
-    padding-left: 14px;
     font-size: 40px;
+    margin-bottom: 1rem;
 }
 
 .nutritarian-list {
@@ -76,8 +98,15 @@
 }
 
 .note {
-    padding-left: 10px;
     font-size: 20px;
+}
+
+.Save-count,
+.Like-count {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 3rem;
 }
 
 .customization {
@@ -170,8 +199,29 @@
     margin-left: 400px;
 }
 
-.rating-icon {
+.icon {
     color: green;
-    height: 30px;
-    width: 30px;
+    margin-right: 0.3rem;
+}
+
+.likeAndSave {
+    display: flex;
+    justify-content: center;
+    gap: 55px;
+    margin-top: auto;
+}
+
+.input-review {
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.revieww {
+    padding: 5px 20px;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 50px;
+    height: 100%;
 }

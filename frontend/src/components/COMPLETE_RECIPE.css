@@ -1,11 +1,17 @@
-.container{
-    /* justify-content: center; */
+.complete-recipe-container {
     text-align: start;
     padding-left: 350px;
     padding-right: 350px;
     padding-top: 10px;
     display: flex;
-}
+    justify-content: center; /* Adjust if needed */
+  }
+  .complete-recipe-row {
+    display: flex;
+  }
+  .complete-recipe-col {
+    flex: 4;
+  }
 .recipe-img{
     position: relative;
     height: 500px;

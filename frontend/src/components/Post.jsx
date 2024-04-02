@@ -2,7 +2,7 @@ import React from 'react'
 import './Post.css'
 import Like from './Like';
 import SaveButton from './SaveButton';
-export default function Post({ author = "anonymous", recipeId = '65f5deae39d4d5ebd8dd729c', savedBy = 4, likes, description = "xys", image }) {
+export default function Post({ author = "anonymous", recipeId = '65f5deae39d4d5ebd8dd729c', savedBy, likes, description = "xys", image }) {
     return (
         <div className='centered-container'>
             <div className='post-body'>
@@ -16,7 +16,7 @@ export default function Post({ author = "anonymous", recipeId = '65f5deae39d4d5e
                 <img src={image} className='post-image' />
                 <div className="likeAndSave">
                     <div className="leftContent">
-                        <Like likes={10} recipeId={recipeId}></Like>
+                        <Like likes={likes} recipeId={recipeId}></Like>
                     </div>
                     <div className="right-content">
                         <SaveButton recipeId={recipeId} savedBy={savedBy} />

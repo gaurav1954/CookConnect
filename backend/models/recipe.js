@@ -6,11 +6,9 @@ const recipeSchema = new mongoose.Schema({
         required: true,
     },
     cuisine: {
-        type: [{
-            type: String,
-            enum: ['Italian', 'Chinese', 'Indian', 'French', 'Mexican', 'Japanese', 'Thai', 'American', 'Mediterranean', 'Spanish', 'Greek', 'Vietnamese', 'Korean', 'Other']
-        }],
-        default: ['Unknown'],
+        type: String,
+        enum: ['Italian', 'Chinese', 'Indian', 'French', 'Mexican', 'Japanese', 'Thai', 'American', 'Mediterranean', 'Spanish', 'Greek', 'Vietnamese', 'Korean', 'Other'],
+        default: 'Unknown',
     },
     description: {
         type: String,

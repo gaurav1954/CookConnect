@@ -129,8 +129,6 @@ router.get('/recipes/:page/:limit', async (req, res) => {
             ...recipe.toObject(),
             likes: recipe.likes.length // Replace likes array with its length
         }));
-        console.log(recipes[0]);
-
         res.status(200).json(recipes);
     } catch (err) {
         console.error(err.message);
@@ -139,11 +137,14 @@ router.get('/recipes/:page/:limit', async (req, res) => {
 });
 router.post('/recipes/create', parser.single('image'), async (req, res) => {
     console.log(req.user);
-    const newRecipe = new Recipe(req.body);
+    const newRecipeData = req.body;
+    newRecipeData.author = req.user._id;
+    const newRecipe = new Recipe(newRecipeData);
     newRecipe.image = req.file.path;
     await newRecipe.save();
     res.status(200).json({ msg: "done" });
-})
+});
+
 // Like a recipe
 router.post('/recipes/like/:recipeId', isLoggedIn, async (req, res) => {
     console.log("likes")

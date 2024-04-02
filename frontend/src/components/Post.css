@@ -17,11 +17,6 @@
 .post-body {
     border-bottom: 1px solid grey;
     padding-bottom: 10px;
-}
-
-
-.post-body {
-    /* border: 1px solid grey; */
     width: 500px;
     position: relative;
     height: fit-content;
@@ -35,6 +30,7 @@
 .post-image {
     height: 500px;
     width: 100%;
+    object-fit: cover;
 }
 
 .icons {

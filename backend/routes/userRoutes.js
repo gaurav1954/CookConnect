@@ -120,6 +120,7 @@ router.get('/recipes/:recipeId/saved-status', async (req, res) => {
         res.json({ "saved": 0 });
 
 });
+
 router.get('/recipes/saved', async (req, res) => {
     try {
         console.log("reached");
@@ -137,7 +138,6 @@ router.get('/recipes/saved', async (req, res) => {
             ...recipe.toObject(),
             likes: recipe.likes.length // Replace likes array with its length
         }));
-        console.log(recipes);
         res.status(200).json(recipes);
     } catch (error) {
         console.error('Error fetching saved recipes:', error);
@@ -145,6 +145,17 @@ router.get('/recipes/saved', async (req, res) => {
     }
 });
 
+router.get("/recipes/info/:recipeId", async (req, res) => {
+    const { recipeId } = req.params;
+    let recipe = await Recipe.findById(recipeId).populate("author");
+    recipe = {
+        ...recipe.toObject(),
+        likes: recipe.likes.length // Replace likes array with its length
+    }
+    console.log(recipe);
+    res.status(200).json(recipe);
+
+})
 router.get('/recipes/:page/:limit', async (req, res) => {
     const { page, limit } = req.params;
 

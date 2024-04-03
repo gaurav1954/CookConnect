@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Cards from '../components/Cards';
-import './DiscoverRecipes.css'
+import './DiscoverRecipes.css';
 import Categories from '../components/Categories';
 import { useNavigate } from 'react-router-dom';
-export default function DiscoverRecipes() {
 
+export default function DiscoverRecipes() {
     const [recipes, setRecipes] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [page, setPage] = useState(1);
-    const [initialRender, setInitialRender] = useState(true); // New state variable to track initial render
+    const [initialRender, setInitialRender] = useState(true);
 
     useEffect(() => {
-        if (!initialRender) { // Check if it's not the initial render
+        if (!initialRender) {
             const fetchData = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:8000/recipes/${page}/4`);
-                    setRecipes(prevRecipes => [...prevRecipes, ...response.data]);
+                    const response = await fetch(`http://localhost:8000/recipes/${page}/4`, {
+                        method: 'GET',
+                        credentials: 'include' // Include credentials
+                    });
+                    const data = await response.json();
+                    setRecipes(prevRecipes => [...prevRecipes, ...data]);
                     setIsLoading(false);
                 } catch (error) {
                     console.error('Error fetching recipes:', error);
@@ -26,14 +29,13 @@ export default function DiscoverRecipes() {
 
             fetchData();
         } else {
-            setInitialRender(false); // Update initial render state after the initial render
+            setInitialRender(false);
         }
-    }, [page, initialRender]); // Fetch data whenever page number changes or after initial render
+    }, [page, initialRender]);
 
     const handleLoadMore = () => {
         setPage(prevPage => prevPage + 1);
     };
-
 
     return (
         <div className="pcontainer">

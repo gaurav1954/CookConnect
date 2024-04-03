@@ -4,19 +4,18 @@
     padding-right: 50px;
     margin-top: 2.5rem;
     display: flex;
-    justify-content: center;
-    /* Adjust if needed */
 }
 
 .complete-recipe-row {
     display: flex;
     gap: 3rem;
+    width: 100%;
 }
 
-.complete-recipe-col {
+.complete-recipe-col-1 {
     display: flex;
     flex-direction: column;
-
+    flex-grow: 1;
 }
 
 .cuisine-type {
@@ -33,8 +32,9 @@
 .recipe-imgg {
     position: relative;
     height: 500px;
-    width: 500;
+    width: 500px;
     border-radius: 12px;
+    object-fit: cover;
 }
 
 .savee-icon {
@@ -200,7 +200,6 @@
 }
 
 .icon {
-    color: green;
     margin-right: 0.3rem;
 }
 
@@ -224,4 +223,12 @@
     border: 1px solid black;
     border-radius: 50px;
     height: 100%;
+}
+
+.save-count-icon {
+    color: rgb(255, 123, 46);
+}
+
+.like-count-icon {
+    color: rgb(5, 163, 5);
 }

@@ -23,9 +23,6 @@ export default function App() {
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="profile" element={<ProfilePage />} />
-            <Route path="random" element={<Random />} />
-
-
           </Route>
           <Route path="/" element={<Layout />}>
             <Route path="new" element={<RecipeForm />} />

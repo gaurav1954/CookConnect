@@ -60,7 +60,7 @@ router.post('/signup', async (req, res) => {
     }
 });
 router.get('/fail', (req, res) => {
-    res.json("fuck");
+    res.json("login failed");
 })
 router.post('/login', passport.authenticate('local', { failureRedirect: '/fail' }), (req, res) => {
     console.log("login")

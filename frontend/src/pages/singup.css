@@ -1,35 +1,103 @@
-.user-profile-container {
+.container-wrapperr {
+    height: 100vh;
+    width: 100vw;
     display: flex;
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+    justify-content: flex-start;
+    align-items: center;
+    background-image: url('../assets/india.jpg');
+    background-size: cover;
+    background-position: center;
+    padding-left: 7rem;
 }
 
-.user-details {
-    flex: 1;
+.containerr-sign {
+    height: fit-content;
+    padding: 1rem 3rem;
+    background: rgba(255, 255, 255, 0.1);
+    /* Adjust background color and opacity */
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    border: 1px solid orange;
 }
 
-.upload-profile-pic {
+.login-container {
+    font-size: 22px;
+    font-style: italic;
+}
+
+.login-button {
+    border-radius: 20px;
+    padding: 12px;
+    margin: 10px;
+}
+
+.sub-con {
+    margin-top: 2rem;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    justify-content: center;
 }
 
-.upload-profile-pic input[type="file"] {
-    margin-bottom: 10px;
-}
-
-.upload-profile-pic button {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
+.btnn {
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    font-size: 1.2rem;
+    padding: .5rem 1.5rem;
+    width: 100%;
+    border-radius: 5px;
 }
 
-.upload-profile-pic button:hover {
-    background-color: #0056b3;
+.border-2 {
+    border: 2px solid orange;
+}
+
+.submit-btn {
+    background-color: black;
+    color: white;
+}
+
+.login-btn {
+    background-color: white;
+    color: black;
+}
+
+.inputss {
+    margin-top: 30px;
+    max-width: 100%;
+}
+
+.inputt {
+    display: flex;
+    align-items: center;
+    width: 400px;
+    height: 60px;
+    background: #eaeaea;
+    border-radius: 6px;
+    margin-top: 18px;
+}
+
+.inputt input {
+    height: 100%;
+    width: 350px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #797979;
+    font-size: 14px;
+}
+
+.sign-con {
+    margin: 1rem auto;
+}
+
+.sign-con p {
+    margin-bottom: 0;
+}
+
+.inputt img {
+    margin: 0px 30px;
+}
+
+.val-error {
+    width: 100%;
+    color: red;
 }

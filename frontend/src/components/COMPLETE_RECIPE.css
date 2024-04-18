@@ -10,6 +10,8 @@
     display: flex;
     gap: 3rem;
     width: 100%;
+    scroll-snap-type: x mandatory;
+
 }
 
 .complete-recipe-col-1 {
@@ -17,6 +19,20 @@
     flex-direction: column;
     flex-grow: 1;
 }
+
+.step-row {
+    overflow: auto;
+}
+
+.step {
+    min-width: 250px;
+    text-align: left;
+}
+
+.step>h1 {
+    font-size: 2.5rem;
+}
+
 
 .cuisine-type {
     color: rgb(255, 123, 46);
@@ -166,7 +182,7 @@
 }
 
 .recipe-steps {
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .made-it-button {

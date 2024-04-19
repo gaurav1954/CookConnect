@@ -8,7 +8,7 @@ import Login from "./pages/LogIn";
 import ProfilePage from './pages/ProfilePage';
 import './app.css';
 import LandingPage from './pages/LandingPage';
-import COMPLETE_RECIPE from './components/COMPLETE_RECIPE';
+import COMPLETE_RECIPE from './pages/COMPLETE_RECIPE';
 import Feed from './pages/Feed';
 import Saved from './pages/Saved';
 

@@ -1,9 +1,15 @@
-.complete-recipe-container {
-    text-align: start;
-    padding-left: 50px;
-    padding-right: 50px;
-    margin-top: 2.5rem;
+.COMPLETE_RECIPE {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.complete-recipe-container {
+
+    text-align: start;
+    display: flex;
+    width: 85%;
 }
 
 .complete-recipe-row {
@@ -12,6 +18,15 @@
     width: 100%;
     scroll-snap-type: x mandatory;
 
+}
+
+.Ingre {
+    margin-top: 1rem;
+}
+
+.ingre {
+    display: flex;
+    gap: 24px;
 }
 
 .complete-recipe-col-1 {
@@ -38,10 +53,6 @@
     color: rgb(255, 123, 46);
     font-size: 1.5rem;
     margin-bottom: 1rem;
-}
-
-.dish-name>* {
-    margin: 0;
 }
 
 
@@ -98,16 +109,38 @@
 }
 
 .re-author {
-    margin-left: auto;
     font-size: 1.7rem;
     color: grey;
 }
 
-.dish-name {
+.dish-name>h1 {
     font-size: 40px;
-    margin-bottom: 1rem;
+
+}
+
+.dish-name {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
+}
+
+.dish-name>h1 {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 4s steps(40, end);
+    /* Calls the typing animation */
+    max-width: fit-content;
+}
+
+/* Keyframes for the typing animation */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
 }
 
 .nutritarian-list {

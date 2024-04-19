@@ -30,12 +30,12 @@ function COMPLETE_RECIPE() {
     fetchRecipe();
   }, []);
 
-  const { image, likes, author, savedBy, title, description, cuisine, steps } = recipeData;
+  const { image, likes, author, savedBy, title, description, cuisine, steps, ingredients } = recipeData;
   return (
     <>{isLoading ? (
       <p>Loading...</p>
     ) : (
-      <>
+      <div className="COMPLETE_RECIPE">
         <div className='complete-recipe-container'>
           <div className='complete-recipe-row'>
             <div className='complete-recipe-col'>
@@ -46,14 +46,18 @@ function COMPLETE_RECIPE() {
                 <h1>{title} </h1>
                 <div className='re-author'>-{author.username}</div>
               </div>
-              <p className='customization note'>{description}</p>
               <div className="cuisine-type">
                 {cuisine}
               </div>
+              <p className='customization note'>{description}</p>
 
-              <div className='input-review'>
-                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="Profile Icon" className="profile-icon" />
-                <input type="text" className='revieww' placeholder='What do you think about this recipe?' />
+
+
+              <div className="Ingre">
+                <h4>Ingredients</h4>
+                <ul className="ingre">
+                  {ingredients.map(i => <li className='customization'>{i}</li>)}
+                </ul>
               </div>
 
               <div className="likeAndSave">
@@ -77,7 +81,7 @@ function COMPLETE_RECIPE() {
             ))}
           </div>
         </div>
-      </>)}
+      </div>)}
     </>
   )
 }

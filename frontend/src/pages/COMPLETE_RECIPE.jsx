@@ -3,7 +3,7 @@ import './COMPLETE_RECIPE.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPrint, faBookmark, faCircleMinus, faCirclePlus, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
-import Step from './Step';
+import Step from '../components/Step';
 
 function COMPLETE_RECIPE() {
   const location = useLocation();

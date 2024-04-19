@@ -1,5 +1,6 @@
 import { useState } from "react";
 import './RecipeForm.css';
+import Spinner from "../components/Spinner";
 const RecipeForm = () => {
     const [formData, setFormData] = useState({
         title: '',
@@ -12,7 +13,7 @@ const RecipeForm = () => {
         difficultyLevel: '',
         image: null
     });
-
+    const [isLoading, setIsLoading] = useState(false);
     const handleChange = (e, index) => {
         const { name, value } = e.target;
         if (name === 'steps') {
@@ -44,6 +45,7 @@ const RecipeForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
         if (!formData.image) {
             alert('Please select an image.');
             return;
@@ -67,7 +69,9 @@ const RecipeForm = () => {
                 body: formDataToSend,
                 credentials: 'include'
             });
+
             if (response.ok) {
+                // Reset form state
                 setFormData({
                     title: '',
                     cuisine: 'italian',
@@ -77,10 +81,10 @@ const RecipeForm = () => {
                     instructions: '',
                     cookingTime: '',
                     difficultyLevel: '',
-                    image: null // Reset the image state to null
+                    image: null
                 });
 
-                // Reset the file input visually
+                // Reset file input visually
                 document.getElementById('imageInput').value = '';
             } else {
                 alert("Failed to create recipe.");
@@ -88,6 +92,8 @@ const RecipeForm = () => {
         } catch (error) {
             console.error('Error:', error);
             alert("An error occurred while creating recipe.");
+        } finally {
+            setIsLoading(false); // Set loading status to false after form submission
         }
     };
 
@@ -164,9 +170,12 @@ const RecipeForm = () => {
                         <label>Image</label>
                         <input type="file" id="imageInput" className="input-file" name="image" onChange={handleImageChange} required />
                     </div>
-                    <button type="submit" className="submit-button">Save</button>
+                    <button type="submit" className="submit-button">
+                        {isLoading ? "Saving..." : "Save"}
+                    </button>
                 </form>
             </div>
+            {isLoading && <Spinner />}
         </div>
     );
 };

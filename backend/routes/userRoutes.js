@@ -193,9 +193,12 @@ router.get('/recipes/:page/:limit', async (req, res) => {
     }
 });
 router.post('/recipes/create', parser.single('image'), async (req, res) => {
-    console.log(req.user);
-    const newRecipeData = req.body;
+    const { ingredients, ...newRecipeData } = req.body; // Destructure ingredients from req.body
+    const newIngredients = ingredients.split(' ').map(ingredient => ingredient.trim()); // Split ingredients string into array
+
     newRecipeData.author = req.user._id;
+    newRecipeData.ingredients = newIngredients; // Assign the array of ingredients to newRecipeData
+
     const newRecipe = new Recipe(newRecipeData);
     newRecipe.image = req.file.path;
     await newRecipe.save();

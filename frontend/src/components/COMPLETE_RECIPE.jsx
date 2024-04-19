@@ -41,29 +41,12 @@ function COMPLETE_RECIPE() {
             <div className='complete-recipe-col'>
               <img src={image} className='recipe-imgg' />
             </div>
-
             <div className='complete-recipe-col-1'>
-              <div className="saveRibbon">
-                <div className="likee btnnn">
-                  <div>
-                    <FontAwesomeIcon icon={faThumbsUp} className='likee-icon' />
-                    {likes}
-                  </div>
-                </div>
-                <div className='savee btnnn'>
-                  <div>
-                    <FontAwesomeIcon icon={faBookmark} className='savee-icon ' />
-                    {savedBy}
-                  </div>
-                </div>
-              </div>
-
               <div className="dish-name">
                 <h1>{title} </h1>
                 <div className='re-author'>-{author.username}</div>
               </div>
               <p className='customization note'>{description}</p>
-
               <div className="cuisine-type">
                 {cuisine}
               </div>

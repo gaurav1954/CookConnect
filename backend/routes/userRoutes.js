@@ -6,8 +6,10 @@ const localStrategy = require('passport-local');
 const User = require('../models/users');
 const multer = require('multer')
 const Recipe = require('../models/recipe');
+const Review = require('../models/review');
 const { storage } = require('../cloudinary')
-const MongoStore = require('connect-mongo')
+const MongoStore = require('connect-mongo');
+const recipe = require('../models/recipe');
 
 const parser = multer({ storage })
 // Middleware
@@ -107,8 +109,8 @@ router.get('/recipes/:recipeId/like-status', async (req, res) => {
         res.json({ "liked": 1 });
     else
         res.json({ "liked": 0 });
-
 });
+
 router.get('/recipes/:recipeId/saved-status', async (req, res) => {
     const { recipeId } = req.params;
     const userId = req.user._id;
@@ -119,6 +121,20 @@ router.get('/recipes/:recipeId/saved-status', async (req, res) => {
     else
         res.json({ "saved": 0 });
 
+});
+
+router.post('/recipes/:recipeId/review', async (req, res) => {
+    const { recipeId } = req.params;
+    const userId = req.user._id;
+    const { data } = req.body; // Destructuring the body to get the data property
+    const review = new Review({ author: userId, data }); // Passing author and data to the review instance
+    const recipe = await Recipe.findById(recipeId);
+    recipe.reviews.push(review.id);
+    await review.save();
+    await recipe.save();
+    await review.populate('author');
+    console.log(review);
+    res.status(200).json({ message: "success" });
 });
 
 router.get('/recipes/saved', async (req, res) => {

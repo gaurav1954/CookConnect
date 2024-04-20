@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './COMPLETE_RECIPE.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPrint, faBookmark, faCircleMinus, faCirclePlus, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark, faThumbsUp, faClock } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
 import Step from '../components/Step';
 
@@ -30,7 +30,7 @@ function COMPLETE_RECIPE() {
     fetchRecipe();
   }, []);
 
-  const { image, likes, author, savedBy, title, description, cuisine, steps, ingredients } = recipeData;
+  const { image, likes, author, savedBy, title, description, cuisine, steps, ingredients, cookingTime, difficultyLevel } = recipeData;
   return (
     <>{isLoading ? (
       <p>Loading...</p>
@@ -46,30 +46,36 @@ function COMPLETE_RECIPE() {
                 <h1>{title} </h1>
                 <div className='re-author'>-{author.username}</div>
               </div>
-              <div className="cuisine-type">
-                {cuisine}
+              <div className="cuisine-type orange">
+                #{cuisine}
               </div>
-              <p className='customization note'>{description}</p>
-
-
-
-              <div className="Ingre">
-                <h4>Ingredients</h4>
-                <ul className="ingre">
-                  {ingredients.map(i => <li className='customization'>{i}</li>)}
-                </ul>
-              </div>
-
               <div className="likeAndSave">
                 <div className='Save-count'>
-                  <FontAwesomeIcon icon={faBookmark} className='save-count-icon icon' />
+                  <FontAwesomeIcon icon={faBookmark} className='save-count-icon iconn' />
                   <div className="save-count">{likes}</div>
                 </div>
                 <div className='Like-count'>
-                  <FontAwesomeIcon icon={faThumbsUp} className='like-count-icon icon' />
+                  <FontAwesomeIcon icon={faThumbsUp} className='like-count-icon iconn' />
                   <div className="like-count">{savedBy}</div>
                 </div>
               </div>
+              <p className='customization note'>{description}</p>
+              {/* 
+              <div className="Ingre">
+                <h4 className='customization'>Ingredients</h4>
+                <ul className="ingre">
+                  {ingredients.map(i => <li className='customization'>{i}</li>)}
+                </ul>
+              </div> */}
+
+              <div className="timeandlevel customization">
+                <div><FontAwesomeIcon icon={faClock} spinPulse style={{ color: "#74C0FC", }} /> Cooking time: <span className="orange">{cookingTime}</span> minutes</div>
+                <div>Difficulty level:
+                  <span className="orange"> {difficultyLevel}
+                  </span>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

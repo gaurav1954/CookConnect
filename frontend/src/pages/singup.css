@@ -17,7 +17,7 @@
     /* Adjust background color and opacity */
     backdrop-filter: blur(8px);
     border-radius: 20px;
-    border: 1px solid orange;
+    border: 1px solid rgb(255, 123, 46);
 }
 
 .login-container {
@@ -47,7 +47,7 @@
 }
 
 .border-2 {
-    border: 2px solid orange;
+    border: 2px solid rgb(255, 123, 46);
 }
 
 .submit-btn {

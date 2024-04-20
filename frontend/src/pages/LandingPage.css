@@ -63,7 +63,7 @@
     right: -150px;
     width: 600px;
     height: 600px;
-    border: 60px solid orange;
+    border: 60px solid rgb(255, 123, 46);
     border-radius: 50%;
 }
 
@@ -85,7 +85,7 @@
     left: -150px;
     width: 600px;
     height: 600px;
-    border: 60px solid orange;
+    border: 60px solid rgb(255, 123, 46);
     border-radius: 50%;
     /* clip-path: inset(25% 0% 0% 0%); */
 }
@@ -95,7 +95,7 @@
 }
 
 .orange {
-    color: orange;
+    color: rgb(255, 123, 46);
 }
 
 .white {

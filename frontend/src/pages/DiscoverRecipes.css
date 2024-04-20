@@ -5,7 +5,7 @@
 }
 
 .heading>h2 {
-    color: orange;
+    color: rgb(255, 123, 46);
 
 }
 
@@ -32,8 +32,10 @@
 }
 
 .orange {
-    color: orange;
+    color: rgb(255, 123, 46);
 }
+
+
 
 .discover-container {
     display: flex;
@@ -48,15 +50,14 @@
     width: 200px;
     border-radius: 5px;
     border: none;
-    border: 2px solid orange;
+    border: 2px solid rgb(255, 123, 46);
     background: transparent;
     transition: 0.3s;
 }
 
 .load-recipe:hover {
     transform: scale(1.05);
-    color: orange;
-
+    color: rgb(255, 123, 46);
 }
 
 .discover-recipes {

@@ -54,8 +54,8 @@ export default function SaveButton({ recipeId, savedBy }) {
 
     return (
         <Button variant="light-solid" className="save-button" onClick={handleSaveClick}>
-            <FontAwesomeIcon className={`save-btn ${saved ? 'red' : ''}`} icon={faBookmark} />
-            <b className={`${saved ? 'red' : ''}`}>{savedCount}</b>
+            <FontAwesomeIcon className={`save-btn ${saved ? 'orange' : ''}`} icon={faBookmark} />
+            <b className={`${saved ? 'orange' : ''}`}>{savedCount}</b>
         </Button>
     );
 }

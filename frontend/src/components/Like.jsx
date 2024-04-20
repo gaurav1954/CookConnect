@@ -57,8 +57,8 @@ export default function Like({ likes = 10, recipeId }) {
     };
     return (
         <Button variant="light-danger" className='Like-btn' onClick={handleLikeClick}>
-            <FontAwesomeIcon className={`like-button ${liked ? 'red' : ""}`} icon={faThumbsUp} />
-            <b className={`${liked ? 'red' : ""}`}>{likeCount}</b>
+            <FontAwesomeIcon className={`like-button ${liked ? 'orange' : ""}`} icon={faThumbsUp} />
+            <b className={`${liked ? 'orange' : ""}`}>{likeCount}</b>
         </Button>
     )
 }

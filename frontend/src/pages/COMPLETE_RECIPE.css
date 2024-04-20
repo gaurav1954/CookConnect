@@ -71,7 +71,7 @@
 .recipe-imgg {
     position: relative;
     height: 450px;
-    width: 450px;
+    width: 420px;
     border-radius: 12px;
     object-fit: cover;
 }
@@ -182,11 +182,12 @@
     margin-right: 0.3rem;
 }
 
-.likeAndSave {
+.likeandsaveribbon {
     display: flex;
     justify-content: flex-start;
-    gap: 18px;
+    column-gap: 18px;
 }
+
 
 .input-review {
     height: 45px;

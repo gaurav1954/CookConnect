@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark, faThumbsUp, faClock } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
 import Step from '../components/Step';
+import Like from '../components/Like';
+import SaveButton from '../components/SaveButton';
 
 function COMPLETE_RECIPE() {
   const location = useLocation();
@@ -49,15 +51,9 @@ function COMPLETE_RECIPE() {
               <div className="cuisine-type orange">
                 #{cuisine}
               </div>
-              <div className="likeAndSave">
-                <div className='Save-count'>
-                  <FontAwesomeIcon icon={faBookmark} className='save-count-icon iconn' />
-                  <div className="save-count">{likes}</div>
-                </div>
-                <div className='Like-count'>
-                  <FontAwesomeIcon icon={faThumbsUp} className='like-count-icon iconn' />
-                  <div className="like-count">{savedBy}</div>
-                </div>
+              <div className="likeandsaveribbon">
+                <Like recipeId={recipeId} likes={likes}></Like>
+                <SaveButton savedBy={savedBy} recipeId={recipeId}></SaveButton>
               </div>
               <p className='customization note'>{description}</p>
               {/* 

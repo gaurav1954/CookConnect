@@ -132,9 +132,12 @@ router.post('/recipes/:recipeId/review', async (req, res) => {
     recipe.reviews.push(review.id);
     await review.save();
     await recipe.save();
+    await recipe.populate('reviews')
     await review.populate('author');
-    console.log(review);
+    console.log(recipe);
+    console.log("234");
     res.status(200).json({ message: "success" });
+
 });
 
 router.get('/recipes/saved', async (req, res) => {

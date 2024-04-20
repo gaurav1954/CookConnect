@@ -53,6 +53,38 @@
 .step {
     min-width: 250px;
     text-align: left;
+    border-right: 2px solid rgb(255, 123, 46);
+    border-bottom: 2px solid rgb(255, 123, 46);
+    border-radius: 30px;
+    padding: 1rem;
+
+}
+
+.takereview {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+
+.in {
+    width: 100%;
+    padding: .4rem 1rem;
+    border: 1px solid grey;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+}
+
+#review {
+    border: none !important;
+    outline: none;
+    flex-grow: 1;
+}
+
+input:focus-visible {
+    border: 1px solid red;
 }
 
 .step>h1 {

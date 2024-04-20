@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './COMPLETE_RECIPE.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookmark, faThumbsUp, faClock } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark, faArrowRight, faClock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
 import Step from '../components/Step';
 import Like from '../components/Like';
@@ -13,6 +13,39 @@ function COMPLETE_RECIPE() {
 
   const [recipeData, setRecipeData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [reviewText, setReviewText] = useState(''); // State to manage the review input
+  const [reviewSubmitted, setReviewSubmitted] = useState(false); // State to trigger useEffect on review submission
+
+  const handleReviewSubmit = async (event) => {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    if (!reviewText.trim()) {
+      setReviewText('');
+      return; // Exit the function early if the input field is empty
+    }
+
+    try {
+      const response = await fetch(`http://localhost:8000/recipes/${recipeId}/review`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ data: reviewText }), // Send the review data in the request body
+        credentials: 'include' // Include credentials
+      });
+
+      if (response.ok) {
+        console.log('Review submitted successfully');
+        setReviewSubmitted(true); // Set reviewSubmitted to true to trigger useEffect
+        setReviewText(''); // Clear the review input
+      } else {
+        console.error('Failed to submit review');
+      }
+    } catch (error) {
+      console.error('Error submitting review:', error);
+    }
+  };
+
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
@@ -30,7 +63,7 @@ function COMPLETE_RECIPE() {
     };
 
     fetchRecipe();
-  }, []);
+  }, [reviewSubmitted]);
 
   const { image, likes, author, savedBy, title, description, cuisine, steps, ingredients, cookingTime, difficultyLevel } = recipeData;
   return (
@@ -71,6 +104,20 @@ function COMPLETE_RECIPE() {
                   </span>
                 </div>
               </div>
+
+              <form action="" className='takereview'>
+                <FontAwesomeIcon icon={faUser} size='xl' />
+                <div className="in">
+                  <input
+                    type="text"
+                    id='review'
+                    value={reviewText}
+                    placeholder='What do you think about this dish?'
+                    onChange={(e) => setReviewText(e.target.value)} // Update the reviewText state when the input value changes
+                  />
+                  <FontAwesomeIcon icon={faArrowRight} onClick={handleReviewSubmit} />
+                </div>
+              </form>
 
             </div>
           </div>

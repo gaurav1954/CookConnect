@@ -32,8 +32,8 @@ const UserProfile = ({ match }) => {
                 <p className='username'>{formData.username}</p>
                 <p className='loc'>Location: {formData.location}</p>
 
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="name">Name:</label>
+                <form className="foorm" onSubmit={handleSubmit}>
+                    <label className="label" htmlFor="name">Name:</label>
                     <input
                         type="text"
                         id="name"
@@ -41,9 +41,10 @@ const UserProfile = ({ match }) => {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="Your name..."
+                        className="input"
                     />
 
-                    <label htmlFor="age">Age:</label>
+                    <label className="label" htmlFor="age">Age:</label>
                     <input
                         type="number"
                         id="age"
@@ -51,18 +52,20 @@ const UserProfile = ({ match }) => {
                         value={formData.age}
                         onChange={handleChange}
                         placeholder="Your age..."
+                        className="input"
                     />
 
-                    <label htmlFor="bio">Bio:</label>
+                    <label className="label" htmlFor="bio">Bio:</label>
                     <textarea
                         id="bio"
                         name="bio"
                         value={formData.bio}
                         onChange={handleChange}
                         placeholder="Tell us something about yourself..."
+                        className="textarea"
                     />
 
-                    <label htmlFor="favoriteCuisine">Favorite Cuisine:</label>
+                    <label className="label" htmlFor="favoriteCuisine">Favorite Cuisine:</label>
                     <input
                         type="text"
                         id="favoriteCuisine"
@@ -70,14 +73,16 @@ const UserProfile = ({ match }) => {
                         value={formData.favoriteCuisine}
                         onChange={handleChange}
                         placeholder="Your favorite cuisine..."
+                        className="input"
                     />
 
-                    <label htmlFor="cookingExperience">Cooking Experience:</label>
+                    <label className="label" htmlFor="cookingExperience">Cooking Experience:</label>
                     <select
                         id="cookingExperience"
                         name="cookingExperience"
                         value={formData.cookingExperience}
                         onChange={handleChange}
+                        className="select"
                     >
                         <option value="">Select</option>
                         <option value="beginner">Beginner</option>
@@ -85,7 +90,7 @@ const UserProfile = ({ match }) => {
                         <option value="advanced">Advanced</option>
                     </select>
 
-                    <label htmlFor="allergies">Allergies:</label>
+                    <label className="label" htmlFor="allergies">Allergies:</label>
                     <input
                         type="text"
                         id="allergies"
@@ -93,9 +98,10 @@ const UserProfile = ({ match }) => {
                         value={formData.allergies}
                         onChange={handleChange}
                         placeholder="Any food allergies..."
+                        className="input"
                     />
 
-                    <label htmlFor="instagram">Instagram:</label>
+                    <label className="label" htmlFor="instagram">Instagram:</label>
                     <input
                         type="text"
                         id="instagram"
@@ -103,9 +109,10 @@ const UserProfile = ({ match }) => {
                         value={formData.instagram}
                         onChange={handleChange}
                         placeholder="Your Instagram profile URL..."
+                        className="input"
                     />
 
-                    <button type="submit">Save</button>
+                    <button type="submit" className="btn">Save</button>
                 </form>
             </div>
         </div>

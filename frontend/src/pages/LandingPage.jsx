@@ -1,7 +1,7 @@
 import React from 'react'
 import salad from '../assets/salad.png'
 import pizza from '../assets/pizza.png'
-import './LandingPage.css'
+// import './LandingPage.css'
 import { useNavigate } from 'react-router-dom'
 import Logo from '../components/Logo'
 export default function LandingPage() {
@@ -15,9 +15,8 @@ export default function LandingPage() {
                 <Logo fColor="white">
                 </Logo>
             </div>
-            <div className="rows row0">
 
-            </div>
+
             <div className="rows row1">
                 <div className="circle1"></div>
                 <div className="innerRow">
@@ -34,6 +33,7 @@ export default function LandingPage() {
                     </div>
                 </div>
             </div>
+
             <div className="rows row2">
                 <div className="circle2">aaaa</div>
                 <div className="innerRow innerRow2">

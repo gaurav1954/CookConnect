@@ -31,7 +31,7 @@ export default function Cards({ recipeId, title = 'burger', image = 'https://res
       <Card.Body >
         <Card.Title className="title">{title}</Card.Title>
         <div className="card-text">
-          <div className="ingredients">{ingredients.length} ingredients</div>
+          <div className="ingredientss">{ingredients.length} ingredients</div>
           <div className="re-time">{cookingTime} mins</div>
         </div>
       </Card.Body>

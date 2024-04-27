@@ -9,6 +9,44 @@
 
 }
 
+.row0 {
+    background: url('../assets/cover.jpg');
+    background-size: cover;
+    background-position: center;
+    display: block;
+    padding: 1rem;
+    color: white;
+}
+
+.rows {
+    scroll-snap-align: start;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    min-height: 93vh;
+    width: 100%;
+}
+
+.maincap {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 2.5s steps(40, end);
+    max-width: fit-content;
+}
+
+/* Keyframes for the typing animation */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
 .discover {
     width: 100%;
     display: flex;
@@ -17,6 +55,18 @@
     align-items: center;
     margin-bottom: 3rem;
 
+}
+
+.maincap {
+    font-weight: 600;
+    font-size: 4.7rem;
+}
+
+.cap {
+    font-size: 3.4rem;
+    font-weight: 600;
+    margin-bottom: 0;
+    line-height: 4rem;
 }
 
 .pcontainer>* {

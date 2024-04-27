@@ -40,16 +40,7 @@
     gap: 30px;
 }
 
-.rows {
-    scroll-snap-align: start;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    height: 100%;
-    width: 100%;
-}
+
 
 .foodImageBox {
     height: 800px;
@@ -102,12 +93,7 @@
     color: white;
 }
 
-.cap {
-    font-size: 3.4rem;
-    font-weight: 600;
-    margin-bottom: 0;
-    line-height: 4rem;
-}
+
 
 .join-button {
     padding: .3rem .5rem;
@@ -128,18 +114,8 @@
     box-shadow: 0 0 1rem 0.1rem rgb(255, 149, 0);
 }
 
-.maincap {
-    font-weight: 600;
-    font-size: 4.7rem;
-}
 
-.row0 {
-    background: url('../assets/cover.jpg');
-    background-size: cover;
-    background-position: center;
-    display: block;
-    padding: 1rem;
-}
+
 
 .top-con {
     z-index: 1;

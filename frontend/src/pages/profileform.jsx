@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Profileform.css'; 
+import './Profileform.css';
 
 const UserProfile = ({ match }) => {
     const [formData, setFormData] = useState({
@@ -30,7 +30,6 @@ const UserProfile = ({ match }) => {
         <div className="con">
             <div className="content">
                 <p className='username'>{formData.username}</p>
-                <p className='loc'>Location: {formData.location}</p>
 
                 <form className="foorm" onSubmit={handleSubmit}>
                     <label className="label" htmlFor="name">Name:</label>

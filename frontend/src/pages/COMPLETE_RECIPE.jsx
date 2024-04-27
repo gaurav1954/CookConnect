@@ -6,6 +6,8 @@ import { useLocation } from 'react-router-dom';
 import Step from '../components/Step';
 import Like from '../components/Like';
 import SaveButton from '../components/SaveButton';
+import Review from '../components/Reivew';
+
 
 function COMPLETE_RECIPE() {
   const location = useLocation();
@@ -65,7 +67,7 @@ function COMPLETE_RECIPE() {
     fetchRecipe();
   }, [reviewSubmitted]);
 
-  const { image, likes, author, savedBy, title, description, cuisine, steps, ingredients, cookingTime, difficultyLevel } = recipeData;
+  const { image, likes, author, savedBy, title, description, cuisine, steps, ingredients, cookingTime, difficultyLevel, reviews } = recipeData;
   return (
     <>{isLoading ? (
       <p>Loading...</p>
@@ -89,13 +91,6 @@ function COMPLETE_RECIPE() {
                 <SaveButton savedBy={savedBy} recipeId={recipeId}></SaveButton>
               </div>
               <p className='customization note'>{description}</p>
-              {/* 
-              <div className="Ingre">
-                <h4 className='customization'>Ingredients</h4>
-                <ul className="ingre">
-                  {ingredients.map(i => <li className='customization'>{i}</li>)}
-                </ul>
-              </div> */}
 
               <div className="timeandlevel customization">
                 <div><FontAwesomeIcon icon={faClock} spinPulse style={{ color: "#74C0FC", }} /> Cooking time: <span className="orange">{cookingTime}</span> minutes</div>
@@ -130,6 +125,27 @@ function COMPLETE_RECIPE() {
             ))}
           </div>
         </div>
+
+        <section className="complete-recipe-container">
+
+          <div className="Ingre">
+            <h2 className='orange'>Ingredients</h2>
+            <ul className="ingre">
+              {ingredients.map(i => <li className='customization ingredients'>{i}</li>)}
+            </ul>
+          </div>
+
+          <div className="review-box">
+            {reviews.length == 0 && <h2>No Reviews yet!!!</h2>}
+            {
+              reviews.length != 0 &&
+              reviews.map((review) => (
+                <Review key={review._id} review={review}></Review>
+              ))
+            }
+          </div>
+
+        </section>
       </div>)}
     </>
   )

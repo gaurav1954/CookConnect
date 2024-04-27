@@ -166,15 +166,31 @@ router.get('/recipes/saved', async (req, res) => {
 
 router.get("/recipes/info/:recipeId", async (req, res) => {
     const { recipeId } = req.params;
-    let recipe = await Recipe.findById(recipeId).populate("author");
-    recipe = {
-        ...recipe.toObject(),
-        likes: recipe.likes.length // Replace likes array with its length
-    }
-    console.log(recipe);
-    res.status(200).json(recipe);
+    try {
+        let recipe = await Recipe.findById(recipeId)
+            .populate("author")
+            .populate({
+                path: "reviews",
+                populate: {
+                    path: "author",
+                    model: 'User'
+                }
+            });
 
-})
+        // Replace likes array with its length
+        recipe = {
+            ...recipe.toObject(),
+            likes: recipe.likes.length
+        };
+
+        console.log(recipe);
+        res.status(200).json(recipe);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
+
 router.get('/recipes/:page/:limit', async (req, res) => {
     const { page, limit } = req.params;
 

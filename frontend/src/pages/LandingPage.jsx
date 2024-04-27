@@ -1,7 +1,6 @@
 import React from 'react'
 import salad from '../assets/salad.png'
 import pizza from '../assets/pizza.png'
-// import './LandingPage.css'
 import { useNavigate } from 'react-router-dom'
 import Logo from '../components/Logo'
 export default function LandingPage() {

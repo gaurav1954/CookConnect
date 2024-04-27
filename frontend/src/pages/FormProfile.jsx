@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import './Profileform.css';
-
-const UserProfile = ({ match }) => {
+import './FormProfile.css';
+export default function FormProfile() {
     const [formData, setFormData] = useState({
         username: 'John',
         name: 'John Doe',
@@ -89,17 +88,6 @@ const UserProfile = ({ match }) => {
                         <option value="advanced">Advanced</option>
                     </select>
 
-                    <label className="label" htmlFor="allergies">Allergies:</label>
-                    <input
-                        type="text"
-                        id="allergies"
-                        name="allergies"
-                        value={formData.allergies}
-                        onChange={handleChange}
-                        placeholder="Any food allergies..."
-                        className="input"
-                    />
-
                     <label className="label" htmlFor="instagram">Instagram:</label>
                     <input
                         type="text"
@@ -116,6 +104,4 @@ const UserProfile = ({ match }) => {
             </div>
         </div>
     );
-};
-
-export default UserProfile;
+}

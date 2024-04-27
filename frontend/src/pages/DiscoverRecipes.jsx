@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Cards from '../components/Cards';
 import './DiscoverRecipes.css';
 import Categories from '../components/Categories';
-import { useNavigate } from 'react-router-dom';
 
 export default function DiscoverRecipes() {
     const [recipes, setRecipes] = useState([]);

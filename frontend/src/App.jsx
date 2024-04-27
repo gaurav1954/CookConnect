@@ -5,12 +5,13 @@ import DiscoverRecipes from './pages/DiscoverRecipes';
 import Layout from './pages/Layout';
 import SignUp from "./pages/SignUp";
 import Login from "./pages/LogIn";
-import ProfilePage from './pages/ProfilePage';
 import './app.css';
+import Profileform from "./pages/profileform"
 import LandingPage from './pages/LandingPage';
 import COMPLETE_RECIPE from './pages/COMPLETE_RECIPE';
 import Feed from './pages/Feed';
 import Saved from './pages/Saved';
+
 
 export default function App() {
   return (
@@ -21,7 +22,7 @@ export default function App() {
             <Route path="" element={<LandingPage />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
-            <Route path="profile" element={<ProfilePage />} />
+            <Route path="profile" element={<Profileform />} />
           </Route>
           <Route path="/" element={<Layout />}>
             <Route path="new" element={<RecipeForm />} />

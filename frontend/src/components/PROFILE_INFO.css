@@ -1,4 +1,4 @@
-.pic{
+.profile-pic {
     width: 250px;
     height: 250px;
     border-radius: 10%;
@@ -11,60 +11,65 @@
     animation-timing-function: ease-in-out;
     margin-top: 10px;
 }
-.details{
+
+.profile-details {
     /* color: rgba(16, 156, 16, 0.777); */
     color: black;
     display: inline;
     float: left;
     margin-left: 200px;
     margin-top: 10px;
-    background-image: linear-gradient(
-      90deg,
-      rgba(165, 215, 232, 0.42) 0%,
-      rgba(255, 255, 255, 0) 100%
-    );
+    background-image: linear-gradient(90deg,
+            rgba(165, 215, 232, 0.42) 0%,
+            rgba(255, 255, 255, 0) 100%);
     background-size: 0 100%;
     background-repeat: no-repeat;
     transition: 0.4s;
 }
-.details:hover{
+
+.details:hover {
     background-size: 100% 100%;
 }
-*{
-    font-family: "Outfit", Arial, Helvetica, sans-serif;
-}
-.container {
+
+.containerrrr {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px;
 }
-.created{
+
+.created {
     display: inline;
     margin-left: 200px;
     color: orange
 }
-.division{
+
+.division {
     width: 70%;
 }
+
 .plus-icon {
-    color: orange; 
+    color: orange;
     font-size: 60px;
     margin-top: 10px;
     margin-left: 650px;
 }
-.no_recipe_text{
+
+.no_recipe_text {
     margin-left: 550px;
     margin-top: 100px;
 }
+
 @keyframes floating {
     0% {
-      transform: translate(0, 0px);
+        transform: translate(0, 0px);
     }
+
     50% {
-      transform: translate(0, 10px);
+        transform: translate(0, 10px);
     }
+
     100% {
-      transform: translate(0, -0px);
+        transform: translate(0, -0px);
     }
 }

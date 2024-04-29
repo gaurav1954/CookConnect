@@ -10,6 +10,7 @@ import COMPLETE_RECIPE from './pages/COMPLETE_RECIPE';
 import Feed from './pages/Feed';
 import Saved from './pages/Saved';
 import FormProfile from './pages/FormProfile';
+import PROFILE_INFO from './components/PROFILE_INFO';
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="profile" element={<FormProfile />} />
+            <Route path="profil" element={<PROFILE_INFO />} />
           </Route>
           <Route path="/" element={<Layout />}>
             <Route path="new" element={<RecipeForm />} />

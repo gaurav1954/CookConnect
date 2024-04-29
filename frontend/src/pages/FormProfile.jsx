@@ -28,7 +28,7 @@ export default function FormProfile() {
     return (
         <div className="con">
             <div className="content">
-                <p className='username'>{formData.username}</p>
+                <p className='form-username'>{formData.username}</p>
 
                 <form className="foorm" onSubmit={handleSubmit}>
                     <label className="label" htmlFor="name">Name:</label>

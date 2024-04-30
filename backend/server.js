@@ -5,8 +5,6 @@ const dotenv = require('dotenv')
 dotenv.config();
 const userRoutes = require("./routes/userRoutes")
 const cors = require('cors')
-
-
 mongoose
     .connect(process.env.URI)
     .then(() => {
@@ -16,7 +14,7 @@ mongoose
         console.log("connect cant be established")
     })
 const corsOptions = {
-    origin: 'http://localhost:5173', // Replace this with the origin of your React application
+    origin: 'http://localhost:3000', // Replace this with the origin of your React application
     credentials: true // Allow credentials (cookies)
 };
 

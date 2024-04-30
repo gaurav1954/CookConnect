@@ -1,0 +1,16 @@
+.review-username {
+    font-size: 2rem;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.individual-review {
+    padding: 0.7rem 1rem 0.9rem 1rem;
+}
+
+.individual-review+.individual-review {
+    border-top: 1px solid rgb(199, 197, 197);
+}

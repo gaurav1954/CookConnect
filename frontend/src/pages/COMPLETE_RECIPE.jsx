@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './COMPLETE_RECIPE.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookmark, faArrowRight, faClock, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faList, faArrowRight, faClock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
 import Step from '../components/Step';
 import Like from '../components/Like';
@@ -126,7 +126,7 @@ function COMPLETE_RECIPE() {
           </div>
         </div>
 
-        <section className="complete-recipe-container">
+        <section className="complete-recipe-container last-complete-recipe">
 
           <div className="Ingre">
             <h2 className='orange'>Ingredients</h2>
@@ -136,14 +136,20 @@ function COMPLETE_RECIPE() {
           </div>
 
           <div className="review-box">
-            {reviews.length == 0 && <h2>No Reviews yet!!!</h2>}
-            {
-              reviews.length != 0 &&
-              reviews.map((review) => (
-                <Review key={review._id} review={review}></Review>
-              ))
-            }
+            {reviews.length === 0 && <h2>No Reviews yet!!!</h2>}
+            {reviews.length !== 0 && (
+              <>
+                <h2 className='review-heading orange'>
+                  <FontAwesomeIcon icon={faList} size='2xs' className='customization' />
+                  <span>Reviews</span>
+                </h2>
+                {reviews.map((review) => (
+                  <Review key={review._id} review={review}></Review>
+                ))}
+              </>
+            )}
           </div>
+
 
         </section>
       </div>)}

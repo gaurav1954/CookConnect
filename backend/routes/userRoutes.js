@@ -65,9 +65,6 @@ router.get('/fail', (req, res) => {
     res.json("login failed");
 })
 router.post('/login', passport.authenticate('local', { failureRedirect: '/fail' }), (req, res) => {
-    console.log("login")
-    console.log(req.headers)
-    console.log(req.session)
     res.status(200).json(req.session);
 });
 
@@ -134,15 +131,12 @@ router.post('/recipes/:recipeId/review', async (req, res) => {
     await recipe.save();
     await recipe.populate('reviews')
     await review.populate('author');
-    console.log(recipe);
-    console.log("234");
     res.status(200).json({ message: "success" });
 
 });
 
 router.get('/recipes/saved', async (req, res) => {
     try {
-        console.log("reached");
         const userId = req.user._id;
         // Populate both 'saved' and 'author' fields
         const user = await User.findById(userId).populate({
@@ -182,8 +176,6 @@ router.get("/recipes/info/:recipeId", async (req, res) => {
             ...recipe.toObject(),
             likes: recipe.likes.length
         };
-
-        console.log(recipe);
         res.status(200).json(recipe);
     } catch (error) {
         console.error(error);
@@ -193,13 +185,24 @@ router.get("/recipes/info/:recipeId", async (req, res) => {
 
 router.get('/recipes/:page/:limit', async (req, res) => {
     const { page, limit } = req.params;
-
+    const { cuisine } = req.query;
+    let recipes;
     try {
-        let recipes = await Recipe.find()
-            .skip((page - 1) * limit)
-            .limit(limit)
-            .sort({ createdAt: -1 }) // Sort in descending order based on createdAt field
-            .populate("author");
+        if (cuisine) {
+            recipes = await Recipe.find({ cuisine: cuisine })
+                .skip((page - 1) * limit)
+                .limit(limit)
+                .sort({ createdAt: -1 }) // Sort in descending order based on createdAt field
+                .populate("author");
+        }
+        else {
+            recipes = await Recipe.find()
+                .skip((page - 1) * limit)
+                .limit(limit)
+                .sort({ createdAt: -1 }) // Sort in descending order based on createdAt field
+                .populate("author");
+        }
+
 
         recipes = recipes.map(recipe => ({
             ...recipe.toObject(),
@@ -226,18 +229,15 @@ router.post('/recipes/create', parser.single('image'), async (req, res) => {
 
 // Like a recipe
 router.post('/recipes/like/:recipeId', isLoggedIn, async (req, res) => {
-    console.log("likes")
     const { recipeId } = req.params;
     try {
         const recipe = await Recipe.findById(recipeId);
         if (!recipe) {
-            console.log("1")
             return res.status(404).json({ message: 'Recipe not found' });
         }
 
         // Check if the user has already liked the recipe
         if (recipe.likes && recipe.likes.includes(req.user._id)) {
-            console.log("2")
             return res.status(400).json({ message: 'Recipe already liked by this user' });
         }
 
@@ -253,7 +253,6 @@ router.post('/recipes/like/:recipeId', isLoggedIn, async (req, res) => {
 });
 // Unlike a recipe
 router.post('/recipes/unlike/:recipeId', async (req, res) => {
-    console.log("unlikes")
     const { recipeId } = req.params;
     const userId = req.user._id;
     try {
@@ -303,11 +302,9 @@ router.post('/recipes/save/:recipeId', async (req, res) => {
 router.post('/recipes/unsave/:recipeId', async (req, res) => {
     const { recipeId } = req.params;
     const userId = req.user._id;
-    console.log("1");
     try {
         const recipe = await Recipe.findById(recipeId);
         const user = await User.findById(userId)
-        console.log("1");
         if (!recipe) {
             return res.status(404).json({ message: 'Recipe not found' });
         }

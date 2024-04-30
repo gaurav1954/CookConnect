@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 import Post from '../components/Post';
 export default function Feed() {
+    const location = useLocation();
 
     const [recipes, setRecipes] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -12,7 +13,10 @@ export default function Feed() {
         if (!initialRender) {
             const fetchData = async () => {
                 try {
-                    const response = await fetch(`http://localhost:8000/recipes/${page}/6`, {
+                    const cuisine = location.state.cuisine;
+                    console.log(cuisine)
+                    const url = `http://localhost:8000/recipes/${page}/6?cuisine=${cuisine}`;
+                    const response = await fetch(url, {
                         method: 'GET',
                         credentials: 'include' // Include credentials for cross-origin requests
                     });

@@ -51,15 +51,12 @@ const recipeSchema = new mongoose.Schema({
     savedBy: {
         type: Number,
         default: 0 // Set a default value to prevent NaN errors
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     }
 });
 
-recipeSchema.pre('save', function (next) {
-    // Check if the document is newly created (not updated)
-    if (!this.createdAt) {
-        this.createdAt = new Date();
-    }
-    next();
-});
 
 module.exports = mongoose.model('Recipe', recipeSchema);

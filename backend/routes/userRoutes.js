@@ -234,13 +234,14 @@ router.get('/recipes/:page/:limit', async (req, res) => {
             recipes = await Recipe.find({ cuisine: cuisine })
                 .skip((page - 1) * limit)
                 .limit(limit)
-                .order
+                .sort({ createdAt: -1 })
                 .populate("author");
         }
         else {
             recipes = await Recipe.find()
                 .skip((page - 1) * limit)
                 .limit(limit)
+                .sort({ createdAt: -1 })
                 .populate("author");
         }
 

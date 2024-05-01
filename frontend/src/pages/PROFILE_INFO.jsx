@@ -1,48 +1,87 @@
-import React from 'react';
-import './PROFILE_INFO.css';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { faAllergies } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+import Cards from '../components/Cards';
+import './PROFILE_INFO.css'
 
 function PROFILE_INFO() {
+    const [userData, setUserData] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    const [initialRender, setInitialRender] = useState(true);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`http://localhost:8000/user-info`, {
+                    method: 'GET',
+                    credentials: 'include' // Include credentials
+                });
+                const data = await response.json();
+                setUserData(data);
+                setIsLoading(false); // Assuming the user data is returned directly
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+                setIsLoading(false);
+            }
+        };
+
+        fetchData(); // Move setInitialRender inside the conditional block
+    }, []);
+
+
+    const { name, age, location, bio, allergies, username, created, favoriteCuisine, cookingExperience, instagram } = userData;
+
     return (
-        <div>
+        <div className='profile-outermost-container'>
             <div className='profile-container'>
                 <div className="profile-details">
-                    <h2 className='profile-name'>Kanishka</h2>
+                    <p className='profile-name'>{username}</p>
                     <div className="alignment">
-                        <span className='profile-age'>Age: 20</span>
-                        <FontAwesomeIcon icon={faMapMarkerAlt} className='profile-icon' /><span> Dehradun, Uttrakhand</span>
+                        <div className='profile-age'>Age: {age || 'N/A'}</div>
+                        <div className="profile-location">
+                            <FontAwesomeIcon icon={faMapMarkerAlt} size='2xs' className='profile-icon lo' />
+                            <div>{location || 'N/A'}</div>
+                        </div>
                     </div>
-                    <h4 style={{ color: 'orange', fontSize: '20px' }}>Bio:</h4>
+                    <div className="profile-biooo">{bio || 'N/A'}</div>
                     <div className='profile-alignment'>
-                        <FontAwesomeIcon icon={faUtensils} className='profile-icon' /><span className='profile-fav_cuisine'>Favorite Cuisine: Indian</span><span>Cooking Experience: </span><span className='profile-cooking_exp'>Noob</span>
+                        <div className="cuisine-profile">
+                            <FontAwesomeIcon icon={faUtensils} className='profile-icon' />
+                            <div className='profile-fav_cuisine'>Favorite Cuisine: {favoriteCuisine || 'N/A'}</div>
+
+                        </div>
+                        <div>Cooking Experience: {cookingExperience || 'N/A'}</div>
                     </div>
                     <div className='profile-allergies'>
                         <FontAwesomeIcon icon={faAllergies} className='profile-icon' />
                         <span>Allergies:</span>
-                        <span className='profile-answer'>Dry Fruits</span>
+                        <span className='profile-answer'>{allergies || 'N/A'}</span>
                     </div>
                     <div className='profile-insta'>
                         <FontAwesomeIcon icon={faInstagram} className='profile-icon' />
-                        <span>kanishka Singh</span>
+                        <span>{instagram || 'N/A'}</span>
                     </div>
                 </div>
-                <div>
-                    <img className="profile-pic" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" />
+                <div className='profile-image-profile'>
+                    <img className="profile-pic" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile" />
                 </div>
-                <br></br>
             </div>
-            <hr className='profile-division' />
-            <div>
+            <div className='created-posts-profile'>
                 <h1 className='profile-created'>Created</h1>
-                <h3 className='profile-no_recipe_text'>No recipes published just yet!</h3>
-                <div><FontAwesomeIcon icon={faPlusCircle} className="profile-plus-icon" /></div>
+                <div className='discover-container'>
+                    {created && created.length > 0 ? (
+                        created.map(recipe => (
+                            <div key={recipe._id}>{/* Display created recipe details */}</div>
+                        ))
+                    ) : (
+                        <p>No created recipes found</p>
+                    )}
+                </div>
             </div>
         </div>
-    )
+    );
 }
+
 export default PROFILE_INFO;

@@ -33,12 +33,26 @@ export default function Saved() {
             {isLoading ? (
                 <p>Loading...</p>
             ) : (
+
                 <div className="feed">
-                    {recipes.map(recipe => (
+                    {recipes.length == 0 ? (<p className="warn"
+                        style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            width: "100%",
+                            marginTop: "3rem"
+                        }}>
+                        <div className="no-saved"
+                            style={{
+                                fontSize: "3rem",
+                                color: "orange"
+                            }}>No saved post as of now,<br />start by saving some posts</div>
+                    </p>) : recipes.map(recipe => (
                         <Post key={recipe._id} recipeId={recipe._id} {...recipe} />
                     ))}
-                </div>
-            )}
+                </div >
+            )
+            }
         </>
     );
 }

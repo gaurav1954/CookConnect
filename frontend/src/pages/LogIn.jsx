@@ -35,7 +35,7 @@ export default function Login() {
         navigate('/recipes');
       }
       else if (response.status == 201)
-        navigate('/profile-form');
+        navigate('/profile-form', { state: { username: formData.username } });
       else if (response.status === 401) {
         setError("Invalid username or password. Please try again.");
         setTimeout(() => {

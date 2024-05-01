@@ -62,10 +62,11 @@ export default function SignUp() {
     setFormData({ ...formData, [name]: value });
 
     // Check username uniqueness
-    setIsUsernameUnique(!registeredUsernames.includes(value));
+    setIsUsernameUnique(!registeredUsernames.includes(formData.username));
 
     // Check email uniqueness
-    setIsEmailUnique(!registeredEmails.includes(value));
+    setIsEmailUnique(!registeredEmails.includes(formData.email));
+
   };
 
   const redirectToLoginPage = () => {

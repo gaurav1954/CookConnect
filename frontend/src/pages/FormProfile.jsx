@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './FormProfile.css';
 export default function FormProfile() {
     const navigate = useNavigate();
+    const location = useLocation();
+
     const [loading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
-        username: 'John',
+        username: location.state.username || '',
         name: '',
         age: '',
         location: '',
@@ -29,7 +31,7 @@ export default function FormProfile() {
         setIsLoading(true);
 
         try {
-            const response = await fetch(`http://localhost:8000/${userId}/update-info`, {
+            const response = await fetch(`http://localhost:8000/update-info`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -102,15 +104,23 @@ export default function FormProfile() {
                     />
 
                     <label className="label" htmlFor="favoriteCuisine">Favorite Cuisine:</label>
-                    <input
-                        type="text"
-                        id="favoriteCuisine"
-                        name="favoriteCuisine"
-                        value={formData.favoriteCuisine}
-                        onChange={handleChange}
-                        placeholder="Your favorite cuisine..."
-                        className="input"
-                    />
+                    <select id="favoriteCuisine" name="favoriteCuisine" className="input-create-form" value={formData.cuisine} onChange={handleChange} required>
+                        <option value="">Select Cuisine</option>
+                        <option value="Italian">Italian</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Indian">Indian</option>
+                        <option value="French">French</option>
+                        <option value="Mexican">Mexican</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Thai">Thai</option>
+                        <option value="American">American</option>
+                        <option value="Mediterranean">Mediterranean</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="Greek">Greek</option>
+                        <option value="Vietnamese">Vietnamese</option>
+                        <option value="Korean">Korean</option>
+                        <option value="Other">Other</option>
+                    </select>
 
                     <label className="label" htmlFor="cookingExperience">Cooking Experience:</label>
                     <select

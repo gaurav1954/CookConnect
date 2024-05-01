@@ -93,6 +93,40 @@ router.post('/logout', (req, res) => {
     });
 });
 
+router.post('/update-info', async (req, res) => {
+    const userId = req.user._id;
+    const { name, age, location, bio, favoriteCuisine, cookingExperience, allergies, instagram } = req.body;
+
+    try {
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        user.name = name;
+        user.age = age;
+        user.location = location;
+        user.bio = bio;
+        user.favoriteCuisine = favoriteCuisine;
+        user.cookingExperience = cookingExperience;
+        user.allergies = allergies;
+        user.instagram = instagram;
+
+        await user.save();
+        console.log(user);
+
+        // Send success response
+        res.status(200).json({ message: 'User information updated successfully' });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'An error occurred while updating user information' });
+    }
+});
+router.get('/user-info', async (req, res) => {
+    const userId = req.user._id;
+    const user = await User.findById(userId).populate('created');
+    console.log(user);
+    res.status(200).json(user);
+});
 
 router.get('/registeredData', async (req, res) => {
     try {
@@ -228,7 +262,9 @@ router.post('/recipes/create', parser.single('image'), async (req, res) => {
 
     newRecipeData.author = req.user._id;
     newRecipeData.ingredients = newIngredients; // Assign the array of ingredients to newRecipeData
-
+    const user = await User.findById(req, user._id);
+    user.created.push(newRecipe);
+    await user.save();
     const newRecipe = new Recipe(newRecipeData);
     newRecipe.image = req.file.path;
     await newRecipe.save();

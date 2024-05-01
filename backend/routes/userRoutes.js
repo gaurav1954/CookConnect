@@ -68,7 +68,6 @@ router.post('/login', passport.authenticate('local', { failureRedirect: '/fail' 
     const userId = req.user._id;
     const user = await User.findById(userId)
     if (user.firstTime) {
-        user.firstTime = false;
         await user.save();
         res.status(201).json(req.session);
     }
@@ -111,6 +110,7 @@ router.post('/update-info', parser.single('profileImage'), async (req, res) => {
         user.allergies = allergies;
         user.instagram = instagram;
         user.profileImage = req.file.path;
+        user.firstTime = false;
         await user.save();
         console.log(user);
         // Send success response

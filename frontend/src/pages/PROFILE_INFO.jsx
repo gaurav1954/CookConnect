@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { faAllergies } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
-import Cards from '../components/Cards';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import './PROFILE_INFO.css'
 
 function PROFILE_INFO() {
     const [userData, setUserData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -29,14 +31,20 @@ function PROFILE_INFO() {
         fetchData(); // Move setInitialRender inside the conditional block
     }, []);
 
-
-    const { name, age, location, bio, allergies, username, created, favoriteCuisine, cookingExperience, instagram, profileImage } = userData;
+    function goToProfleFrom() {
+        navigate('/profile-form', { state: { username: username } });
+    }
+    const { name, age, location, bio, allergies, username, created, favoriteCuisine, cookingExperience, instagram, profileImage, _id } = userData;
 
     return (
         <div className='profile-outermost-container'>
             <div className='profile-container'>
                 <div className="profile-details">
-                    <p className='profile-name'>{username}</p>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                        <p className='profile-name'>{username}</p>
+                        <div style={{ marginLeft: "auto" }}>
+                            <FontAwesomeIcon icon={faPenToSquare} size='lg' onClick={goToProfleFrom} /></div>
+                    </div>
                     <div className="alignment">
                         <div className='profile-age'>Age: {age || 'N/A'}</div>
                         <div className="profile-location">
@@ -64,7 +72,9 @@ function PROFILE_INFO() {
                     </div>
                 </div>
                 <div className='profile-image-profile'>
-                    <img className="profile-pic" src={profileImage} alt="Profile" />
+                    <img className="profile-pic" src={profileImage}
+                        style={{ objectFit: "cover", alignContent: "center" }}
+                        alt="Profile" />
                 </div>
             </div>
             <div className='created-posts-profile'>

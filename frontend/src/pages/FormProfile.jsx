@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './FormProfile.css';
 export default function FormProfile() {
+    const navigate = useNavigate();
+    const [loading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         username: 'John',
-        name: 'John Doe',
+        name: '',
         age: '',
-        location: 'New York City, USA',
+        location: '',
         bio: '',
         favoriteCuisine: '',
         cookingExperience: '',
@@ -21,9 +24,44 @@ export default function FormProfile() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
+
+        try {
+            const response = await fetch(`http://localhost:8000/${userId}/update-info`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData),
+                credentials: 'include'
+            });
+
+            if (response.ok) {
+                // Reset form state
+                setFormData({
+                    username: 'John',
+                    name: '',
+                    age: '',
+                    location: '',
+                    bio: '',
+                    favoriteCuisine: '',
+                    cookingExperience: '',
+                    allergies: '',
+                    instagram: '',
+                });
+                setIsLoading(false);
+                navigate("/profile");
+            } else {
+                alert("Failed to send data.");
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert("An error occurred while creating recipe.");
+        }
     };
+
 
     return (
         <div className="con">

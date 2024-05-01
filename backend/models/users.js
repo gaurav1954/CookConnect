@@ -10,7 +10,8 @@ const userSchema = new mongoose.Schema({
         type: [mongoose.Schema.Types.ObjectId], // Array of user IDs who liked the recipe
         ref: 'Recipe',
         default: [],
-    }
+    },
+    firstTime: Boolean
 })
 userSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model('User', userSchema);  

@@ -16,7 +16,7 @@ services:
     depends_on:
       - mongo
     environment:
-      - MONGO_URI=mongodb://mongo:27017/t2
+      - MONGO_URI=mongodb://localhost:27017/t2
       - FRONTEND_ORIGIN=http://frontend:8080
     image: recipe-backend
     networks:

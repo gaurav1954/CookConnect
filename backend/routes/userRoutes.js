@@ -53,7 +53,7 @@ router.get('/check-auth', (req, res) => {
 router.post('/signup', async (req, res) => {
     try {
         const { username, email, password } = req.body;
-        const user = new User({ username, email });
+        const user = new User({ username, email, firstTime: true });
         const newUser = await User.register(user, password);
         res.status(200).json({ message: 'Signup successful' });
     } catch (err) {
@@ -64,8 +64,16 @@ router.post('/signup', async (req, res) => {
 router.get('/fail', (req, res) => {
     res.json("login failed");
 })
-router.post('/login', passport.authenticate('local', { failureRedirect: '/fail' }), (req, res) => {
-    res.status(200).json(req.session);
+router.post('/login', passport.authenticate('local', { failureRedirect: '/fail' }), async (req, res) => {
+    const userId = req.user._id;
+    const user = await User.findById(userId)
+    if (user.firstTime) {
+        user.firstTime = false;
+        await user.save();
+        res.status(201).json(req.session);
+    }
+    else
+        res.status(200).json(req.session);
 });
 
 // Logout route

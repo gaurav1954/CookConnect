@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Logo from './Logo';
 import logout from '../assets/logout.png';
 import './Navbar.css';
-import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
@@ -37,7 +38,7 @@ export default function Navbar() {
                     <Link to="/feed" className={`link ${location.pathname === "/feed" ? "active" : ""}`}>Feed</Link>
                 </div>
                 <div className="sandp">
-                    <input className="search" type="text" name="search" id="search" placeholder='search...' />
+                    <Link to="/profile" className={`link ${location.pathname === "/profile" ? "active" : ""}`}><FontAwesomeIcon icon={faUser} size='xl' /></Link>
                     <button className='logout' onClick={handleLogout}><img src={logout} className='logout-icon' alt="" /></button>
                 </div>
             </div>

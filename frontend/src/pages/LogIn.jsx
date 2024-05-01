@@ -30,10 +30,13 @@ export default function Login() {
         credentials: 'include' // Include credentials in the request
       });
 
-      if (response.ok) {
+      if (response.status == 200) {
         // Assuming successful login redirects to home page
         navigate('/recipes');
-      } else if (response.status === 401) {
+      }
+      else if (response.status == 201)
+        navigate('/profile-form');
+      else if (response.status === 401) {
         setError("Invalid username or password. Please try again.");
         setTimeout(() => {
           setError("");

@@ -234,14 +234,13 @@ router.get('/recipes/:page/:limit', async (req, res) => {
             recipes = await Recipe.find({ cuisine: cuisine })
                 .skip((page - 1) * limit)
                 .limit(limit)
-                .sort({ createdAt: -1 }) // Sort in descending order based on createdAt field
+                .order
                 .populate("author");
         }
         else {
             recipes = await Recipe.find()
                 .skip((page - 1) * limit)
                 .limit(limit)
-                .sort({ createdAt: -1 }) // Sort in descending order based on createdAt field
                 .populate("author");
         }
 
@@ -262,12 +261,12 @@ router.post('/recipes/create', parser.single('image'), async (req, res) => {
 
     newRecipeData.author = req.user._id;
     newRecipeData.ingredients = newIngredients; // Assign the array of ingredients to newRecipeData
-    const user = await User.findById(req, user._id);
-    user.created.push(newRecipe);
-    await user.save();
+    const user = await User.findById(req.user._id);
     const newRecipe = new Recipe(newRecipeData);
     newRecipe.image = req.file.path;
     await newRecipe.save();
+    user.created.push(newRecipe);
+    await user.save();
     res.status(200).json({ msg: "done" });
 });
 

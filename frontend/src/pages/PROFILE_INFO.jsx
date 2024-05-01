@@ -7,6 +7,7 @@ import { faAllergies } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import './PROFILE_INFO.css'
+import Cards from '../components/Cards';
 
 function PROFILE_INFO() {
     const [userData, setUserData] = useState({});
@@ -41,7 +42,7 @@ function PROFILE_INFO() {
             <div className='profile-container'>
                 <div className="profile-details">
                     <div style={{ display: "flex", alignItems: "center" }}>
-                        <p className='profile-name'>{username}</p>
+                        <p className='profile-name'>{name}</p>
                         <div style={{ marginLeft: "auto" }}>
                             <FontAwesomeIcon icon={faPenToSquare} size='lg' onClick={goToProfleFrom} /></div>
                     </div>
@@ -78,18 +79,18 @@ function PROFILE_INFO() {
                 </div>
             </div>
             <div className='created-posts-profile'>
-                <h1 className='profile-created'>Created</h1>
-                <div className='discover-container'>
+                <h1 className='profile-created'>Straight from {name}'s kitchen</h1>
+                <div className='created-container'>
                     {created && created.length > 0 ? (
                         created.map(recipe => (
-                            <div key={recipe._id}>{/* Display created recipe details */}</div>
+                            <Cards recipeId={recipe._id} key={recipe._id} {...recipe} ></Cards>
                         ))
                     ) : (
                         <p>No created recipes found</p>
                     )}
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 

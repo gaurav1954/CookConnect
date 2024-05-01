@@ -3,7 +3,8 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    row-gap: 10px;
+    row-gap: 30px;
+
 }
 
 .profile-outermost-container>* {
@@ -56,6 +57,7 @@
     align-items: center;
     justify-content: space-between;
     margin-top: 2rem;
+    column-gap: 10px;
 }
 
 .cuisine-profile {
@@ -66,7 +68,7 @@
 }
 
 .profile-created {
-    display: inline;
+    font-size: 2rem;
     color: orange
 }
 
@@ -94,9 +96,6 @@
     column-gap: 60px;
 }
 
-.profile-age {
-    margin-right: 300px;
-}
 
 .profile-fav_cuisine {
     color: grey;
@@ -114,15 +113,24 @@
     margin-right: 5px;
 }
 
+
+
 .profile-location {
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    align-items: last baseline;
 }
 
 .profile-allergies {
     margin-top: 5px;
     color: grey;
+}
+
+.created-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    column-gap: 10px;
 }
 
 .profile-insta {

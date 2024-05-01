@@ -10,7 +10,6 @@ import './PROFILE_INFO.css'
 function PROFILE_INFO() {
     const [userData, setUserData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
-    const [initialRender, setInitialRender] = useState(true);
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -31,7 +30,7 @@ function PROFILE_INFO() {
     }, []);
 
 
-    const { name, age, location, bio, allergies, username, created, favoriteCuisine, cookingExperience, instagram } = userData;
+    const { name, age, location, bio, allergies, username, created, favoriteCuisine, cookingExperience, instagram, profileImage } = userData;
 
     return (
         <div className='profile-outermost-container'>
@@ -65,7 +64,7 @@ function PROFILE_INFO() {
                     </div>
                 </div>
                 <div className='profile-image-profile'>
-                    <img className="profile-pic" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile" />
+                    <img className="profile-pic" src={profileImage} alt="Profile" />
                 </div>
             </div>
             <div className='created-posts-profile'>

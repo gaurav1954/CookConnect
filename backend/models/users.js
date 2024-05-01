@@ -29,6 +29,8 @@ const userSchema = new mongoose.Schema({
     cookingExperience: String,
     allergies: String,
     instagram: String,
+    profileImage: String,
+
 });
 
 userSchema.plugin(passportLocalMongoose);

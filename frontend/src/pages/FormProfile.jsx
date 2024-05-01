@@ -16,6 +16,7 @@ export default function FormProfile() {
         cookingExperience: '',
         allergies: '',
         instagram: '',
+        profileImage: null
     });
 
     const handleChange = (e) => {
@@ -25,34 +26,26 @@ export default function FormProfile() {
             [name]: value,
         });
     };
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        setFormData({ ...formData, profileImage: file });
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-
+        const formDataToSend = new FormData();
+        for (const key in formData) {
+            formDataToSend.append(key, formData[key]);
+        }
         try {
             const response = await fetch(`http://localhost:8000/update-info`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData),
+                body: formDataToSend,
                 credentials: 'include'
             });
 
             if (response.ok) {
-                // Reset form state
-                setFormData({
-                    username: 'John',
-                    name: '',
-                    age: '',
-                    location: '',
-                    bio: '',
-                    favoriteCuisine: '',
-                    cookingExperience: '',
-                    allergies: '',
-                    instagram: '',
-                });
                 setIsLoading(false);
                 navigate("/profile");
             } else {
@@ -81,6 +74,16 @@ export default function FormProfile() {
                         placeholder="Your name..."
                         className="input"
                     />
+                    <div className="label">
+                        <label>Display picture</label>
+                        <input
+                            type="file"
+                            id="profileImage"
+                            className="input-file"
+                            name="profileImage"
+                            onChange={handleImageChange}
+                            required />
+                    </div>
 
                     <label className="label" htmlFor="age">Age:</label>
                     <input
@@ -90,6 +93,28 @@ export default function FormProfile() {
                         value={formData.age}
                         onChange={handleChange}
                         placeholder="Your age..."
+                        className="input"
+                    />
+
+                    <label className="label" htmlFor="location">Location:</label>
+                    <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        value={formData.location}
+                        onChange={handleChange}
+                        placeholder="Your Location"
+                        className="input"
+                    />
+
+                    <label className="label" htmlFor="allergies">Allergies:</label>
+                    <input
+                        type="text"
+                        id="allergies"
+                        name="allergies"
+                        value={formData.allergies}
+                        onChange={handleChange}
+                        placeholder="Any allergeis?"
                         className="input"
                     />
 

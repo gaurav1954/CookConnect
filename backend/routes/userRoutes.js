@@ -93,7 +93,7 @@ router.post('/logout', (req, res) => {
     });
 });
 
-router.post('/update-info', async (req, res) => {
+router.post('/update-info', parser.single('profileImage'), async (req, res) => {
     const userId = req.user._id;
     const { name, age, location, bio, favoriteCuisine, cookingExperience, allergies, instagram } = req.body;
 
@@ -110,10 +110,9 @@ router.post('/update-info', async (req, res) => {
         user.cookingExperience = cookingExperience;
         user.allergies = allergies;
         user.instagram = instagram;
-
+        user.profileImage = req.file.path;
         await user.save();
         console.log(user);
-
         // Send success response
         res.status(200).json({ message: 'User information updated successfully' });
     } catch (error) {
@@ -121,6 +120,7 @@ router.post('/update-info', async (req, res) => {
         res.status(500).json({ message: 'An error occurred while updating user information' });
     }
 });
+
 router.get('/user-info', async (req, res) => {
     const userId = req.user._id;
     const user = await User.findById(userId).populate('created');

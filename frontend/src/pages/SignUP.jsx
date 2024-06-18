@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './SingUp.css';
+import './SignUp.css';
 import user_icon from '../assets/person.png';
 import pass_icon from '../assets/password.png';
 import email_icon from '../assets/email.png';

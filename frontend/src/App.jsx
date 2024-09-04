@@ -1,10 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import RecipeForm from './pages/RecipeForm';
 import DiscoverRecipes from './pages/DiscoverRecipes';
 import Layout from './pages/Layout';
 import SignUp from './pages/SignUp';
-import Login from "./pages/LogIn";
+import Login from './pages/LogIn';
 import './App.css';
 import COMPLETE_RECIPE from './pages/COMPLETE_RECIPE';
 import Feed from './pages/Feed';
@@ -17,17 +17,17 @@ export default function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/">
-            <Route path="login" element={<Login />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="profile-form" element={<FormProfile />} />
-          </Route>
+          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/profile-form" element={<FormProfile />} />
+
           <Route path="/" element={<Layout />}>
             <Route path="new" element={<RecipeForm />} />
             <Route path="recipes" element={<DiscoverRecipes />} />
             <Route path="feed" element={<Feed />} />
             <Route path="saved" element={<Saved />} />
-            <Route path='post' element={<COMPLETE_RECIPE />} />
+            <Route path="post" element={<COMPLETE_RECIPE />} />
             <Route path="profile" element={<PROFILE_INFO />} />
           </Route>
         </Routes>

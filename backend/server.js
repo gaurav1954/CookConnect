@@ -14,10 +14,9 @@ mongoose
         console.log("connect cant be established")
     })
 const corsOptions = {
-    origin: 'http://localhost:3000', // Replace this with the origin of your React application
+    origin: true, // Allow all origins
     credentials: true // Allow credentials (cookies)
 };
-
 app.use(cors(corsOptions));
 app.use('/', routes);
 app.listen(process.env.PORT, () => {

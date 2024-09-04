@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import RecipeForm from './pages/RecipeForm';
 import DiscoverRecipes from './pages/DiscoverRecipes';
 import Layout from './pages/Layout';
-import SignUp from './pages/SignUp';
+import SignUp from './pages/SignUp.jsx';
 import Login from './pages/LogIn';
 import './App.css';
 import COMPLETE_RECIPE from './pages/COMPLETE_RECIPE';

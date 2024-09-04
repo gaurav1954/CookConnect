@@ -23,7 +23,7 @@ export default function SignUp() {
     // Fetch registered usernames and emails from the server
     const fetchRegisteredData = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/registeredData');
+       const response = await axios.get(`http://localhost:8000/auth/registeredData`);
         setRegisteredUsernames(response.data.usernames);
         setRegisteredEmails(response.data.emails);
       } catch (error) {
@@ -38,7 +38,7 @@ export default function SignUp() {
     // Check if username and email are unique
     if (isUsernameUnique && isEmailUnique) {
       try {
-        const response = await axios.post('http://localhost:8000/signup', formData, {
+        const response = await axios.post('http://localhost:8000/auth/signup', formData, {
           headers: {
             'Content-Type': 'application/json'
           }

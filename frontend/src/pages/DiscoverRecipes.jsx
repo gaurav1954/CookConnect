@@ -13,7 +13,7 @@ export default function DiscoverRecipes() {
         if (!initialRender) {
             const fetchData = async () => {
                 try {
-                    const response = await fetch(`http://localhost:8000/recipes/${page}/4`, {
+                    const response = await fetch(`${import.meta.env.VITE_REACT_API_URL}/recipes/${page}/4`, {
                         method: 'GET',
                         credentials: 'include' // Include credentials
                     });

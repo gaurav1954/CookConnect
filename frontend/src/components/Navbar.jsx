@@ -14,7 +14,7 @@ export default function Navbar() {
 
     const handleLogout = async () => {
         try {
-            await fetch('http://localhost:8000/logout', {
+            await fetch(`${import.meta.env.VITE_REACT_API_URL}/auth/logout`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

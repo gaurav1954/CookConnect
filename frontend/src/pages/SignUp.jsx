@@ -23,7 +23,7 @@ export default function SignUp() {
     // Fetch registered usernames and emails from the server
     const fetchRegisteredData = async () => {
       try {
-       const response = await axios.get(`http://localhost:8000/auth/registeredData`);
+       const response = await axios.get(`${import.meta.env.VITE_REACT_API_URL}/auth/registeredData`);
         setRegisteredUsernames(response.data.usernames);
         setRegisteredEmails(response.data.emails);
       } catch (error) {

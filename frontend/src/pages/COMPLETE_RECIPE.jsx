@@ -27,7 +27,7 @@ function COMPLETE_RECIPE() {
     }
 
     try {
-      const response = await fetch(`http://localhost:8000/recipes/${recipeId}/review`, {
+      const response = await fetch(`${import.meta.env.VITE_REACT_API_URL}/recipes/${recipeId}/review`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

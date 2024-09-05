@@ -11,7 +11,7 @@ export default function SaveButton({ recipeId, savedBy }) {
     useEffect(() => {
         const fetchSavedStatus = async () => {
             try {
-                const apiUrl = `http://localhost:8000/recipes/${recipeId}/saved-status`;
+                const apiUrl = `${import.meta.env.VITE_REACT_API_URL}/recipes/${recipeId}/saved-status`;
                 const response = await fetch(apiUrl, {
                     method: 'GET',
                     credentials: 'include'

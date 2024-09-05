@@ -64,7 +64,7 @@ const RecipeForm = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:8000/recipes/create', {
+            const response = await fetch(`${import.meta.env.VITE_REACT_API_URL}/recipes/create`, {
                 method: 'POST',
                 body: formDataToSend,
                 credentials: 'include'

@@ -39,7 +39,7 @@ export default function FormProfile() {
             formDataToSend.append(key, formData[key]);
         }
         try {
-            const response = await fetch(`http://localhost:8000/auth/update-info`, {
+            const response = await fetch(`${import.meta.env.VITE_REACT_API_URL}/auth/update-info`, {
                 method: 'POST',
                 body: formDataToSend,
                 credentials: 'include'

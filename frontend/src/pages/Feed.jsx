@@ -13,7 +13,7 @@ export default function Feed() {
         if (!initialRender) {
             const fetchData = async () => {
                 try {
-                    let url = `http://localhost:8000/recipes/${page}/6`;
+                    let url = `${import.meta.env.VITE_REACT_API_URL}/recipes/${page}/6`;
                     if (location.state)
                         url += `?cuisine=${location.state.cuisine}`
                     const response = await fetch(url, {

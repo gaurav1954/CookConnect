@@ -8,7 +8,7 @@ export default function Saved() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:8000/recipes/saved`, {
+                const response = await fetch(`${import.meta.env.VITE_REACT_API_URL}/recipes/saved`, {
                     method: 'GET',
                     credentials: 'include' // Include credentials for cross-origin requests
                 });

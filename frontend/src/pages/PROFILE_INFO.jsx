@@ -16,7 +16,7 @@ function PROFILE_INFO() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:8000/auth/user-info`, {
+                const response = await fetch(`${import.meta.env.VITE_REACT_API_URL}/auth/user-info`, {
                     method: 'GET',
                     credentials: 'include' // Include credentials
                 });

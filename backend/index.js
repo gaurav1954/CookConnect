@@ -14,7 +14,7 @@ mongoose
         console.log("connect cant be established")
     })
 const corsOptions = {
-    origin: true, // Allow all origins
+    origin: ['http://localhost:3000', 'https://cook-connect-frontend.vercel.app'],
     credentials: true // Allow credentials (cookies)
 };
 app.use(cors(corsOptions));

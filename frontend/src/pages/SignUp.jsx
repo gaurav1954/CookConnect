@@ -38,7 +38,7 @@ export default function SignUp() {
     // Check if username and email are unique
     if (isUsernameUnique && isEmailUnique) {
       try {
-        const response = await axios.post('http://localhost:8000/auth/signup', formData, {
+        const response = await axios.post(`${import.meta.env.VITE_REACT_API_URL}/auth/signup`, formData, {
           headers: {
             'Content-Type': 'application/json'
           }

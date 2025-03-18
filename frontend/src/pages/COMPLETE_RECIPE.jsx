@@ -51,10 +51,13 @@ function COMPLETE_RECIPE() {
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/recipes/info/${recipeId}`, {
-          method: 'GET',
-          credentials: 'include' // Include credentials
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_REACT_API_URL}/recipes/info/${recipeId}`,
+          {
+            method: "GET",
+            credentials: "include", // Include credentials
+          }
+        );
         const data = await response.json();
         setRecipeData(data);
         setIsLoading(false);

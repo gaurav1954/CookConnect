@@ -13,7 +13,9 @@ export default function Like({ likes = 10, recipeId }) {
     useEffect(() => {
         const fetchLikeStatus = async () => {
             try {
-                const apiUrl = `http://localhost:8000/recipes/${recipeId}/like-status`; // API endpoint to get like status
+        const apiUrl = `${
+          import.meta.env.VITE_REACT_API_URL
+        }/recipes/${recipeId}/like-status`; // API endpoint to get like status
                 const response = await fetch(apiUrl, {
                     method: 'GET',
                     credentials: 'include' // Include credentials in the request
@@ -29,7 +31,7 @@ export default function Like({ likes = 10, recipeId }) {
     // Execute effect when recipeId changes
     const handleLikeClick = async () => {
         try {
-            const apiUrl = 'http://localhost:8000/recipes'; // API base URL
+      const apiUrl = `${import.meta.env.VITE_REACT_API_URL}/recipes`; // API base URL
 
             if (liked == true) {
                 // Unlike the recipe

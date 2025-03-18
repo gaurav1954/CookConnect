@@ -65,7 +65,12 @@ exports.updateInfo = async (req, res) => {
         user.cookingExperience = cookingExperience;
         user.allergies = allergies;
         user.instagram = instagram;
-        user.profileImage = req.file.path;
+
+        // Only update profile image if a new one was uploaded
+        if (req.file) {
+          user.profileImage = req.file.path;
+        }
+
         user.firstTime = false;
         await user.save();
         console.log(user);

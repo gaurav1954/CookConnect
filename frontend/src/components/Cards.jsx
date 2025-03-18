@@ -12,23 +12,22 @@ export default function Cards({ recipeId, title = 'burger', image = 'https://res
   const goToDetailedPage = function () {
     navigate('/post', { state: { recipeId: recipeId } })
   }
+  const likesCount = Array.isArray(likes) ? likes.length : likes;
+
+  console.log(likesCount);
   return (
     <Card className="custom-card">
       <div className="image-container">
         <div className="likeandshare">
-          <Like recipeId={recipeId} likes={likes} />
+          <Like recipeId={recipeId} likes={likesCount} />
           <SaveButton recipeId={recipeId} savedBy={savedBy} />
         </div>
-        <Card.Img
-          src={image}
-          alt="Card image"
-          onClick={goToDetailedPage}
-        />
+        <Card.Img src={image} alt="Card image" onClick={goToDetailedPage} />
         <div className="menu-icon">
           <FontAwesomeIcon icon={faEllipsisV} />
         </div>
       </div>
-      <Card.Body >
+      <Card.Body>
         <Card.Title className="title">{title}</Card.Title>
         <div className="card-text">
           <div className="ingredientss">{ingredients.length} ingredients</div>
